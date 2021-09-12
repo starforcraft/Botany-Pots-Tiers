@@ -1,0 +1,23 @@
+{
+    "type": "crafting_shaped",
+    "pattern": [
+        "S S",
+        "SPS",
+        "ISI"
+    ],
+    "key": {
+        "S": {
+            "item": "minecraft:terracotta"
+        },
+        "P": {
+            "item": "botanypotstiers:elite_botany_pot"
+        },
+        "I": {
+            "item": "minecraft:diamond_block"
+        }
+    },
+    "result": {
+        "item": "botanypotstiers:ultra_botany_pot",
+        "count": 1
+    }
+}

@@ -1,0 +1,26 @@
+{
+    "type": "crafting_shaped",
+    "pattern": [
+        "SHS",
+        "SPS",
+        "ISI"
+    ],
+    "key": {
+        "S": {
+            "item": "minecraft:yellow_terracotta"
+        },
+        "P": {
+            "item": "minecraft:flower_pot"
+        },
+        "H": {
+            "item": "minecraft:hopper"
+        },
+        "I": {
+            "item": "minecraft:iron_block"
+        }
+    },
+    "result": {
+        "item": "botanypotstiers:elite_hopper_yellow_botany_pot",
+        "count": 1
+    }
+}
