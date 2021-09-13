@@ -1,6 +1,7 @@
 package com.YTrollman.BotanyPotsTiers.tileentity;
 
 import com.YTrollman.BotanyPotsTiers.blocks.TieredBlockBotanyPot;
+import com.YTrollman.BotanyPotsTiers.config.BotanyPotsTiersConfig;
 import com.YTrollman.BotanyPotsTiers.events.TieredBotanyPotHarvestedEvent;
 import com.YTrollman.BotanyPotsTiers.events.TieredBotanyPotHarvestedEvent.LootGenerated;
 import com.YTrollman.BotanyPotsTiers.events.TieredBotanyPotTickEvent;
@@ -123,15 +124,15 @@ public class TieredTileEntityBotanyPot extends TileEntityBasicTickable {
     {
         if(tier == "Elite")
         {
-            return 2;
+            return BotanyPotsTiersConfig.ELITE_BOTANY_POT_SPEED_OUTPUT.get();
         }
         else if(tier == "Ultra")
         {
-            return 6;
+            return BotanyPotsTiersConfig.ULTRA_BOTANY_POT_SPEED_OUTPUT.get();
         }
         else if(tier == "Creative")
         {
-            return 10;
+            return BotanyPotsTiersConfig.CREATIVE_BOTANY_POT_SPEED_OUTPUT.get();
         }
         return 0;
     }
