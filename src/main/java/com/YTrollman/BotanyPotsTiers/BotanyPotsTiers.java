@@ -1,9 +1,12 @@
 package com.YTrollman.BotanyPotsTiers;
 
+import com.YTrollman.BotanyPotsTiers.compat.top.TOPPlugin;
 import com.YTrollman.BotanyPotsTiers.config.Config;
 import com.YTrollman.BotanyPotsTiers.registry.RegistryHandler;
+import net.darkhax.bookshelf.util.ModUtils;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.InterModComms;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
@@ -36,7 +39,9 @@ public class BotanyPotsTiers
 
     private void setup(FMLCommonSetupEvent event)
     {
-
+        if (ModUtils.isInModList("theoneprobe")) {
+            InterModComms.sendTo("theoneprobe", "getTheOneProbe", TOPPlugin::new);
+        }
     }
 
     private void doClientStuff(FMLClientSetupEvent event)

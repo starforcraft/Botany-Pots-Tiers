@@ -1,6 +1,7 @@
-package com.YTrollman.BotanyPotsTiers.registry;
+package com.YTrollman.BotanyPotsTiers.compat.jei;
 
 import com.YTrollman.BotanyPotsTiers.BotanyPotsTiers;
+import com.YTrollman.BotanyPotsTiers.registry.ModBlocks;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.registration.IRecipeCatalystRegistration;
