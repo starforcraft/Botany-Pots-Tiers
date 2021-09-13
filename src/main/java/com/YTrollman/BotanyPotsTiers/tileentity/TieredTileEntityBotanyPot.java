@@ -223,10 +223,8 @@ public class TieredTileEntityBotanyPot extends TileEntityBasicTickable {
 
                             for(int slot = 0; slot < inventory.getSlots(); ++slot) {
                                 if (inventory.isItemValid(slot, item) && inventory.insertItem(slot, item, true).getCount() != item.getCount()) {
-                                    for(int i = 0; i < getSpeed(); i++)
-                                    {
-                                        inventory.insertItem(slot, item, false);
-                                    }
+                                    item.setCount(item.getCount() * getSpeed());
+                                    inventory.insertItem(slot, item, false);
                                     didAutoHarvest = true;
                                     break;
                                 }

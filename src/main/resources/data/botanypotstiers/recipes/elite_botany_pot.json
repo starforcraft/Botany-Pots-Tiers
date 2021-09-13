@@ -1,7 +1,7 @@
 {
     "type": "crafting_shaped",
     "pattern": [
-        "S S",
+        "SES",
         "SPS",
         "ISI"
     ],
@@ -10,10 +10,13 @@
             "item": "minecraft:terracotta"
         },
         "P": {
-            "item": "minecraft:flower_pot"
+            "item": "botanypots:botany_pot"
         },
         "I": {
             "item": "minecraft:iron_block"
+        },
+        "E": {
+            "item": "minecraft:ender_pearl"
         }
     },
     "result": {
