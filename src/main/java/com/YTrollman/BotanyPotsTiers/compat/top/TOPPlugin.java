@@ -1,10 +1,10 @@
 package com.YTrollman.BotanyPotsTiers.compat.top;
 
+import com.YTrollman.BotanyPotsTiers.BotanyPotsTiers;
 import com.YTrollman.BotanyPotsTiers.blocks.TieredBlockBotanyPot;
 import com.YTrollman.BotanyPotsTiers.tileentity.TieredTileEntityBotanyPot;
 import mcjty.theoneprobe.api.*;
 import mcjty.theoneprobe.apiimpl.styles.ProgressStyle;
-import net.darkhax.botanypots.BotanyPots;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
@@ -23,7 +23,7 @@ public class TOPPlugin implements Function<ITheOneProbe, Void>, IProbeInfoProvid
 
     @Override
     public String getID () {
-        return BotanyPots.MOD_ID + ":top_support";
+        return BotanyPotsTiers.MOD_ID + ":top_support";
     }
 
     @Override
