@@ -123,7 +123,7 @@ dependencies {
 
     implementation fg.deobf("curse.maven:top-245211:3319255")
 
-    implementation fg.deobf("curse.maven:botanypots-353928:3358843")
+    implementation fg.deobf("curse.maven:botanypots-353928:3493241")
     implementation fg.deobf("curse.maven:bookshelf-228525:3402183")
 }
 
