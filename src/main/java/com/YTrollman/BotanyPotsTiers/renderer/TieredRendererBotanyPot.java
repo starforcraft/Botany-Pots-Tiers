@@ -15,8 +15,8 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 @OnlyIn(Dist.CLIENT)
 public class TieredRendererBotanyPot extends TileEntityRenderer<TieredTileEntityBotanyPot> {
 
-    private static final Direction[] SOIL_SIDES = new Direction[] { Direction.UP };
-    private static final Direction[] CROP_SIDES = new Direction[] { Direction.UP, Direction.NORTH, Direction.SOUTH, Direction.WEST, Direction.EAST };
+    private static final Direction[] SOIL_SIDES = new Direction[]{Direction.UP};
+    private static final Direction[] CROP_SIDES = new Direction[]{Direction.UP, Direction.NORTH, Direction.SOUTH, Direction.WEST, Direction.EAST};
 
     public TieredRendererBotanyPot(TileEntityRendererDispatcher dispatcher) {
 

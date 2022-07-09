@@ -117,42 +117,38 @@ public class TieredTileEntityBotanyPot extends TileEntityBasicTickable {
         return this.crop != null && this.getTotalGrowthTicks() > 0 && this.getCurrentGrowthTicks() >= this.getTotalGrowthTicks();
     }
 
-    public int getSpeed()
-    {
-        if(getTier() == "Elite")
-        {
-            return BotanyPotsTiersConfig.ELITE_BOTANY_POT_SPEED_OUTPUT.get();
-        }
-        else if(getTier() == "Ultra")
-        {
-            return BotanyPotsTiersConfig.ULTRA_BOTANY_POT_SPEED_OUTPUT.get();
-        }
-        else if(getTier() == "Creative")
-        {
-            return BotanyPotsTiersConfig.CREATIVE_BOTANY_POT_SPEED_OUTPUT.get();
-        }
-        else
-        {
+    public int getSpeed() {
+        if (getTier() == "Elite") {
+            return BotanyPotsTiersConfig.ELITE_BOTANY_POT_SPEED.get();
+        } else if (getTier() == "Ultra") {
+            return BotanyPotsTiersConfig.ULTRA_BOTANY_POT_SPEED.get();
+        } else if (getTier() == "Creative") {
+            return BotanyPotsTiersConfig.CREATIVE_BOTANY_POT_SPEED.get();
+        } else {
             return 0;
         }
     }
 
-    private int getAutoHarvestCooldown()
-    {
-        if(getTier() == "Elite")
-        {
-            return 4;
-        }
-        else if(getTier() == "Ultra")
-        {
-            return 2;
-        }
-        else if(getTier() == "Creative")
-        {
+    public int getMultiplier() {
+        if (getTier() == "Elite") {
+            return BotanyPotsTiersConfig.ELITE_BOTANY_POT_MULTIPLIER.get();
+        } else if (getTier() == "Ultra") {
+            return BotanyPotsTiersConfig.ULTRA_BOTANY_POT_MULTIPLIER.get();
+        } else if (getTier() == "Creative") {
+            return BotanyPotsTiersConfig.CREATIVE_BOTANY_POT_MULTIPLIER.get();
+        } else {
             return 0;
         }
-        else
-        {
+    }
+
+    private int getAutoHarvestCooldown() {
+        if (getTier() == "Elite") {
+            return 4;
+        } else if (getTier() == "Ultra") {
+            return 2;
+        } else if (getTier() == "Creative") {
+            return 0;
+        } else {
             return 0;
         }
     }
@@ -190,7 +186,7 @@ public class TieredTileEntityBotanyPot extends TileEntityBasicTickable {
     }
 
     public float getGrowthPercent() {
-        return this.totalGrowthTicks != -1 && this.currentGrowthTicks != -1 ? (float)this.currentGrowthTicks / (float)this.totalGrowthTicks : 0.0F;
+        return this.totalGrowthTicks != -1 && this.currentGrowthTicks != -1 ? (float) this.currentGrowthTicks / (float) this.totalGrowthTicks : 0.0F;
     }
 
     public void onTileTick() {
@@ -224,7 +220,7 @@ public class TieredTileEntityBotanyPot extends TileEntityBasicTickable {
     private void attemptAutoHarvest() {
         if (!MinecraftForge.EVENT_BUS.post(new TieredBotanyPotHarvestedEvent.Pre(this, null))) {
             Block block = this.getBlockState().getBlock();
-            if (block instanceof TieredBlockBotanyPot && ((TieredBlockBotanyPot)block).isHopper()) {
+            if (block instanceof TieredBlockBotanyPot && ((TieredBlockBotanyPot) block).isHopper()) {
                 if (this.autoHarvestCooldown > 0) {
                     --this.autoHarvestCooldown;
                     return;
@@ -236,13 +232,13 @@ public class TieredTileEntityBotanyPot extends TileEntityBasicTickable {
                     List<ItemStack> drops = this.getDrops();
                     Iterator var5 = drops.iterator();
 
-                    while(true) {
-                        while(var5.hasNext()) {
-                            ItemStack item = (ItemStack)var5.next();
+                    while (true) {
+                        while (var5.hasNext()) {
+                            ItemStack item = (ItemStack) var5.next();
 
-                            for(int slot = 0; slot < inventory.getSlots(); ++slot) {
+                            for (int slot = 0; slot < inventory.getSlots(); ++slot) {
                                 if (inventory.isItemValid(slot, item) && inventory.insertItem(slot, item, true).getCount() != item.getCount()) {
-                                    item.setCount(item.getCount() * getSpeed());
+                                    item.setCount(item.getCount() * getMultiplier());
                                     inventory.insertItem(slot, item, false);
                                     didAutoHarvest = true;
                                     break;
@@ -267,7 +263,7 @@ public class TieredTileEntityBotanyPot extends TileEntityBasicTickable {
         if (this.hasSoilAndCrop()) {
             IChunk chunk = this.level.getChunk(this.worldPosition);
             if (chunk instanceof Chunk) {
-                BotanyPots.NETWORK.sendToChunk((Chunk)chunk, new BreakEffectsMessage(this.worldPosition, this.crop.getDisplayState()[0].getState()));
+                BotanyPots.NETWORK.sendToChunk((Chunk) chunk, new BreakEffectsMessage(this.worldPosition, this.crop.getDisplayState()[0].getState()));
             }
         }
 
@@ -315,17 +311,17 @@ public class TieredTileEntityBotanyPot extends TileEntityBasicTickable {
                                 this.currentGrowthTicks = dataTag.getInt("GrowthTicks");
                                 this.totalGrowthTicks = this.crop.getGrowthTicksForSoil(this.soil) / getSpeed();
                             } else {
-                                BotanyPotsTiers.LOGGER.error("Botany Pot at {} had a crop of type {} but that crop does not exist. The crop will be discarded.", this.worldPosition, rawCropId);
+                                BotanyPotsTiers.LOGGER.error(getTier() + " Botany Pot at {} had a crop of type {} but that crop does not exist. The crop will be discarded.", this.worldPosition, rawCropId);
                             }
                         } else {
-                            BotanyPotsTiers.LOGGER.error("Botany Pot at {} has an invalid crop Id of {}. The crop will be discarded.", this.worldPosition, rawCropId);
+                            BotanyPotsTiers.LOGGER.error(getTier() + " Botany Pot at {} has an invalid crop Id of {}. The crop will be discarded.", this.worldPosition, rawCropId);
                         }
                     }
                 } else {
-                    BotanyPotsTiers.LOGGER.error("Botany Pot at {} had a soil of type {} which no longer exists. Soil and crop will be discarded.", this.worldPosition, rawSoilId);
+                    BotanyPotsTiers.LOGGER.error(getTier() + " Botany Pot at {} had a soil of type {} which no longer exists. Soil and crop will be discarded.", this.worldPosition, rawSoilId);
                 }
             } else {
-                BotanyPotsTiers.LOGGER.error("Botany Pot at {} has invalid soil type {}. Soil and crop will be discarded.", this.worldPosition, rawSoilId);
+                BotanyPotsTiers.LOGGER.error(getTier() + " Botany Pot at {} has invalid soil type {}. Soil and crop will be discarded.", this.worldPosition, rawSoilId);
             }
         }
     }
@@ -352,9 +348,9 @@ public class TieredTileEntityBotanyPot extends TileEntityBasicTickable {
     }
 
     @Override
-    public <T> LazyOptional<T> getCapability (Capability<T> cap, Direction side) {
+    public <T> LazyOptional<T> getCapability(Capability<T> cap, Direction side) {
         if (!this.remove && cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY && side == Direction.DOWN) {
-            return LazyOptional.of( () -> DUMMY_INV).cast();
+            return LazyOptional.of(() -> DUMMY_INV).cast();
         }
 
         return super.getCapability(cap, side);
@@ -373,8 +369,7 @@ public class TieredTileEntityBotanyPot extends TileEntityBasicTickable {
         return this.dropsCache;
     }
 
-    private String getTier()
-    {
+    private String getTier() {
         return tier;
     }
 }

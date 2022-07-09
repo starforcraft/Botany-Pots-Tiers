@@ -51,7 +51,7 @@ public class TieredLookupEvent<T> extends TieredBotanyPotEvent.Player {
      *
      * @return The ItemStack being looked up.
      */
-    public ItemStack getItemStack () {
+    public ItemStack getItemStack() {
 
         return this.stack;
     }
@@ -63,7 +63,7 @@ public class TieredLookupEvent<T> extends TieredBotanyPotEvent.Player {
      * @return The original lookup value.
      */
     @Nullable
-    public T getOriginalLookup () {
+    public T getOriginalLookup() {
 
         return this.originalLookup;
     }
@@ -75,7 +75,7 @@ public class TieredLookupEvent<T> extends TieredBotanyPotEvent.Player {
      * @return The current lookup value.
      */
     @Nullable
-    public T getCurrentLookup () {
+    public T getCurrentLookup() {
 
         return this.currentLookup;
     }
@@ -85,7 +85,7 @@ public class TieredLookupEvent<T> extends TieredBotanyPotEvent.Player {
      *
      * @param lookup The new lookup value.
      */
-    public void setLookup (@Nullable T lookup) {
+    public void setLookup(@Nullable T lookup) {
 
         this.currentLookup = lookup;
     }

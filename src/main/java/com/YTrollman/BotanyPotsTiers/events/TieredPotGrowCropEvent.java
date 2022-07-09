@@ -42,7 +42,7 @@ public class TieredPotGrowCropEvent extends TieredBotanyPotEvent {
          *
          * @return The original growth tick amount.
          */
-        public int getOriginalAmount () {
+        public int getOriginalAmount() {
 
             return this.amount;
         }
@@ -52,7 +52,7 @@ public class TieredPotGrowCropEvent extends TieredBotanyPotEvent {
          *
          * @return The current amount of growth ticks.
          */
-        public int getCurrentAmount () {
+        public int getCurrentAmount() {
 
             return this.newAmount;
         }
@@ -63,7 +63,7 @@ public class TieredPotGrowCropEvent extends TieredBotanyPotEvent {
          *
          * @param amount The amount of growth ticks to apply.
          */
-        public void setAmount (int amount) {
+        public void setAmount(int amount) {
 
             this.newAmount = amount;
         }
@@ -84,7 +84,7 @@ public class TieredPotGrowCropEvent extends TieredBotanyPotEvent {
          *
          * @return The amount of ticks the crop grew by.
          */
-        public int getGrowthAmount () {
+        public int getGrowthAmount() {
 
             return this.amount;
         }

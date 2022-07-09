@@ -51,7 +51,7 @@ public class TieredCropPlaceEvent extends TieredBotanyPotEvent.Player {
          * @return The crop to be planted.
          */
         @Nullable
-        public CropInfo getCurrentCrop () {
+        public CropInfo getCurrentCrop() {
 
             return this.cropToPlace;
         }
@@ -62,7 +62,7 @@ public class TieredCropPlaceEvent extends TieredBotanyPotEvent.Player {
          *
          * @param crop The new crop to be planted.
          */
-        public void setCrop (@Nullable CropInfo crop) {
+        public void setCrop(@Nullable CropInfo crop) {
 
             this.cropToPlace = crop;
         }
@@ -72,7 +72,7 @@ public class TieredCropPlaceEvent extends TieredBotanyPotEvent.Player {
          *
          * @return The original crop trying to be planted.
          */
-        public CropInfo getOriginalCrop () {
+        public CropInfo getOriginalCrop() {
 
             return this.crop;
         }
@@ -94,7 +94,7 @@ public class TieredCropPlaceEvent extends TieredBotanyPotEvent.Player {
          *
          * @return The crop that was planted.
          */
-        public CropInfo getCrop () {
+        public CropInfo getCrop() {
 
             return this.crop;
         }

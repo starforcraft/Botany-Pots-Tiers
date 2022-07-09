@@ -29,7 +29,7 @@ public class TieredSoilRemoveEvent extends TieredBotanyPotEvent.Player {
      *
      * @return The soil being removed.
      */
-    public SoilInfo getSoil () {
+    public SoilInfo getSoil() {
 
         return this.soil;
     }

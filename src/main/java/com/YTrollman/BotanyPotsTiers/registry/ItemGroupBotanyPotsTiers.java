@@ -10,14 +10,14 @@ import javax.annotation.Nonnull;
 
 public class ItemGroupBotanyPotsTiers {
 
-	public static final ItemGroup BOTANY_POTS_TIERS = (new ItemGroup(BotanyPotsTiers.MOD_ID) {
+    public static final ItemGroup BOTANY_POTS_TIERS = (new ItemGroup(BotanyPotsTiers.MOD_ID) {
 
-		@Override
-		@Nonnull
-		@OnlyIn(Dist.CLIENT)
-		public ItemStack makeIcon() {
-			return new ItemStack(ModItems.ELITE_BOTANY_POT.get());
-		}
-	});
-	
+        @Override
+        @Nonnull
+        @OnlyIn(Dist.CLIENT)
+        public ItemStack makeIcon() {
+            return new ItemStack(ModItems.ELITE_BOTANY_POT.get());
+        }
+    });
+
 }

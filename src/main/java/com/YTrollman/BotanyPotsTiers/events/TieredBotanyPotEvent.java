@@ -15,7 +15,7 @@ public class TieredBotanyPotEvent extends Event {
         this.pot = pot;
     }
 
-    public TieredTileEntityBotanyPot getBotanyPot () {
+    public TieredTileEntityBotanyPot getBotanyPot() {
 
         return this.pot;
     }
@@ -32,7 +32,7 @@ public class TieredBotanyPotEvent extends Event {
         }
 
         @Nullable
-        public PlayerEntity getPlayer () {
+        public PlayerEntity getPlayer() {
 
             return this.player;
         }

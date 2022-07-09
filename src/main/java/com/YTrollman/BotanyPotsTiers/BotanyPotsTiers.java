@@ -19,8 +19,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 @Mod("botanypotstiers")
-public class BotanyPotsTiers
-{
+public class BotanyPotsTiers {
     public static final String MOD_ID = "botanypotstiers";
     public static final Logger LOGGER = LogManager.getLogger(MOD_ID);
 
@@ -37,21 +36,18 @@ public class BotanyPotsTiers
         MinecraftForge.EVENT_BUS.register(this);
     }
 
-    private void setup(FMLCommonSetupEvent event)
-    {
+    private void setup(FMLCommonSetupEvent event) {
         if (ModUtils.isInModList("theoneprobe")) {
             InterModComms.sendTo("theoneprobe", "getTheOneProbe", TOPPlugin::new);
         }
     }
 
-    private void doClientStuff(FMLClientSetupEvent event)
-    {
+    private void doClientStuff(FMLClientSetupEvent event) {
 
     }
 
     @SubscribeEvent
-    public void onServerStarting(FMLServerStartingEvent event) 
-    {
-    	
+    public void onServerStarting(FMLServerStartingEvent event) {
+
     }
 }

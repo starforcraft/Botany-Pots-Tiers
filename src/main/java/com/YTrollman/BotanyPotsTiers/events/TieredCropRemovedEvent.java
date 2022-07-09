@@ -29,7 +29,7 @@ public class TieredCropRemovedEvent extends TieredBotanyPotEvent.Player {
      *
      * @return The crop being removed.
      */
-    public CropInfo getCrop () {
+    public CropInfo getCrop() {
 
         return this.crop;
     }

@@ -46,7 +46,7 @@ public class TieredFertilizerUsedEvent extends TieredBotanyPotEvent {
      *
      * @return The player using the fertilizer.
      */
-    public PlayerEntity getPlayer () {
+    public PlayerEntity getPlayer() {
 
         return this.player;
     }
@@ -56,7 +56,7 @@ public class TieredFertilizerUsedEvent extends TieredBotanyPotEvent {
      *
      * @return The fertilizer being used.
      */
-    public FertilizerInfo getFertilizer () {
+    public FertilizerInfo getFertilizer() {
 
         return this.fertilizer;
     }
@@ -66,7 +66,7 @@ public class TieredFertilizerUsedEvent extends TieredBotanyPotEvent {
      *
      * @return The item being used as a fertilizer.
      */
-    public ItemStack getFertilizerStack () {
+    public ItemStack getFertilizerStack() {
 
         return this.stack;
     }
@@ -96,7 +96,7 @@ public class TieredFertilizerUsedEvent extends TieredBotanyPotEvent {
          *
          * @return The original and unmodified growth ticks for the fertilizer.
          */
-        public int getOriginalGrowthTicks () {
+        public int getOriginalGrowthTicks() {
 
             return this.growthTicks;
         }
@@ -107,7 +107,7 @@ public class TieredFertilizerUsedEvent extends TieredBotanyPotEvent {
          *
          * @return The current growth ticks.
          */
-        public int getCurrentGrowthTicks () {
+        public int getCurrentGrowthTicks() {
 
             return this.currentGrowthTicks;
         }
@@ -116,9 +116,9 @@ public class TieredFertilizerUsedEvent extends TieredBotanyPotEvent {
          * Sets the growth ticks for the fertilizer to apply.
          *
          * @param growthTicks The amount of growth ticks to apply. If this is less than one the
-         *        fertilizer will not be applied.
+         *                    fertilizer will not be applied.
          */
-        public void setGrowthTicks (int growthTicks) {
+        public void setGrowthTicks(int growthTicks) {
 
             this.currentGrowthTicks = growthTicks;
         }
@@ -139,7 +139,7 @@ public class TieredFertilizerUsedEvent extends TieredBotanyPotEvent {
          *
          * @return The amount of growth ticks applied by the fertilizer.
          */
-        public int getGrowthTicks () {
+        public int getGrowthTicks() {
 
             return this.growthTicks;
         }

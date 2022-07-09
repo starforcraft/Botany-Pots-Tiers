@@ -57,7 +57,7 @@ public class TieredSoilValidForCropEvent extends TieredBotanyPotEvent {
      * @return The player that is planting the crop in the soil.
      */
     @Nullable
-    public PlayerEntity getPlayer () {
+    public PlayerEntity getPlayer() {
 
         return this.player;
     }
@@ -67,7 +67,7 @@ public class TieredSoilValidForCropEvent extends TieredBotanyPotEvent {
      *
      * @return The soil that the crop is being planted in.
      */
-    public SoilInfo getSoil () {
+    public SoilInfo getSoil() {
 
         return this.soil;
     }
@@ -77,7 +77,7 @@ public class TieredSoilValidForCropEvent extends TieredBotanyPotEvent {
      *
      * @return The crop being planted.
      */
-    public CropInfo getCrop () {
+    public CropInfo getCrop() {
 
         return this.crop;
     }
@@ -87,7 +87,7 @@ public class TieredSoilValidForCropEvent extends TieredBotanyPotEvent {
      *
      * @return Whether or not the soil was originally valid for the crop.
      */
-    public boolean isSoilOriginallyValid () {
+    public boolean isSoilOriginallyValid() {
 
         return this.originallyValid;
     }
@@ -97,7 +97,7 @@ public class TieredSoilValidForCropEvent extends TieredBotanyPotEvent {
      *
      * @return Whether or not the soil is currently valid for the crop.
      */
-    public boolean isSoilValid () {
+    public boolean isSoilValid() {
 
         return this.isValid;
     }
@@ -107,13 +107,13 @@ public class TieredSoilValidForCropEvent extends TieredBotanyPotEvent {
      *
      * @param valid The current validity of the soil for the crop.
      */
-    public void setSoilValidity (boolean valid) {
+    public void setSoilValidity(boolean valid) {
 
         this.isValid = valid;
     }
 
     @Override
-    public void setCanceled (boolean cancel) {
+    public void setCanceled(boolean cancel) {
 
         super.setCanceled(cancel);
 

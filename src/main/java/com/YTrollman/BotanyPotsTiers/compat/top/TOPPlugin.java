@@ -22,18 +22,18 @@ public class TOPPlugin implements Function<ITheOneProbe, Void>, IProbeInfoProvid
     private static final DecimalFormat format = new DecimalFormat("#");
 
     @Override
-    public String getID () {
+    public String getID() {
         return BotanyPotsTiers.MOD_ID + ":top_support";
     }
 
     @Override
-    public Void apply (ITheOneProbe top) {
+    public Void apply(ITheOneProbe top) {
         top.registerProvider(this);
         return null;
     }
 
     @Override
-    public void addProbeInfo (ProbeMode mode, IProbeInfo info, PlayerEntity player, World world, BlockState state, IProbeHitData hit) {
+    public void addProbeInfo(ProbeMode mode, IProbeInfo info, PlayerEntity player, World world, BlockState state, IProbeHitData hit) {
         final Block block = state.getBlock();
 
         if (block instanceof TieredBlockBotanyPot) {
@@ -80,7 +80,7 @@ public class TOPPlugin implements Function<ITheOneProbe, Void>, IProbeInfoProvid
         }
     }
 
-    private static String ticksToElapsedTime (int ticks) {
+    private static String ticksToElapsedTime(int ticks) {
         int i = ticks / 20;
         final int j = i / 60;
         i = i % 60;

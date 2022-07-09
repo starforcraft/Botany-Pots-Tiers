@@ -50,7 +50,7 @@ public class TieredSoilPlaceEvent extends TieredBotanyPotEvent.Player {
          * @return The soil to place in the pot.
          */
         @Nullable
-        public SoilInfo getCurrentSoil () {
+        public SoilInfo getCurrentSoil() {
 
             return this.soilToAdd;
         }
@@ -60,9 +60,9 @@ public class TieredSoilPlaceEvent extends TieredBotanyPotEvent.Player {
          * Setting this to null will result in no soil being placed.
          *
          * @param soil The new soil to place. A null soil will prevent the soil from being
-         *        placed.
+         *             placed.
          */
-        public void setSoil (@Nullable SoilInfo soil) {
+        public void setSoil(@Nullable SoilInfo soil) {
 
             this.soilToAdd = soil;
         }
@@ -73,7 +73,7 @@ public class TieredSoilPlaceEvent extends TieredBotanyPotEvent.Player {
          *
          * @return The original soil being placed in the pot.
          */
-        public SoilInfo getOriginalSoil () {
+        public SoilInfo getOriginalSoil() {
 
             return this.soil;
         }
@@ -95,7 +95,7 @@ public class TieredSoilPlaceEvent extends TieredBotanyPotEvent.Player {
          *
          * @return The soil that was placed.
          */
-        public SoilInfo getSoil () {
+        public SoilInfo getSoil() {
 
             return this.soil;
         }

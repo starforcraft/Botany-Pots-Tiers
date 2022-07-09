@@ -1,6 +1,5 @@
 package com.YTrollman.BotanyPotsTiers.blocks;
 
-import com.YTrollman.BotanyPotsTiers.BotanyPotsTiers;
 import com.YTrollman.BotanyPotsTiers.events.*;
 import com.YTrollman.BotanyPotsTiers.events.TieredBotanyPotHarvestedEvent.LootGenerated;
 import com.YTrollman.BotanyPotsTiers.events.TieredCropRemovedEvent.Post;
@@ -28,7 +27,6 @@ import net.minecraft.fluid.Fluids;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.state.BooleanProperty;
-import net.minecraft.state.Property;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tileentity.TileEntity;
@@ -94,7 +92,7 @@ public class TieredBlockBotanyPot extends Block implements IGrowable, IWaterLogg
         } else {
             TileEntity tile = world.getBlockEntity(pos);
             if (tile instanceof TieredTileEntityBotanyPot) {
-                TieredTileEntityBotanyPot pot = (TieredTileEntityBotanyPot)tile;
+                TieredTileEntityBotanyPot pot = (TieredTileEntityBotanyPot) tile;
                 SoilInfo soilForStack;
                 if (player.isShiftKeyDown()) {
                     CropInfo crop = pot.getCrop();
@@ -205,8 +203,8 @@ public class TieredBlockBotanyPot extends Block implements IGrowable, IWaterLogg
                         if (!MinecraftForge.EVENT_BUS.post(event) && !event.getDrops().isEmpty()) {
                             Iterator var23 = event.getDrops().iterator();
 
-                            while(var23.hasNext()) {
-                                ItemStack stack = (ItemStack)var23.next();
+                            while (var23.hasNext()) {
+                                ItemStack stack = (ItemStack) var23.next();
                                 stack.setCount(stack.getCount() * pot.getSpeed());
                                 dropItem(stack, world, pos);
                             }
@@ -232,523 +230,318 @@ public class TieredBlockBotanyPot extends Block implements IGrowable, IWaterLogg
         return new TieredTileEntityBotanyPot(rightTileEntity(), tier);
     }
 
-    private TileEntityType<?> rightTileEntity()
-    {
+    private TileEntityType<?> rightTileEntity() {
         //Elite
-        if(tileEntityName == "ELITE_BOTANY_POT")
-        {
+        if (tileEntityName == "ELITE_BOTANY_POT") {
             tier = "Elite";
             return ModTileEntityTypes.ELITE_BOTANY_POT.get();
-        }
-        else if(tileEntityName == "ELITE_BLACK_BOTANY_POT")
-        {
+        } else if (tileEntityName == "ELITE_BLACK_BOTANY_POT") {
             tier = "Elite";
             return ModTileEntityTypes.ELITE_BLACK_BOTANY_POT.get();
-        }
-        else if(tileEntityName == "ELITE_BLUE_BOTANY_POT")
-        {
+        } else if (tileEntityName == "ELITE_BLUE_BOTANY_POT") {
             tier = "Elite";
             return ModTileEntityTypes.ELITE_BLUE_BOTANY_POT.get();
-        }
-        else if(tileEntityName == "ELITE_BROWN_BOTANY_POT")
-        {
+        } else if (tileEntityName == "ELITE_BROWN_BOTANY_POT") {
             tier = "Elite";
             return ModTileEntityTypes.ELITE_BROWN_BOTANY_POT.get();
-        }
-        else if(Objects.equals(tileEntityName, "ELITE_CYAN_BOTANY_POT"))
-        {
+        } else if (Objects.equals(tileEntityName, "ELITE_CYAN_BOTANY_POT")) {
             tier = "Elite";
             return ModTileEntityTypes.ELITE_CYAN_BOTANY_POT.get();
-        }
-        else if(tileEntityName == "ELITE_GRAY_BOTANY_POT")
-        {
+        } else if (tileEntityName == "ELITE_GRAY_BOTANY_POT") {
             tier = "Elite";
             return ModTileEntityTypes.ELITE_GRAY_BOTANY_POT.get();
-        }
-        else if(tileEntityName == "ELITE_GREEN_BOTANY_POT")
-        {
+        } else if (tileEntityName == "ELITE_GREEN_BOTANY_POT") {
             tier = "Elite";
             return ModTileEntityTypes.ELITE_GREEN_BOTANY_POT.get();
-        }
-        else if(tileEntityName == "ELITE_LIGHT_BLUE_BOTANY_POT")
-        {
+        } else if (tileEntityName == "ELITE_LIGHT_BLUE_BOTANY_POT") {
             tier = "Elite";
             return ModTileEntityTypes.ELITE_LIGHT_BLUE_BOTANY_POT.get();
-        }
-        else if(tileEntityName == "ELITE_LIGHT_GRAY_BOTANY_POT")
-        {
+        } else if (tileEntityName == "ELITE_LIGHT_GRAY_BOTANY_POT") {
             tier = "Elite";
             return ModTileEntityTypes.ELITE_LIGHT_GRAY_BOTANY_POT.get();
-        }
-        else if(tileEntityName == "ELITE_LIME_BOTANY_POT")
-        {
+        } else if (tileEntityName == "ELITE_LIME_BOTANY_POT") {
             tier = "Elite";
             return ModTileEntityTypes.ELITE_LIME_BOTANY_POT.get();
-        }
-        else if(tileEntityName == "ELITE_MAGENTA_BOTANY_POT")
-        {
+        } else if (tileEntityName == "ELITE_MAGENTA_BOTANY_POT") {
             tier = "Elite";
             return ModTileEntityTypes.ELITE_MAGENTA_BOTANY_POT.get();
-        }
-        else if(tileEntityName == "ELITE_ORANGE_BOTANY_POT")
-        {
+        } else if (tileEntityName == "ELITE_ORANGE_BOTANY_POT") {
             tier = "Elite";
             return ModTileEntityTypes.ELITE_ORANGE_BOTANY_POT.get();
-        }
-        else if(tileEntityName == "ELITE_PINK_BOTANY_POT")
-        {
+        } else if (tileEntityName == "ELITE_PINK_BOTANY_POT") {
             tier = "Elite";
             return ModTileEntityTypes.ELITE_PINK_BOTANY_POT.get();
-        }
-        else if(tileEntityName == "ELITE_PURPLE_BOTANY_POT")
-        {
+        } else if (tileEntityName == "ELITE_PURPLE_BOTANY_POT") {
             tier = "Elite";
             return ModTileEntityTypes.ELITE_PURPLE_BOTANY_POT.get();
-        }
-        else if(tileEntityName == "ELITE_RED_BOTANY_POT")
-        {
+        } else if (tileEntityName == "ELITE_RED_BOTANY_POT") {
             tier = "Elite";
             return ModTileEntityTypes.ELITE_RED_BOTANY_POT.get();
-        }
-        else if(tileEntityName == "ELITE_WHITE_BOTANY_POT")
-        {
+        } else if (tileEntityName == "ELITE_WHITE_BOTANY_POT") {
             tier = "Elite";
             return ModTileEntityTypes.ELITE_WHITE_BOTANY_POT.get();
-        }
-        else if(tileEntityName == "ELITE_YELLOW_BOTANY_POT")
-        {
+        } else if (tileEntityName == "ELITE_YELLOW_BOTANY_POT") {
             tier = "Elite";
             return ModTileEntityTypes.ELITE_YELLOW_BOTANY_POT.get();
-        }
-
-        else if(tileEntityName == "ELITE_HOPPER_BOTANY_POT")
-        {
+        } else if (tileEntityName == "ELITE_HOPPER_BOTANY_POT") {
             tier = "Elite";
             return ModTileEntityTypes.ELITE_HOPPER_BOTANY_POT.get();
-        }
-        else if(tileEntityName == "ELITE_HOPPER_BLACK_BOTANY_POT")
-        {
+        } else if (tileEntityName == "ELITE_HOPPER_BLACK_BOTANY_POT") {
             tier = "Elite";
             return ModTileEntityTypes.ELITE_HOPPER_BLACK_BOTANY_POT.get();
-        }
-        else if(tileEntityName == "ELITE_HOPPER_BLUE_BOTANY_POT")
-        {
+        } else if (tileEntityName == "ELITE_HOPPER_BLUE_BOTANY_POT") {
             tier = "Elite";
             return ModTileEntityTypes.ELITE_HOPPER_BLUE_BOTANY_POT.get();
-        }
-        else if(tileEntityName == "ELITE_HOPPER_BROWN_BOTANY_POT")
-        {
+        } else if (tileEntityName == "ELITE_HOPPER_BROWN_BOTANY_POT") {
             tier = "Elite";
             return ModTileEntityTypes.ELITE_HOPPER_BROWN_BOTANY_POT.get();
-        }
-        else if(tileEntityName == "ELITE_HOPPER_CYAN_BOTANY_POT")
-        {
+        } else if (tileEntityName == "ELITE_HOPPER_CYAN_BOTANY_POT") {
             tier = "Elite";
             return ModTileEntityTypes.ELITE_HOPPER_CYAN_BOTANY_POT.get();
-        }
-        else if(tileEntityName == "ELITE_HOPPER_GRAY_BOTANY_POT")
-        {
+        } else if (tileEntityName == "ELITE_HOPPER_GRAY_BOTANY_POT") {
             tier = "Elite";
             return ModTileEntityTypes.ELITE_HOPPER_GRAY_BOTANY_POT.get();
-        }
-        else if(tileEntityName == "ELITE_HOPPER_GREEN_BOTANY_POT")
-        {
+        } else if (tileEntityName == "ELITE_HOPPER_GREEN_BOTANY_POT") {
             tier = "Elite";
             return ModTileEntityTypes.ELITE_HOPPER_GREEN_BOTANY_POT.get();
-        }
-        else if(tileEntityName == "ELITE_HOPPER_LIGHT_BLUE_BOTANY_POT")
-        {
+        } else if (tileEntityName == "ELITE_HOPPER_LIGHT_BLUE_BOTANY_POT") {
             tier = "Elite";
             return ModTileEntityTypes.ELITE_HOPPER_LIGHT_BLUE_BOTANY_POT.get();
-        }
-        else if(tileEntityName == "ELITE_HOPPER_LIGHT_GRAY_BOTANY_POT")
-        {
+        } else if (tileEntityName == "ELITE_HOPPER_LIGHT_GRAY_BOTANY_POT") {
             tier = "Elite";
             return ModTileEntityTypes.ELITE_HOPPER_LIGHT_GRAY_BOTANY_POT.get();
-        }
-        else if(tileEntityName == "ELITE_HOPPER_LIME_BOTANY_POT")
-        {
+        } else if (tileEntityName == "ELITE_HOPPER_LIME_BOTANY_POT") {
             tier = "Elite";
             return ModTileEntityTypes.ELITE_HOPPER_LIME_BOTANY_POT.get();
-        }
-        else if(tileEntityName == "ELITE_HOPPER_MAGENTA_BOTANY_POT")
-        {
+        } else if (tileEntityName == "ELITE_HOPPER_MAGENTA_BOTANY_POT") {
             tier = "Elite";
             return ModTileEntityTypes.ELITE_HOPPER_MAGENTA_BOTANY_POT.get();
-        }
-        else if(tileEntityName == "ELITE_HOPPER_ORANGE_BOTANY_POT")
-        {
+        } else if (tileEntityName == "ELITE_HOPPER_ORANGE_BOTANY_POT") {
             tier = "Elite";
             return ModTileEntityTypes.ELITE_HOPPER_ORANGE_BOTANY_POT.get();
-        }
-        else if(tileEntityName == "ELITE_HOPPER_PINK_BOTANY_POT")
-        {
+        } else if (tileEntityName == "ELITE_HOPPER_PINK_BOTANY_POT") {
             tier = "Elite";
             return ModTileEntityTypes.ELITE_HOPPER_PINK_BOTANY_POT.get();
-        }
-        else if(tileEntityName == "ELITE_HOPPER_PURPLE_BOTANY_POT")
-        {
+        } else if (tileEntityName == "ELITE_HOPPER_PURPLE_BOTANY_POT") {
             tier = "Elite";
             return ModTileEntityTypes.ELITE_HOPPER_PURPLE_BOTANY_POT.get();
-        }
-        else if(tileEntityName == "ELITE_HOPPER_RED_BOTANY_POT")
-        {
+        } else if (tileEntityName == "ELITE_HOPPER_RED_BOTANY_POT") {
             tier = "Elite";
             return ModTileEntityTypes.ELITE_HOPPER_RED_BOTANY_POT.get();
-        }
-        else if(tileEntityName == "ELITE_HOPPER_WHITE_BOTANY_POT")
-        {
+        } else if (tileEntityName == "ELITE_HOPPER_WHITE_BOTANY_POT") {
             tier = "Elite";
             return ModTileEntityTypes.ELITE_HOPPER_WHITE_BOTANY_POT.get();
-        }
-        else if(tileEntityName == "ELITE_HOPPER_YELLOW_BOTANY_POT")
-        {
+        } else if (tileEntityName == "ELITE_HOPPER_YELLOW_BOTANY_POT") {
             tier = "Elite";
             return ModTileEntityTypes.ELITE_HOPPER_YELLOW_BOTANY_POT.get();
         }
 
         //Ultra
-        else if(tileEntityName == "ULTRA_BOTANY_POT")
-        {
+        else if (tileEntityName == "ULTRA_BOTANY_POT") {
             tier = "Ultra";
             return ModTileEntityTypes.ULTRA_BOTANY_POT.get();
-        }
-        else if(tileEntityName == "ULTRA_BLACK_BOTANY_POT")
-        {
+        } else if (tileEntityName == "ULTRA_BLACK_BOTANY_POT") {
             tier = "Ultra";
             return ModTileEntityTypes.ULTRA_BLACK_BOTANY_POT.get();
-        }
-        else if(tileEntityName == "ULTRA_BLUE_BOTANY_POT")
-        {
+        } else if (tileEntityName == "ULTRA_BLUE_BOTANY_POT") {
             tier = "Ultra";
             return ModTileEntityTypes.ULTRA_BLUE_BOTANY_POT.get();
-        }
-        else if(tileEntityName == "ULTRA_BROWN_BOTANY_POT")
-        {
+        } else if (tileEntityName == "ULTRA_BROWN_BOTANY_POT") {
             tier = "Ultra";
             return ModTileEntityTypes.ULTRA_BROWN_BOTANY_POT.get();
-        }
-        else if(tileEntityName == "ULTRA_CYAN_BOTANY_POT")
-        {
+        } else if (tileEntityName == "ULTRA_CYAN_BOTANY_POT") {
             tier = "Ultra";
             return ModTileEntityTypes.ULTRA_CYAN_BOTANY_POT.get();
-        }
-        else if(tileEntityName == "ULTRA_GRAY_BOTANY_POT")
-        {
+        } else if (tileEntityName == "ULTRA_GRAY_BOTANY_POT") {
             tier = "Ultra";
             return ModTileEntityTypes.ULTRA_GRAY_BOTANY_POT.get();
-        }
-        else if(tileEntityName == "ULTRA_GREEN_BOTANY_POT")
-        {
+        } else if (tileEntityName == "ULTRA_GREEN_BOTANY_POT") {
             tier = "Ultra";
             return ModTileEntityTypes.ULTRA_GREEN_BOTANY_POT.get();
-        }
-        else if(tileEntityName == "ULTRA_LIGHT_BLUE_BOTANY_POT")
-        {
+        } else if (tileEntityName == "ULTRA_LIGHT_BLUE_BOTANY_POT") {
             tier = "Ultra";
             return ModTileEntityTypes.ULTRA_LIGHT_BLUE_BOTANY_POT.get();
-        }
-        else if(tileEntityName == "ULTRA_LIGHT_GRAY_BOTANY_POT")
-        {
+        } else if (tileEntityName == "ULTRA_LIGHT_GRAY_BOTANY_POT") {
             tier = "Ultra";
             return ModTileEntityTypes.ULTRA_LIGHT_GRAY_BOTANY_POT.get();
-        }
-        else if(tileEntityName == "ULTRA_LIME_BOTANY_POT")
-        {
+        } else if (tileEntityName == "ULTRA_LIME_BOTANY_POT") {
             tier = "Ultra";
             return ModTileEntityTypes.ULTRA_LIME_BOTANY_POT.get();
-        }
-        else if(tileEntityName == "ULTRA_MAGENTA_BOTANY_POT")
-        {
+        } else if (tileEntityName == "ULTRA_MAGENTA_BOTANY_POT") {
             tier = "Ultra";
             return ModTileEntityTypes.ULTRA_MAGENTA_BOTANY_POT.get();
-        }
-        else if(tileEntityName == "ULTRA_ORANGE_BOTANY_POT")
-        {
+        } else if (tileEntityName == "ULTRA_ORANGE_BOTANY_POT") {
             tier = "Ultra";
             return ModTileEntityTypes.ULTRA_ORANGE_BOTANY_POT.get();
-        }
-        else if(tileEntityName == "ULTRA_PINK_BOTANY_POT")
-        {
+        } else if (tileEntityName == "ULTRA_PINK_BOTANY_POT") {
             tier = "Ultra";
             return ModTileEntityTypes.ULTRA_PINK_BOTANY_POT.get();
-        }
-        else if(tileEntityName == "ULTRA_PURPLE_BOTANY_POT")
-        {
+        } else if (tileEntityName == "ULTRA_PURPLE_BOTANY_POT") {
             tier = "Ultra";
             return ModTileEntityTypes.ULTRA_PURPLE_BOTANY_POT.get();
-        }
-        else if(tileEntityName == "ULTRA_RED_BOTANY_POT")
-        {
+        } else if (tileEntityName == "ULTRA_RED_BOTANY_POT") {
             tier = "Ultra";
             return ModTileEntityTypes.ULTRA_RED_BOTANY_POT.get();
-        }
-        else if(tileEntityName == "ULTRA_WHITE_BOTANY_POT")
-        {
+        } else if (tileEntityName == "ULTRA_WHITE_BOTANY_POT") {
             tier = "Ultra";
             return ModTileEntityTypes.ULTRA_WHITE_BOTANY_POT.get();
-        }
-        else if(tileEntityName == "ULTRA_YELLOW_BOTANY_POT")
-        {
+        } else if (tileEntityName == "ULTRA_YELLOW_BOTANY_POT") {
             tier = "Ultra";
             return ModTileEntityTypes.ULTRA_YELLOW_BOTANY_POT.get();
-        }
-
-        else if(tileEntityName == "ULTRA_HOPPER_BOTANY_POT")
-        {
+        } else if (tileEntityName == "ULTRA_HOPPER_BOTANY_POT") {
             tier = "Ultra";
             return ModTileEntityTypes.ULTRA_HOPPER_BOTANY_POT.get();
-        }
-        else if(tileEntityName == "ULTRA_HOPPER_BLACK_BOTANY_POT")
-        {
+        } else if (tileEntityName == "ULTRA_HOPPER_BLACK_BOTANY_POT") {
             tier = "Ultra";
             return ModTileEntityTypes.ULTRA_HOPPER_BLACK_BOTANY_POT.get();
-        }
-        else if(tileEntityName == "ULTRA_HOPPER_BLUE_BOTANY_POT")
-        {
+        } else if (tileEntityName == "ULTRA_HOPPER_BLUE_BOTANY_POT") {
             tier = "Ultra";
             return ModTileEntityTypes.ULTRA_HOPPER_BLUE_BOTANY_POT.get();
-        }
-        else if(tileEntityName == "ULTRA_HOPPER_BROWN_BOTANY_POT")
-        {
+        } else if (tileEntityName == "ULTRA_HOPPER_BROWN_BOTANY_POT") {
             tier = "Ultra";
             return ModTileEntityTypes.ULTRA_HOPPER_BROWN_BOTANY_POT.get();
-        }
-        else if(tileEntityName == "ULTRA_HOPPER_CYAN_BOTANY_POT")
-        {
+        } else if (tileEntityName == "ULTRA_HOPPER_CYAN_BOTANY_POT") {
             tier = "Ultra";
             return ModTileEntityTypes.ULTRA_HOPPER_CYAN_BOTANY_POT.get();
-        }
-        else if(tileEntityName == "ULTRA_HOPPER_GRAY_BOTANY_POT")
-        {
+        } else if (tileEntityName == "ULTRA_HOPPER_GRAY_BOTANY_POT") {
             tier = "Ultra";
             return ModTileEntityTypes.ULTRA_HOPPER_GRAY_BOTANY_POT.get();
-        }
-        else if(tileEntityName == "ULTRA_HOPPER_GREEN_BOTANY_POT")
-        {
+        } else if (tileEntityName == "ULTRA_HOPPER_GREEN_BOTANY_POT") {
             tier = "Ultra";
             return ModTileEntityTypes.ULTRA_HOPPER_GREEN_BOTANY_POT.get();
-        }
-        else if(tileEntityName == "ULTRA_HOPPER_LIGHT_BLUE_BOTANY_POT")
-        {
+        } else if (tileEntityName == "ULTRA_HOPPER_LIGHT_BLUE_BOTANY_POT") {
             tier = "Ultra";
             return ModTileEntityTypes.ULTRA_HOPPER_LIGHT_BLUE_BOTANY_POT.get();
-        }
-        else if(tileEntityName == "ULTRA_HOPPER_LIGHT_GRAY_BOTANY_POT")
-        {
+        } else if (tileEntityName == "ULTRA_HOPPER_LIGHT_GRAY_BOTANY_POT") {
             tier = "Ultra";
             return ModTileEntityTypes.ULTRA_HOPPER_LIGHT_GRAY_BOTANY_POT.get();
-        }
-        else if(tileEntityName == "ULTRA_HOPPER_LIME_BOTANY_POT")
-        {
+        } else if (tileEntityName == "ULTRA_HOPPER_LIME_BOTANY_POT") {
             tier = "Ultra";
             return ModTileEntityTypes.ULTRA_HOPPER_LIME_BOTANY_POT.get();
-        }
-        else if(tileEntityName == "ULTRA_HOPPER_MAGENTA_BOTANY_POT")
-        {
+        } else if (tileEntityName == "ULTRA_HOPPER_MAGENTA_BOTANY_POT") {
             tier = "Ultra";
             return ModTileEntityTypes.ULTRA_HOPPER_MAGENTA_BOTANY_POT.get();
-        }
-        else if(tileEntityName == "ULTRA_HOPPER_ORANGE_BOTANY_POT")
-        {
+        } else if (tileEntityName == "ULTRA_HOPPER_ORANGE_BOTANY_POT") {
             tier = "Ultra";
             return ModTileEntityTypes.ULTRA_HOPPER_ORANGE_BOTANY_POT.get();
-        }
-        else if(tileEntityName == "ULTRA_HOPPER_PINK_BOTANY_POT")
-        {
+        } else if (tileEntityName == "ULTRA_HOPPER_PINK_BOTANY_POT") {
             tier = "Ultra";
             return ModTileEntityTypes.ULTRA_HOPPER_PINK_BOTANY_POT.get();
-        }
-        else if(tileEntityName == "ULTRA_HOPPER_PURPLE_BOTANY_POT")
-        {
+        } else if (tileEntityName == "ULTRA_HOPPER_PURPLE_BOTANY_POT") {
             tier = "Ultra";
             return ModTileEntityTypes.ULTRA_HOPPER_PURPLE_BOTANY_POT.get();
-        }
-        else if(tileEntityName == "ULTRA_HOPPER_RED_BOTANY_POT")
-        {
+        } else if (tileEntityName == "ULTRA_HOPPER_RED_BOTANY_POT") {
             tier = "Ultra";
             return ModTileEntityTypes.ULTRA_HOPPER_RED_BOTANY_POT.get();
-        }
-        else if(tileEntityName == "ULTRA_HOPPER_WHITE_BOTANY_POT")
-        {
+        } else if (tileEntityName == "ULTRA_HOPPER_WHITE_BOTANY_POT") {
             tier = "Ultra";
             return ModTileEntityTypes.ULTRA_HOPPER_WHITE_BOTANY_POT.get();
-        }
-        else if(tileEntityName == "ULTRA_HOPPER_YELLOW_BOTANY_POT")
-        {
+        } else if (tileEntityName == "ULTRA_HOPPER_YELLOW_BOTANY_POT") {
             tier = "Ultra";
             return ModTileEntityTypes.ULTRA_HOPPER_YELLOW_BOTANY_POT.get();
         }
 
         //Creative
-        else if(tileEntityName == "CREATIVE_BOTANY_POT")
-        {
+        else if (tileEntityName == "CREATIVE_BOTANY_POT") {
             tier = "Creative";
             return ModTileEntityTypes.CREATIVE_BOTANY_POT.get();
-        }
-        else if(tileEntityName == "CREATIVE_BLACK_BOTANY_POT")
-        {
+        } else if (tileEntityName == "CREATIVE_BLACK_BOTANY_POT") {
             tier = "Creative";
             return ModTileEntityTypes.CREATIVE_BLACK_BOTANY_POT.get();
-        }
-        else if(tileEntityName == "CREATIVE_BLUE_BOTANY_POT")
-        {
+        } else if (tileEntityName == "CREATIVE_BLUE_BOTANY_POT") {
             tier = "Creative";
             return ModTileEntityTypes.CREATIVE_BLUE_BOTANY_POT.get();
-        }
-        else if(tileEntityName == "CREATIVE_BROWN_BOTANY_POT")
-        {
+        } else if (tileEntityName == "CREATIVE_BROWN_BOTANY_POT") {
             tier = "Creative";
             return ModTileEntityTypes.CREATIVE_BROWN_BOTANY_POT.get();
-        }
-        else if(tileEntityName == "CREATIVE_CYAN_BOTANY_POT")
-        {
+        } else if (tileEntityName == "CREATIVE_CYAN_BOTANY_POT") {
             tier = "Creative";
             return ModTileEntityTypes.CREATIVE_CYAN_BOTANY_POT.get();
-        }
-        else if(tileEntityName == "CREATIVE_GRAY_BOTANY_POT")
-        {
+        } else if (tileEntityName == "CREATIVE_GRAY_BOTANY_POT") {
             tier = "Creative";
             return ModTileEntityTypes.CREATIVE_GRAY_BOTANY_POT.get();
-        }
-        else if(tileEntityName == "CREATIVE_GREEN_BOTANY_POT")
-        {
+        } else if (tileEntityName == "CREATIVE_GREEN_BOTANY_POT") {
             tier = "Creative";
             return ModTileEntityTypes.CREATIVE_GREEN_BOTANY_POT.get();
-        }
-        else if(tileEntityName == "CREATIVE_LIGHT_BLUE_BOTANY_POT")
-        {
+        } else if (tileEntityName == "CREATIVE_LIGHT_BLUE_BOTANY_POT") {
             tier = "Creative";
             return ModTileEntityTypes.CREATIVE_LIGHT_BLUE_BOTANY_POT.get();
-        }
-        else if(tileEntityName == "CREATIVE_LIGHT_GRAY_BOTANY_POT")
-        {
+        } else if (tileEntityName == "CREATIVE_LIGHT_GRAY_BOTANY_POT") {
             tier = "Creative";
             return ModTileEntityTypes.CREATIVE_LIGHT_GRAY_BOTANY_POT.get();
-        }
-        else if(tileEntityName == "CREATIVE_LIME_BOTANY_POT")
-        {
+        } else if (tileEntityName == "CREATIVE_LIME_BOTANY_POT") {
             tier = "Creative";
             return ModTileEntityTypes.CREATIVE_LIME_BOTANY_POT.get();
-        }
-        else if(tileEntityName == "CREATIVE_MAGENTA_BOTANY_POT")
-        {
+        } else if (tileEntityName == "CREATIVE_MAGENTA_BOTANY_POT") {
             tier = "Creative";
             return ModTileEntityTypes.CREATIVE_MAGENTA_BOTANY_POT.get();
-        }
-        else if(tileEntityName == "CREATIVE_ORANGE_BOTANY_POT")
-        {
+        } else if (tileEntityName == "CREATIVE_ORANGE_BOTANY_POT") {
             tier = "Creative";
             return ModTileEntityTypes.CREATIVE_ORANGE_BOTANY_POT.get();
-        }
-        else if(tileEntityName == "CREATIVE_PINK_BOTANY_POT")
-        {
+        } else if (tileEntityName == "CREATIVE_PINK_BOTANY_POT") {
             tier = "Creative";
             return ModTileEntityTypes.CREATIVE_PINK_BOTANY_POT.get();
-        }
-        else if(tileEntityName == "CREATIVE_PURPLE_BOTANY_POT")
-        {
+        } else if (tileEntityName == "CREATIVE_PURPLE_BOTANY_POT") {
             tier = "Creative";
             return ModTileEntityTypes.CREATIVE_PURPLE_BOTANY_POT.get();
-        }
-        else if(tileEntityName == "CREATIVE_RED_BOTANY_POT")
-        {
+        } else if (tileEntityName == "CREATIVE_RED_BOTANY_POT") {
             tier = "Creative";
             return ModTileEntityTypes.CREATIVE_RED_BOTANY_POT.get();
-        }
-        else if(tileEntityName == "CREATIVE_WHITE_BOTANY_POT")
-        {
+        } else if (tileEntityName == "CREATIVE_WHITE_BOTANY_POT") {
             tier = "Creative";
             return ModTileEntityTypes.CREATIVE_WHITE_BOTANY_POT.get();
-        }
-        else if(tileEntityName == "CREATIVE_YELLOW_BOTANY_POT")
-        {
+        } else if (tileEntityName == "CREATIVE_YELLOW_BOTANY_POT") {
             tier = "Creative";
             return ModTileEntityTypes.CREATIVE_YELLOW_BOTANY_POT.get();
-        }
-
-        else if(tileEntityName == "CREATIVE_HOPPER_BOTANY_POT")
-        {
+        } else if (tileEntityName == "CREATIVE_HOPPER_BOTANY_POT") {
             tier = "Creative";
             return ModTileEntityTypes.CREATIVE_HOPPER_BOTANY_POT.get();
-        }
-        else if(tileEntityName == "CREATIVE_HOPPER_BLACK_BOTANY_POT")
-        {
+        } else if (tileEntityName == "CREATIVE_HOPPER_BLACK_BOTANY_POT") {
             tier = "Creative";
             return ModTileEntityTypes.CREATIVE_HOPPER_BLACK_BOTANY_POT.get();
-        }
-        else if(tileEntityName == "CREATIVE_HOPPER_BLUE_BOTANY_POT")
-        {
+        } else if (tileEntityName == "CREATIVE_HOPPER_BLUE_BOTANY_POT") {
             tier = "Creative";
             return ModTileEntityTypes.CREATIVE_HOPPER_BLUE_BOTANY_POT.get();
-        }
-        else if(tileEntityName == "CREATIVE_HOPPER_BROWN_BOTANY_POT")
-        {
+        } else if (tileEntityName == "CREATIVE_HOPPER_BROWN_BOTANY_POT") {
             tier = "Creative";
             return ModTileEntityTypes.CREATIVE_HOPPER_BROWN_BOTANY_POT.get();
-        }
-        else if(tileEntityName == "CREATIVE_HOPPER_CYAN_BOTANY_POT")
-        {
+        } else if (tileEntityName == "CREATIVE_HOPPER_CYAN_BOTANY_POT") {
             tier = "Creative";
             return ModTileEntityTypes.CREATIVE_HOPPER_CYAN_BOTANY_POT.get();
-        }
-        else if(tileEntityName == "CREATIVE_HOPPER_GRAY_BOTANY_POT")
-        {
+        } else if (tileEntityName == "CREATIVE_HOPPER_GRAY_BOTANY_POT") {
             tier = "Creative";
             return ModTileEntityTypes.CREATIVE_HOPPER_GRAY_BOTANY_POT.get();
-        }
-        else if(tileEntityName == "CREATIVE_HOPPER_GREEN_BOTANY_POT")
-        {
+        } else if (tileEntityName == "CREATIVE_HOPPER_GREEN_BOTANY_POT") {
             tier = "Creative";
             return ModTileEntityTypes.CREATIVE_HOPPER_GREEN_BOTANY_POT.get();
-        }
-        else if(tileEntityName == "CREATIVE_HOPPER_LIGHT_BLUE_BOTANY_POT")
-        {
+        } else if (tileEntityName == "CREATIVE_HOPPER_LIGHT_BLUE_BOTANY_POT") {
             tier = "Creative";
             return ModTileEntityTypes.CREATIVE_HOPPER_LIGHT_BLUE_BOTANY_POT.get();
-        }
-        else if(tileEntityName == "CREATIVE_HOPPER_LIGHT_GRAY_BOTANY_POT")
-        {
+        } else if (tileEntityName == "CREATIVE_HOPPER_LIGHT_GRAY_BOTANY_POT") {
             tier = "Creative";
             return ModTileEntityTypes.CREATIVE_HOPPER_LIGHT_GRAY_BOTANY_POT.get();
-        }
-        else if(tileEntityName == "CREATIVE_HOPPER_LIME_BOTANY_POT")
-        {
+        } else if (tileEntityName == "CREATIVE_HOPPER_LIME_BOTANY_POT") {
             tier = "Creative";
             return ModTileEntityTypes.CREATIVE_HOPPER_LIME_BOTANY_POT.get();
-        }
-        else if(tileEntityName == "CREATIVE_HOPPER_MAGENTA_BOTANY_POT")
-        {
+        } else if (tileEntityName == "CREATIVE_HOPPER_MAGENTA_BOTANY_POT") {
             tier = "Creative";
             return ModTileEntityTypes.CREATIVE_HOPPER_MAGENTA_BOTANY_POT.get();
-        }
-        else if(tileEntityName == "CREATIVE_HOPPER_ORANGE_BOTANY_POT")
-        {
+        } else if (tileEntityName == "CREATIVE_HOPPER_ORANGE_BOTANY_POT") {
             tier = "Creative";
             return ModTileEntityTypes.CREATIVE_HOPPER_ORANGE_BOTANY_POT.get();
-        }
-        else if(tileEntityName == "CREATIVE_HOPPER_PINK_BOTANY_POT")
-        {
+        } else if (tileEntityName == "CREATIVE_HOPPER_PINK_BOTANY_POT") {
             tier = "Creative";
             return ModTileEntityTypes.CREATIVE_HOPPER_PINK_BOTANY_POT.get();
-        }
-        else if(tileEntityName == "CREATIVE_HOPPER_PURPLE_BOTANY_POT")
-        {
+        } else if (tileEntityName == "CREATIVE_HOPPER_PURPLE_BOTANY_POT") {
             tier = "Creative";
             return ModTileEntityTypes.CREATIVE_HOPPER_PURPLE_BOTANY_POT.get();
-        }
-        else if(tileEntityName == "CREATIVE_HOPPER_RED_BOTANY_POT")
-        {
+        } else if (tileEntityName == "CREATIVE_HOPPER_RED_BOTANY_POT") {
             tier = "Creative";
             return ModTileEntityTypes.CREATIVE_HOPPER_RED_BOTANY_POT.get();
-        }
-        else if(tileEntityName == "CREATIVE_HOPPER_WHITE_BOTANY_POT")
-        {
+        } else if (tileEntityName == "CREATIVE_HOPPER_WHITE_BOTANY_POT") {
             tier = "Creative";
             return ModTileEntityTypes.CREATIVE_HOPPER_WHITE_BOTANY_POT.get();
-        }
-        else if(tileEntityName == "CREATIVE_HOPPER_YELLOW_BOTANY_POT")
-        {
+        } else if (tileEntityName == "CREATIVE_HOPPER_YELLOW_BOTANY_POT") {
             tier = "Creative";
             return ModTileEntityTypes.CREATIVE_HOPPER_YELLOW_BOTANY_POT.get();
         }
@@ -763,7 +556,7 @@ public class TieredBlockBotanyPot extends Block implements IGrowable, IWaterLogg
         if (state.hasTileEntity() && state.getBlock() != newState.getBlock()) {
             TileEntity tileEntity = worldIn.getBlockEntity(pos);
             if (tileEntity instanceof TieredTileEntityBotanyPot) {
-                TieredTileEntityBotanyPot pot = (TieredTileEntityBotanyPot)tileEntity;
+                TieredTileEntityBotanyPot pot = (TieredTileEntityBotanyPot) tileEntity;
                 if (pot.getSoil() != null) {
                     dropItem(pot.getSoilStack(), worldIn, pos);
                 }
@@ -779,10 +572,10 @@ public class TieredBlockBotanyPot extends Block implements IGrowable, IWaterLogg
 
     public static void dropItem(ItemStack item, World world, BlockPos pos) {
         if (!world.isClientSide) {
-            double offsetX = (double)(world.random.nextFloat() * 0.7F) + 0.15000000596046448D;
-            double offsetY = (double)(world.random.nextFloat() * 0.7F) + 0.06000000238418579D + 0.6D;
-            double offsetZ = (double)(world.random.nextFloat() * 0.7F) + 0.15000000596046448D;
-            ItemEntity droppedItemEntity = new ItemEntity(world, (double)pos.getX() + offsetX, (double)pos.getY() + offsetY, (double)pos.getZ() + offsetZ, item);
+            double offsetX = (double) (world.random.nextFloat() * 0.7F) + 0.15000000596046448D;
+            double offsetY = (double) (world.random.nextFloat() * 0.7F) + 0.06000000238418579D + 0.6D;
+            double offsetZ = (double) (world.random.nextFloat() * 0.7F) + 0.15000000596046448D;
+            ItemEntity droppedItemEntity = new ItemEntity(world, (double) pos.getX() + offsetX, (double) pos.getY() + offsetY, (double) pos.getZ() + offsetZ, item);
             droppedItemEntity.setDefaultPickUpDelay();
             world.addFreshEntity(droppedItemEntity);
         }
@@ -799,7 +592,7 @@ public class TieredBlockBotanyPot extends Block implements IGrowable, IWaterLogg
         if (!(tile instanceof TieredTileEntityBotanyPot)) {
             return false;
         } else {
-            TieredTileEntityBotanyPot pot = (TieredTileEntityBotanyPot)tile;
+            TieredTileEntityBotanyPot pot = (TieredTileEntityBotanyPot) tile;
             return pot.hasSoilAndCrop() && !pot.isDoneGrowing();
         }
     }
@@ -811,7 +604,7 @@ public class TieredBlockBotanyPot extends Block implements IGrowable, IWaterLogg
     public void performBonemeal(ServerWorld world, Random random, BlockPos pos, BlockState myState) {
         TileEntity tile = world.getBlockEntity(pos);
         if (tile instanceof TieredTileEntityBotanyPot) {
-            ((TieredTileEntityBotanyPot)tile).addGrowth(MathsUtils.nextIntInclusive(random, 3, 15) * 20);
+            ((TieredTileEntityBotanyPot) tile).addGrowth(MathsUtils.nextIntInclusive(random, 3, 15) * 20);
         }
 
     }
@@ -824,7 +617,7 @@ public class TieredBlockBotanyPot extends Block implements IGrowable, IWaterLogg
         if (world.hasChunkAt(pos)) {
             TileEntity tile = world.getBlockEntity(pos);
             if (tile instanceof TieredTileEntityBotanyPot) {
-                return ((TieredTileEntityBotanyPot)tile).isDoneGrowing() ? 15 : super.getAnalogOutputSignal(blockState, world, pos);
+                return ((TieredTileEntityBotanyPot) tile).isDoneGrowing() ? 15 : super.getAnalogOutputSignal(blockState, world, pos);
             }
         }
 
@@ -835,7 +628,7 @@ public class TieredBlockBotanyPot extends Block implements IGrowable, IWaterLogg
         int light = super.getLightValue(state, world, pos);
         TileEntity tile = world.getBlockEntity(pos);
         if (tile instanceof TieredTileEntityBotanyPot) {
-            TieredTileEntityBotanyPot pot = (TieredTileEntityBotanyPot)tile;
+            TieredTileEntityBotanyPot pot = (TieredTileEntityBotanyPot) tile;
             int cropLight;
             if (pot.getSoil() != null) {
                 cropLight = pot.getSoil().getLightLevel(world, pos);

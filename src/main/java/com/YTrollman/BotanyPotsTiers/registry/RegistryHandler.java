@@ -10,5 +10,5 @@ public class RegistryHandler {
         ModTileEntityTypes.TILE_ENTITY_TYPES.register(bus);
         ModBlocks.BLOCKS.register(bus);
         ModItems.ITEMS.register(bus);
-	}
+    }
 }
