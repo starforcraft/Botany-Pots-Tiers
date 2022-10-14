@@ -1,0 +1,21 @@
+{
+  "type": "botanypotstiers:crop",
+  "seed": {
+    "item": "minecraft:poppy"
+  },
+  "categories": [
+    "dirt"
+  ],
+  "growthTicks": 1200,
+  "display": {
+    "block": "minecraft:poppy"
+  },
+  "drops": [
+    {
+      "chance": 1.00,
+      "output": {
+        "item": "minecraft:poppy"
+      }
+    }
+  ]
+}

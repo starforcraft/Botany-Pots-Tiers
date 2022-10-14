@@ -1,0 +1,134 @@
+buildscript {
+    repositories {
+        maven { url 'https://maven.minecraftforge.net' }
+        maven { url 'https://plugins.gradle.org/m2/' }
+        maven { url 'https://repo.spongepowered.org/repository/maven-public' }
+        mavenCentral()
+    }
+    dependencies {
+        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.+', changing: true
+        classpath group: 'org.spongepowered', name: 'mixingradle', version: '0.7-SNAPSHOT'
+        classpath group: 'net.darkhax.curseforgegradle', name: 'CurseForgeGradle', version: '1.0.11'
+        classpath group: 'net.darkhax.tweedle', name: 'Tweedle', version: '1.0.5'
+    }
+}
+
+apply plugin: 'net.minecraftforge.gradle'
+
+archivesBaseName = "${mod_name}-Forge-${minecraft_version}"
+
+minecraft {
+    mappings channel: 'official', version: minecraft_version
+
+    runs {
+        client {
+            workingDirectory project.file('run')
+            ideaModule "${rootProject.name}.${project.name}.main"
+            taskName 'Client'
+
+            if (project.ext.mixin_enabled) {
+                arg "-mixin.config=${mod_id}.mixins.json"
+            }
+
+            property 'mixin.env.remapRefMap', 'true'
+            property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
+
+            mods {
+                modClientRun {
+                    source sourceSets.main
+                    source project(":Common").sourceSets.main
+                }
+            }
+        }
+
+        server {
+            workingDirectory project.file('run')
+            ideaModule "${rootProject.name}.${project.name}.main"
+            taskName 'Server'
+
+            if (project.ext.mixin_enabled) {
+                arg "-mixin.config=${mod_id}.mixins.json"
+            }
+
+            property 'mixin.env.remapRefMap', 'true'
+            property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
+
+            mods {
+                modServerRun {
+                    source sourceSets.main
+                    source project(":Common").sourceSets.main
+                }
+            }
+        }
+    }
+}
+
+repositories {
+    maven {
+        url "https://cursemaven.com"
+        content {
+            includeGroup "curse.maven"
+        }
+    }
+}
+
+dependencies {
+    minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
+    implementation fg.deobf("net.darkhax.bookshelf:Bookshelf-Forge-${project.ext.minecraft_version}:${project.ext.bookshelf_version}")
+    implementation fg.deobf("net.darkhax.botanypots:BotanyPots-Forge-${project.ext.minecraft_version}:${project.ext.botanypots_version}")
+    compileOnly fg.deobf("mezz.jei:jei-${minecraft_version}-forge-api:${jei_version}")
+    runtimeOnly fg.deobf("mezz.jei:jei-${minecraft_version}-forge:${jei_version}")
+    compileOnly fg.deobf("curse.maven:top-245211:${top_version}")
+
+    compileOnly project(":Common")
+
+    annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
+}
+
+tasks.withType(JavaCompile) {
+    source(project(":Common").sourceSets.main.allSource)
+}
+
+processResources {
+    from project(":Common").sourceSets.main.resources
+
+    def buildProps = project.properties.clone()
+
+    // Replaces FML's magic file.jarVersion string with the correct version at
+    // build time.
+    buildProps.put('file', [jarVersion: project.version])
+
+    filesMatching(['META-INF/mods.toml', 'pack.mcmeta']) {
+        expand buildProps
+    }
+
+    if (project.ext.mixin_enabled) {
+        filesMatching(["${mod_id}.mixins.json".toString()]) {
+            expand buildProps
+        }
+    }
+}
+
+jar.finalizedBy('reobfJar')
+
+jar {
+    manifest {
+        def newProps = [:]
+
+        if (project.ext.mixin_enabled) {
+            newProps['MixinConfigs'] = "${mod_id}.mixins.json"
+        }
+
+        attributes(newProps)
+    }
+}
+
+// -- Mixin Support
+if (project.ext.mixin_enabled) {
+    apply plugin: 'org.spongepowered.mixin'
+
+    mixin {
+        // Tells the mixin plugin where to put the generated refmap file.
+        add sourceSets.main, "${mod_id}.refmap.json"
+    }
+}

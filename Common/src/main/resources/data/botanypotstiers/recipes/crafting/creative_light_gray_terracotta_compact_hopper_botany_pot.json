@@ -1,0 +1,29 @@
+{
+    "type": "crafting_shaped",
+    "pattern": [
+        "SES",
+        "SPS",
+        "IHI"
+    ],
+    "key": {
+        "S": {
+            "item": "minecraft:light_gray_terracotta"
+        },
+        "P": {
+            "item": "botanypotstiers:ultra_terracotta_botany_pot"
+        },
+        "I": {
+            "item": "minecraft:netherite_block"
+        },
+        "E": {
+            "item": "minecraft:enchanted_golden_apple"
+        },
+        "H": {
+            "item": "minecraft:hopper"
+        }
+    },
+    "result": {
+        "item": "botanypotstiers:creative_light_gray_terracotta_hopper_botany_pot",
+        "count": 1
+    }
+}

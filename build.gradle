@@ -1,127 +1,50 @@
 buildscript {
     repositories {
-        maven { url = 'https://files.minecraftforge.net/maven' }
-        jcenter()
         mavenCentral()
     }
     dependencies {
-        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.+', changing: true
-    }
-}
-apply plugin: 'net.minecraftforge.gradle'
-apply plugin: 'eclipse'
-apply plugin: 'maven-publish'
-
-repositories {
-  	maven {
-    	name = "Progwml6 maven"
-    	url = "https://dvs1.progwml6.com/files/maven/"
-  	}
-  	maven {
-    	name = "ModMaven"
-    	url = "https://modmaven.k-4u.nl"
-  	}
-  	maven {
-    	url "https://www.cursemaven.com"
-  	}
-    maven {
-        name = "Jared's Maven (CRT)"
-        url "https://maven.blamejared.com"
-    }
-    maven {
-        name = "TehNut's Maven (HWYLA)"
-        url "https://maven.tehnut.info"
-    }
-    maven {
-        name 'tterrag maven'
-        url "https://maven.tterrag.com/"
+        classpath group: 'com.diluv.schoomp', name: 'Schoomp', version: '1.2.6'
     }
 }
 
-version = "${mod_version}"
-group = "com.YTrollman.BotanyPotsTiers" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = "${modid}"
+apply from: 'gradle/property_loader.gradle'
+apply from: 'gradle/build_number.gradle'
 
-sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8'
+subprojects {
+    apply plugin: 'maven-publish'
 
-println('Java: ' + System.getProperty('java.version') + ' JVM: ' + System.getProperty('java.vm.version') + '(' + System.getProperty('java.vendor') + ') Arch: ' + System.getProperty('os.arch'))
-minecraft {
-    mappings channel: "official", version: "${mc_version}"
-    
-    accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
+    apply from: '../gradle/property_loader.gradle'
+    apply from: '../gradle/java.gradle'
+    apply from: '../gradle/build_number.gradle'
+    apply from: '../gradle/minify_jsons.gradle'
 
-    runs {
-        client {
-            workingDirectory project.file('run')
+    // Disables Gradle's custom module metadata from being published to maven. The 
+    // metadata includes mapped dependencies which are not reasonably consumable by
+    // other mod developers.
+    tasks.withType(GenerateModuleMetadata) {
+        enabled = false
+    }
 
-            property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
-            property 'forge.logging.console.level', 'debug'
-            properties 'mixin.env.disableRefMap': 'true'
+    // Enable Mixins
+    project.ext.mixin_enabled = project.file("src/main/resources/${mod_id}.mixins.json").exists()
+    project.logger.lifecycle("Mixin ${project.ext.mixin_enabled ? 'enabled' : 'disabled'} for project ${project.name}.")
 
-            mods {
-                botanypotstiers {
-                    source sourceSets.main
-                }
-            }
+    repositories {
+        mavenCentral()
+
+        maven {
+            name = 'Sponge / Mixin'
+            url = 'https://repo.spongepowered.org/repository/maven-public/'
         }
 
-        server {
-            workingDirectory project.file('run')
-	    
-            property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
-            property 'forge.logging.console.level', 'debug'
-            properties 'mixin.env.disableRefMap': 'true'
-
-            mods {
-                botanypotstiers {
-                    source sourceSets.main
-                }
-            }
+        maven {
+            name = 'BlameJared Maven (CrT / Bookshelf)'
+            url = 'https://maven.blamejared.com'
         }
 
-        data {
-            workingDirectory project.file('run')
-
-            property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
-
-            property 'forge.logging.console.level', 'debug'
-            properties 'mixin.env.disableRefMap': 'true'
-
-            args '--mod', 'botanypotstiers', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
-
-            mods {
-                botanypotstiers {
-                    source sourceSets.main
-                }
-            }
+        maven {
+            name = 'Progwml6 Maven (JEI)'
+            url = 'https://dvs1.progwml6.com/files/maven/'
         }
-    }
-}
-
-sourceSets.main.resources { srcDir 'src/generated/resources' }
-
-dependencies {
-    minecraft "net.minecraftforge:forge:${mc_version}-${forge_version}"
-
-    compileOnly fg.deobf("mezz.jei:jei-1.16.4:${jei_version}:api")
-    runtimeOnly fg.deobf("mezz.jei:jei-1.16.4:${jei_version}")
-
-    implementation fg.deobf("curse.maven:top-245211:3319255")
-
-    implementation fg.deobf("curse.maven:botanypots-353928:3493241")
-    implementation fg.deobf("curse.maven:bookshelf-228525:3402183")
-}
-
-jar {
-    manifest {
-        attributes([
-            "Specification-Title": "botanypotstiers",
-            "Specification-Vendor": "botanypotstiers",
-            "Specification-Version": "1",
-            "Implementation-Title": project.name,
-            "Implementation-Version": "${version}",
-            "Implementation-Vendor" :"botanypotstiers",
-            "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
-        ])
     }
 }

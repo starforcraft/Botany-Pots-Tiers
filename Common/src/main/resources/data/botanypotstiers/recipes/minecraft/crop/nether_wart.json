@@ -1,0 +1,24 @@
+{
+  "type": "botanypotstiers:crop",
+  "seed": {
+    "item": "minecraft:nether_wart"
+  },
+  "categories": [
+    "soul_sand"
+  ],
+  "growthTicks": 1200,
+  "display": {
+    "type": "botanypotstiers:aging",
+    "block": "minecraft:nether_wart"
+  },
+  "drops": [
+    {
+      "chance": 1.00,
+      "output": {
+        "item": "minecraft:nether_wart"
+      },
+      "minRolls": 1,
+      "maxRolls": 2
+    }
+  ]
+}

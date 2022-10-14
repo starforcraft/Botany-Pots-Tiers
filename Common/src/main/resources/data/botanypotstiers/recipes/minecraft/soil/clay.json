@@ -1,0 +1,13 @@
+{
+  "type": "botanypotstiers:soil",
+  "input": {
+    "item": "minecraft:clay"
+  },
+  "display": {
+    "block": "minecraft:clay"
+  },
+  "categories": [
+    "clay"
+  ],
+  "growthModifier": 1
+}

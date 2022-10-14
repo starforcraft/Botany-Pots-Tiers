@@ -1,0 +1,21 @@
+{
+  "type": "botanypotstiers:crop",
+  "seed": {
+    "item": "minecraft:wither_rose"
+  },
+  "categories": [
+    "soul_sand"
+  ],
+  "growthTicks": 2400,
+  "display": {
+    "block": "minecraft:wither_rose"
+  },
+  "drops": [
+    {
+      "chance": 1,
+      "output": {
+        "item": "minecraft:wither_rose"
+      }
+    }
+  ]
+}

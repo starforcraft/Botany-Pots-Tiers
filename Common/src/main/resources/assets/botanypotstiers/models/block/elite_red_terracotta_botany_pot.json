@@ -1,0 +1,8 @@
+{
+    "parent": "botanypotstiers:block/botany_pot_base",
+    "textures": {
+        "terracotta": "minecraft:block/red_terracotta",
+        "stripe": "botanypotstiers:block/elite",
+        "particle": "minecraft:block/red_terracotta"
+    }
+}

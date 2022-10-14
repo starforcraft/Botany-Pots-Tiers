@@ -1,8 +1,0 @@
-{
-    "parent": "botanypotstiers:block/botany_pot_base",
-    "textures": {
-        "terracotta": "minecraft:block/blue_terracotta",
-        "stripe": "botanypotstiers:blocks/ultra",
-        "particle": "minecraft:block/blue_terracotta"
-    }
-}
