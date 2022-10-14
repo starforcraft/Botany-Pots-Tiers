@@ -2,24 +2,22 @@ package com.ultramega.botanypotstiers.data.recipes.potinteraction;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
-import net.darkhax.bookshelf.api.data.recipes.IRecipeSerializer;
 import net.darkhax.bookshelf.api.data.sound.Sound;
 import net.darkhax.bookshelf.api.serialization.Serializers;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.RecipeSerializer;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public final class BasicPotInteractionSerializer extends IRecipeSerializer<BasicPotInteraction> {
-
-    public static final IRecipeSerializer<?> SERIALIZER = new BasicPotInteractionSerializer();
+public final class BasicPotInteractionSerializer implements RecipeSerializer<BasicPotInteraction> {
+    public static final RecipeSerializer<?> SERIALIZER = new BasicPotInteractionSerializer();
 
     @Override
     public BasicPotInteraction fromJson(ResourceLocation id, JsonObject json) {
-
         final Ingredient heldTest = Serializers.INGREDIENT.fromJSON(json, "held_ingredient");
         final boolean damageHeld = Serializers.BOOLEAN.fromJSON(json, "damage_held", true);
         final Ingredient soilTest = Serializers.INGREDIENT.fromJSONNullable(json, "soil_ingredient");
@@ -30,12 +28,10 @@ public final class BasicPotInteractionSerializer extends IRecipeSerializer<Basic
         final List<ItemStack> extraDrops = Serializers.ITEM_STACK.fromJSONList(json, "drops", new ArrayList<>());
 
         if (soilTest == null && seedTest == null) {
-
             throw new JsonParseException("Recipe requires at least one soil or seed ingredient.");
         }
 
         if (soilOutput == null && seedOutput == null) {
-
             throw new JsonParseException("Recipe requires at least one output.");
         }
 
@@ -44,7 +40,6 @@ public final class BasicPotInteractionSerializer extends IRecipeSerializer<Basic
 
     @Override
     public BasicPotInteraction fromNetwork(ResourceLocation id, FriendlyByteBuf buffer) {
-
         final Ingredient heldTest = Serializers.INGREDIENT.fromByteBuf(buffer);
         final boolean damageHeld = Serializers.BOOLEAN.fromByteBuf(buffer);
         final Ingredient soilTest = Serializers.INGREDIENT.fromByteBufNullable(buffer);
@@ -59,7 +54,6 @@ public final class BasicPotInteractionSerializer extends IRecipeSerializer<Basic
 
     @Override
     public void toNetwork(FriendlyByteBuf buffer, BasicPotInteraction toWrite) {
-
         Serializers.INGREDIENT.toByteBuf(buffer, toWrite.heldTest);
         Serializers.BOOLEAN.toByteBuf(buffer, toWrite.damageHeld);
         Serializers.INGREDIENT.toByteBufNullable(buffer, toWrite.soilTest);

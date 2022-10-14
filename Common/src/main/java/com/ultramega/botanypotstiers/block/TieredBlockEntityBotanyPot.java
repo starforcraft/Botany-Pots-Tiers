@@ -20,7 +20,6 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.Registry;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
@@ -308,7 +307,7 @@ public class TieredBlockEntityBotanyPot extends WorldlyInventoryBlockEntity<Tier
 
     @Override
     protected Component getDefaultName() {
-        return new TranslatableComponent("block.botanypotstiers." + getTier().getName() + "_terracotta_botany_pot");
+        return Component.translatable("block.botanypotstiers." + getTier().getName() + "_terracotta_botany_pot");
     }
 
     @Override
