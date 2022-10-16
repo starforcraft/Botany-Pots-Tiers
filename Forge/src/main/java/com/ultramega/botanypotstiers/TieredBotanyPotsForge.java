@@ -19,7 +19,7 @@ public class TieredBotanyPotsForge {
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::loadModCompat);
         
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, TieredBotanyPotsCommonConfigForge.SPEC, "botanypottiers-common.toml");
-        }
+    }
     
     
     
