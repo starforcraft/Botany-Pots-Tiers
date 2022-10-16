@@ -19,7 +19,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
-public class TieredBotanyPotEventDispatcherForge implements BotanyPotEventDispatcher {
+public class TieredBotanyPotEventDispatcherForge implements TieredBotanyPotEventDispatcher {
     @Nullable
     @Override
     public Soil postSoilLookup(Level level, BlockPos pos, TieredBlockEntityBotanyPot pot, ItemStack stack, @Nullable Soil found) {
