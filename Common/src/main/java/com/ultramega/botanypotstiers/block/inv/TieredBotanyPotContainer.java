@@ -75,7 +75,8 @@ public class TieredBotanyPotContainer extends SimpleContainer implements Worldly
 
         this.soil = TieredBotanyPotHelper.findSoil(level, pos, potEntity, this.getSoilStack());
         this.crop = TieredBotanyPotHelper.findCrop(level, pos, potEntity, this.getCropStack());
-        this.requiredGrowthTime = TieredBotanyPotHelper.getRequiredGrowthTicks(potEntity.getLevel(), potEntity.getBlockPos(), potEntity, this.crop, this.soil) / potEntity.getTier().getSpeed();
+        if(potEntity.getTier() != null)
+            this.requiredGrowthTime = TieredBotanyPotHelper.getRequiredGrowthTicks(potEntity.getLevel(), potEntity.getBlockPos(), potEntity, this.crop, this.soil) / potEntity.getTier().getSpeed();
 
         final int potLight = this.getPotEntity().getLightLevel();
 

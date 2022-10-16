@@ -19,7 +19,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 import java.util.Random;
 
-public class TieredBotanyPotEventDispatcherFabric implements BotanyPotEventDispatcher {
+public class TieredBotanyPotEventDispatcherFabric implements TieredBotanyPotEventDispatcher {
     public static final Event<ILookupCropListener> LOOKUP_CROP = EventFactory.createArrayBacked(ILookupCropListener.class, callbacks -> (level, pos, pot, stack, found) -> {
         Crop result = found;
 

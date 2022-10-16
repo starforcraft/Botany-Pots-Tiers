@@ -5,7 +5,7 @@ import com.ultramega.botanypotstiers.data.recipes.crop.Crop;
 import com.ultramega.botanypotstiers.data.recipes.fertilizer.Fertilizer;
 import com.ultramega.botanypotstiers.data.recipes.potinteraction.PotInteraction;
 import com.ultramega.botanypotstiers.data.recipes.soil.Soil;
-import com.ultramega.botanypotstiers.events.BotanyPotEventDispatcher;
+import com.ultramega.botanypotstiers.events.TieredBotanyPotEventDispatcher;
 import net.darkhax.bookshelf.api.Services;
 import net.darkhax.bookshelf.api.function.CachedSupplier;
 import net.darkhax.bookshelf.api.registry.RegistryObject;
@@ -38,7 +38,7 @@ public class TieredBotanyPotHelper {
     public static final CachedSupplier<RecipeType<Fertilizer>> FERTILIZER_TYPE = RegistryObject.deferred(Registry.RECIPE_TYPE, Constants.MOD_ID, "fertilizer").cast();
     public static final CachedSupplier<RecipeSerializer<?>> BASIC_FERTILIZER_SERIALIZER = RegistryObject.deferred(Registry.RECIPE_SERIALIZER, Constants.MOD_ID, "fertilizer").cast();
 
-    public static final BotanyPotEventDispatcher EVENT_DISPATCHER = Services.load(BotanyPotEventDispatcher.class);
+    public static final TieredBotanyPotEventDispatcher EVENT_DISPATCHER = Services.load(TieredBotanyPotEventDispatcher.class);
 
     /**
      * Calculates the amount of growth ticks required for a crop to be considered fully grown.

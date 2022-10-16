@@ -16,7 +16,7 @@ import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Random;
 
-public interface BotanyPotEventDispatcher {
+public interface TieredBotanyPotEventDispatcher {
     @Nullable
     Soil postSoilLookup(Level level, BlockPos pos, TieredBlockEntityBotanyPot pot, ItemStack stack, @Nullable Soil found);
 
