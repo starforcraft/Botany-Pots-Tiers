@@ -13,7 +13,7 @@ public enum PotTiers {
         this.name = name;
         this.multiplier = multiplier;
         this.speed = speed;
-        System.out.println("Created pot" + getName() + " with speed " + getSpeed() + "with multiplier " + getMultiplier());
+        System.out.println("Created pot " + getName() + " with speed " + getSpeed() + " with multiplier " + getMultiplier());
     }
 
     public String getName() {
