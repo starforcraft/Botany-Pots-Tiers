@@ -4,13 +4,9 @@ import com.ultramega.botanypotstiers.config.ModConfigs;
 import net.fabricmc.api.ModInitializer;
 
 public class TieredBotanyPotsFabric implements ModInitializer {
-
-
-
-	@Override
+    @Override
     public void onInitialize() {
-		ModConfigs.registerConfigs();
+        ModConfigs.registerConfigs();
         new TieredBotanyPotsCommon();
     }
-    
 }

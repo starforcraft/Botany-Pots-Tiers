@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ModConfigProvider implements SimpleConfig.DefaultConfig {
-
     private String configContents = "";
 
     public List<Pair> getConfigsList() {

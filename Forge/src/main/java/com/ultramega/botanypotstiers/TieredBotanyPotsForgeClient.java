@@ -5,7 +5,6 @@ import com.ultramega.botanypotstiers.block.TieredBotanyPotRenderer;
 import com.ultramega.botanypotstiers.block.inv.TieredBotanyPotMenu;
 import com.ultramega.botanypotstiers.block.inv.TieredBotanyPotScreen;
 import com.ultramega.botanypotstiers.data.displaystate.render.DisplayStateRenderer;
-
 import net.darkhax.bookshelf.api.Services;
 import net.darkhax.bookshelf.api.function.CachedSupplier;
 import net.minecraft.client.gui.screens.MenuScreens;

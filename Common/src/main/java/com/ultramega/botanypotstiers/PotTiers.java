@@ -1,9 +1,9 @@
 package com.ultramega.botanypotstiers;
 
 public enum PotTiers {
-    ELITE("elite", TieredBotanyPotsUtils.ELITE_MULTIPLIER, TieredBotanyPotsUtils.ELITE_SPEED),
-    ULTRA("ultra", TieredBotanyPotsUtils.ULTRA_MULTIPLIER, TieredBotanyPotsUtils.ULTRA_SPEED),
-    CREATIVE("creative", TieredBotanyPotsUtils.CREATIVE_MULTIPLIER, TieredBotanyPotsUtils.CREATIVE_SPEED);
+    ELITE("elite", TieredBotanyPotsUtils.ELITE_BOTANY_POT_MULTIPLIER, TieredBotanyPotsUtils.ELITE_BOTANY_POT_SPEED),
+    ULTRA("ultra", TieredBotanyPotsUtils.ULTRA_BOTANY_POT_MULTIPLIER, TieredBotanyPotsUtils.ULTRA_BOTANY_POT_SPEED),
+    CREATIVE("creative", TieredBotanyPotsUtils.CREATIVE_BOTANY_POT_MULTIPLIER, TieredBotanyPotsUtils.CREATIVE_BOTANY_POT_SPEED);
 
     private final String name;
     private final int multiplier;
@@ -13,7 +13,6 @@ public enum PotTiers {
         this.name = name;
         this.multiplier = multiplier;
         this.speed = speed;
-        System.out.println("Created pot " + getName() + " with speed " + getSpeed() + " with multiplier " + getMultiplier());
     }
 
     public String getName() {
