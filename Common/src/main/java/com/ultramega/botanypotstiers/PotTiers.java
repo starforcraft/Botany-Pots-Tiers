@@ -1,9 +1,9 @@
 package com.ultramega.botanypotstiers;
 
 public enum PotTiers {
-    ELITE("elite", 2, 2),
-    ULTRA("ultra", 6, 6),
-    CREATIVE("creative", 10, 10);
+    ELITE("elite", TieredBotanyPotsUtils.ELITE_BOTANY_POT_MULTIPLIER, TieredBotanyPotsUtils.ELITE_BOTANY_POT_SPEED),
+    ULTRA("ultra", TieredBotanyPotsUtils.ULTRA_BOTANY_POT_MULTIPLIER, TieredBotanyPotsUtils.ULTRA_BOTANY_POT_SPEED),
+    CREATIVE("creative", TieredBotanyPotsUtils.CREATIVE_BOTANY_POT_MULTIPLIER, TieredBotanyPotsUtils.CREATIVE_BOTANY_POT_SPEED);
 
     private final String name;
     private final int multiplier;
