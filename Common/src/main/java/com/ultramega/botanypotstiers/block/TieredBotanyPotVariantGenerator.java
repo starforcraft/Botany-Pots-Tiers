@@ -90,7 +90,9 @@ public class TieredBotanyPotVariantGenerator {
                 generateBlockModel(tier, blockId, "botany_pot", false);
                 generateItemModel(tier, blockId, "botany_pot");
                 generateLootTable(tier, blockId, "botany_pot");
-                generateBasicCrafting(tier, blockId);
+                if(blockId != Registry.BLOCK.getKey(Blocks.TERRACOTTA))
+                    generateBasicCrafting(tier, blockId);
+                generateBasicCrafting2(tier, blockId);
 
                 // Hopper
                 generateBlockState(tier, blockId, "hopper_botany_pot");
@@ -98,7 +100,10 @@ public class TieredBotanyPotVariantGenerator {
                 generateItemModel(tier, blockId, "hopper_botany_pot");
                 generateLootTable(tier, blockId, "hopper_botany_pot");
                 generateHopperCrafting(tier, blockId);
-                generateCompactHopperCrafting(tier, blockId);
+                if(blockId != Registry.BLOCK.getKey(Blocks.TERRACOTTA))
+                    generateCompactHopperCrafting(tier, blockId);
+                generateCompactHopperCrafting2(tier, blockId);
+                generateCompactHopperCrafting3(tier, blockId);
             }
         } catch (Exception e) {
 
@@ -195,6 +200,180 @@ public class TieredBotanyPotVariantGenerator {
                             "        },\n" +
                             "        \"H\": {\n" +
                             "            \"item\": \"minecraft:hopper\"\n" +
+                            "        }\n" +
+                            "    },\n" +
+                            "    \"result\": {\n" +
+                            "        \"item\": \"" + potId.toString() + "\",\n" +
+                            "        \"count\": 1\n" +
+                            "    }\n" +
+                            "}");
+                    break;
+            }
+        }
+    }
+
+    public static void generateCompactHopperCrafting2(PotTiers tier, ResourceLocation blockId) throws IOException {
+        final String potId = "botanypotstiers:" + tier.getName() + "_" + blockId.getPath() + "_hopper_botany_pot";
+
+        try (FileWriter writer = new FileWriter(new File(craftingDir, tier.getName() + "_" + blockId.getPath() + "_compact_hopper_botany_pot_2.json"))) {
+            switch(tier) {
+                case ELITE:
+                    writer.append("{\n" +
+                            "    \"type\": \"crafting_shaped\",\n" +
+                            "    \"pattern\": [\n" +
+                            "        \" E \",\n" +
+                            "        \" P \",\n" +
+                            "        \"IHI\"\n" +
+                            "    ],\n" +
+                            "    \"key\": {\n" +
+                            "        \"P\": {\n" +
+                            "            \"item\": \"botanypots:" + blockId.getPath() + "_botany_pot\"\n" +
+                            "        },\n" +
+                            "        \"I\": {\n" +
+                            "            \"item\": \"minecraft:iron_block\"\n" +
+                            "        },\n" +
+                            "        \"E\": {\n" +
+                            "            \"item\": \"minecraft:ender_pearl\"\n" +
+                            "        },\n" +
+                            "        \"H\": {\n" +
+                            "            \"item\": \"minecraft:hopper\"\n" +
+                            "        }\n" +
+                            "    },\n" +
+                            "    \"result\": {\n" +
+                            "        \"item\": \"" + potId.toString() + "\",\n" +
+                            "        \"count\": 1\n" +
+                            "    }\n" +
+                            "}");
+                    break;
+                case ULTRA:
+                    writer.append("{\n" +
+                            "    \"type\": \"crafting_shaped\",\n" +
+                            "    \"pattern\": [\n" +
+                            "        \" E \",\n" +
+                            "        \" P \",\n" +
+                            "        \"IHI\"\n" +
+                            "    ],\n" +
+                            "    \"key\": {\n" +
+                            "        \"P\": {\n" +
+                            "            \"item\": \"botanypotstiers:elite_" + blockId.getPath() + "_botany_pot\"\n" +
+                            "        },\n" +
+                            "        \"I\": {\n" +
+                            "            \"item\": \"minecraft:diamond_block\"\n" +
+                            "        },\n" +
+                            "        \"E\": {\n" +
+                            "            \"item\": \"minecraft:nether_star\"\n" +
+                            "        },\n" +
+                            "        \"H\": {\n" +
+                            "            \"item\": \"minecraft:hopper\"\n" +
+                            "        }\n" +
+                            "    },\n" +
+                            "    \"result\": {\n" +
+                            "        \"item\": \"" + potId.toString() + "\",\n" +
+                            "        \"count\": 1\n" +
+                            "    }\n" +
+                            "}");
+                    break;
+                case CREATIVE:
+                    writer.append("{\n" +
+                            "    \"type\": \"crafting_shaped\",\n" +
+                            "    \"pattern\": [\n" +
+                            "        \" E \",\n" +
+                            "        \" P \",\n" +
+                            "        \"IHI\"\n" +
+                            "    ],\n" +
+                            "    \"key\": {\n" +
+                            "        \"P\": {\n" +
+                            "            \"item\": \"botanypotstiers:ultra_" + blockId.getPath() + "_botany_pot\"\n" +
+                            "        },\n" +
+                            "        \"I\": {\n" +
+                            "            \"item\": \"minecraft:netherite_block\"\n" +
+                            "        },\n" +
+                            "        \"E\": {\n" +
+                            "            \"item\": \"minecraft:enchanted_golden_apple\"\n" +
+                            "        },\n" +
+                            "        \"H\": {\n" +
+                            "            \"item\": \"minecraft:hopper\"\n" +
+                            "        }\n" +
+                            "    },\n" +
+                            "    \"result\": {\n" +
+                            "        \"item\": \"" + potId.toString() + "\",\n" +
+                            "        \"count\": 1\n" +
+                            "    }\n" +
+                            "}");
+                    break;
+            }
+        }
+    }
+
+    public static void generateCompactHopperCrafting3(PotTiers tier, ResourceLocation blockId) throws IOException {
+        final String potId = "botanypotstiers:" + tier.getName() + "_" + blockId.getPath() + "_hopper_botany_pot";
+
+        try (FileWriter writer = new FileWriter(new File(craftingDir, tier.getName() + "_" + blockId.getPath() + "_compact_hopper_botany_pot_3.json"))) {
+            switch(tier) {
+                case ELITE:
+                    writer.append("{\n" +
+                            "    \"type\": \"crafting_shaped\",\n" +
+                            "    \"pattern\": [\n" +
+                            "        \" E \",\n" +
+                            "        \"IPI\"\n" +
+                            "    ],\n" +
+                            "    \"key\": {\n" +
+                            "        \"P\": {\n" +
+                            "            \"item\": \"botanypots:" + blockId.getPath() + "_hopper_botany_pot\"\n" +
+                            "        },\n" +
+                            "        \"I\": {\n" +
+                            "            \"item\": \"minecraft:iron_block\"\n" +
+                            "        },\n" +
+                            "        \"E\": {\n" +
+                            "            \"item\": \"minecraft:ender_pearl\"\n" +
+                            "        }\n" +
+                            "    },\n" +
+                            "    \"result\": {\n" +
+                            "        \"item\": \"" + potId.toString() + "\",\n" +
+                            "        \"count\": 1\n" +
+                            "    }\n" +
+                            "}");
+                    break;
+                case ULTRA:
+                    writer.append("{\n" +
+                            "    \"type\": \"crafting_shaped\",\n" +
+                            "    \"pattern\": [\n" +
+                            "        \" E \",\n" +
+                            "        \"IPI\"\n" +
+                            "    ],\n" +
+                            "    \"key\": {\n" +
+                            "        \"P\": {\n" +
+                            "            \"item\": \"botanypotstiers:elite_" + blockId.getPath() + "_hopper_botany_pot\"\n" +
+                            "        },\n" +
+                            "        \"I\": {\n" +
+                            "            \"item\": \"minecraft:diamond_block\"\n" +
+                            "        },\n" +
+                            "        \"E\": {\n" +
+                            "            \"item\": \"minecraft:nether_star\"\n" +
+                            "        }\n" +
+                            "    },\n" +
+                            "    \"result\": {\n" +
+                            "        \"item\": \"" + potId.toString() + "\",\n" +
+                            "        \"count\": 1\n" +
+                            "    }\n" +
+                            "}");
+                    break;
+                case CREATIVE:
+                    writer.append("{\n" +
+                            "    \"type\": \"crafting_shaped\",\n" +
+                            "    \"pattern\": [\n" +
+                            "        \" E \",\n" +
+                            "        \"IPI\"\n" +
+                            "    ],\n" +
+                            "    \"key\": {\n" +
+                            "        \"P\": {\n" +
+                            "            \"item\": \"botanypotstiers:ultra_" + blockId.getPath() + "_hopper_botany_pot\"\n" +
+                            "        },\n" +
+                            "        \"I\": {\n" +
+                            "            \"item\": \"minecraft:netherite_block\"\n" +
+                            "        },\n" +
+                            "        \"E\": {\n" +
+                            "            \"item\": \"minecraft:enchanted_golden_apple\"\n" +
                             "        }\n" +
                             "    },\n" +
                             "    \"result\": {\n" +
@@ -304,6 +483,87 @@ public class TieredBotanyPotVariantGenerator {
                             "        },\n" +
                             "        \"P\": {\n" +
                             "            \"item\": \"botanypotstiers:ultra_terracotta_botany_pot\"\n" +
+                            "        },\n" +
+                            "        \"I\": {\n" +
+                            "            \"item\": \"minecraft:netherite_block\"\n" +
+                            "        },\n" +
+                            "        \"E\": {\n" +
+                            "            \"item\": \"minecraft:enchanted_golden_apple\"\n" +
+                            "        }\n" +
+                            "    },\n" +
+                            "    \"result\": {\n" +
+                            "        \"item\": \"" + potId.toString() + "\",\n" +
+                            "        \"count\": 1\n" +
+                            "    }\n" +
+                            "}");
+                    break;
+            }
+        }
+    }
+
+    public static void generateBasicCrafting2(PotTiers tier, ResourceLocation blockId) throws IOException {
+        final String potId = "botanypotstiers:" + tier.getName() + "_" + blockId.getPath() + "_botany_pot";
+
+        try (FileWriter writer = new FileWriter(new File(craftingDir, tier.getName() + "_" + blockId.getPath() + "_botany_pot_2.json"))) {
+            switch(tier) {
+                case ELITE:
+                    writer.append("{\n" +
+                            "    \"type\": \"crafting_shaped\",\n" +
+                            "    \"pattern\": [\n" +
+                            "        \" E \",\n" +
+                            "        \"IPI\"\n" +
+                            "    ],\n" +
+                            "    \"key\": {\n" +
+                            "        \"P\": {\n" +
+                            "            \"item\": \"botanypots:" + blockId.getPath() + "_botany_pot\"\n" +
+                            "        },\n" +
+                            "        \"I\": {\n" +
+                            "            \"item\": \"minecraft:iron_block\"\n" +
+                            "        },\n" +
+                            "        \"E\": {\n" +
+                            "            \"item\": \"minecraft:ender_pearl\"\n" +
+                            "        }\n" +
+                            "    },\n" +
+                            "    \"result\": {\n" +
+                            "        \"item\": \"" + potId.toString() + "\",\n" +
+                            "        \"count\": 1\n" +
+                            "    }\n" +
+                            "}");
+                    break;
+                case ULTRA:
+                    writer.append("{\n" +
+                            "    \"type\": \"crafting_shaped\",\n" +
+                            "    \"pattern\": [\n" +
+                            "        \" E \",\n" +
+                            "        \"IPI\"\n" +
+                            "    ],\n" +
+                            "    \"key\": {\n" +
+                            "        \"P\": {\n" +
+                            "            \"item\": \"botanypotstiers:elite_"  + blockId.getPath() + "_botany_pot\"\n" +
+                            "        },\n" +
+                            "        \"I\": {\n" +
+                            "            \"item\": \"minecraft:diamond_block\"\n" +
+                            "        },\n" +
+                            "        \"E\": {\n" +
+                            "            \"item\": \"minecraft:nether_star\"\n" +
+                            "        }\n" +
+                            "    },\n" +
+                            "    \"result\": {\n" +
+                            "        \"item\": \"" + potId.toString() + "\",\n" +
+                            "        \"count\": 1\n" +
+                            "    }\n" +
+                            "}");
+                    break;
+                case CREATIVE:
+                    writer.append("{\n" +
+                            "    \"type\": \"crafting_shaped\",\n" +
+                            "    \"pattern\": [\n" +
+                            "        \" E \",\n" +
+                            "        \"IPI\"\n" +
+                            "    ],\n" +
+                            "    \"key\": {\n" +
+                            "        \"P\": {\n" +
+                            "            \"item\": \"botanypotstiers:ultra_" + blockId.getPath() + "_botany_pot\"\n" +
                             "        },\n" +
                             "        \"I\": {\n" +
                             "            \"item\": \"minecraft:netherite_block\"\n" +
