@@ -1,5 +1,5 @@
 {
-    "type": "botanypots:crop",
+    "type": "botanypotstiers:crop",
     "seed": {
       "item": "allyoucaneat:white_grape_seeds"
     },
@@ -9,7 +9,7 @@
     ],
     "growthTicks": 1200,
     "display": {
-      "type": "botanypots:aging",
+      "type": "botanypotstiers:aging",
       "block": "allyoucaneat:white_grape_crop"
     },
     "drops": [
