@@ -1,5 +1,5 @@
 {
-    "type": "botanypots:crop",
+    "type": "botanypotstiers:crop",
     "seed": {
       "item": "simplefarming:tomato_seeds"
     },
@@ -9,7 +9,7 @@
     ],
     "growthTicks": 1200,
     "display": {
-      "type": "botanypots:aging",
+      "type": "botanypotstiers:aging",
       "block": "simplefarming:tomato_crop"
     },
     "drops": [
