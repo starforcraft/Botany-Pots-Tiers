@@ -8,7 +8,7 @@
       ]
     }
   ],
-  "type": "botanypotstiers:crop",
+  "type": "botanypots:crop",
   "seed": {
     "item": "pamhc2crops:chilipepperseeditem"
   },
@@ -18,7 +18,7 @@
   ],
   "growthTicks": 1200,
   "display": {
-    "type": "botanypotstiers:aging",
+    "type": "botanypots:aging",
     "block": "pamhc2crops:pamchilipeppercrop"
   },
   "drops": [
