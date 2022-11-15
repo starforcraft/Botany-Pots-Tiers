@@ -8,7 +8,7 @@
         ]
       }
     ],
-    "type": "botanypots:crop",
+    "type": "botanypotstiers:crop",
     "seed": {
       "item": "mysticalagriculture:parrot_seeds"
     },
@@ -17,7 +17,7 @@
     ],
     "growthTicks": 3600,
     "display": {
-      "type": "botanypots:aging",
+      "type": "botanypotstiers:aging",
       "block": "mysticalagriculture:parrot_crop"
     },
     "drops": [
