@@ -19,7 +19,7 @@
   "growthTicks": 1200,
   "display": {
     "type": "botanypotstiers:aging",
-    "block": "occultism:datura_crop"
+    "block": "occultism:datura"
   },
   "drops": [
     {
