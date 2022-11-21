@@ -7,7 +7,7 @@
       ]
     }
   ],
-  "type": "botanypots:crop",
+  "type": "botanypotstiers:crop",
   "seed": {
     "item": "simplefarming:raspberry_bush"
   },
@@ -17,7 +17,7 @@
   ],
   "growthTicks": 3600,
   "display": {
-    "type": "botanypots:aging",
+    "type": "botanypotstiers:aging",
     "block": "simplefarming:raspberry_bush"
   },
   "drops": [

@@ -7,7 +7,7 @@
       ]
     }
   ],
-  "type": "botanypots:crop",
+  "type": "botanypotstiers:crop",
   "seed": {
     "item": "simplefarming:cumin_seeds"
   },
@@ -17,7 +17,7 @@
   ],
   "growthTicks": 1200,
   "display": {
-    "type": "botanypots:aging",
+    "type": "botanypotstiers:aging",
     "block": "simplefarming:cumin"
   },
   "drops": [
