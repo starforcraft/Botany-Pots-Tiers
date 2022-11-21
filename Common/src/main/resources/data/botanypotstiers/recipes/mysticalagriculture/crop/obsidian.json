@@ -8,16 +8,16 @@
       ]
     }
   ],
-  "type": "botanypotstiers:crop",
+  "type": "botanypots:crop",
   "seed": {
     "item": "mysticalagriculture:obsidian_seeds"
   },
   "categories": [
     "tertium"
   ],
-  "growthTicks": 3000,
+  "growthTicks": 3600,
   "display": {
-    "type": "botanypotstiers:aging",
+    "type": "botanypots:aging",
     "block": "mysticalagriculture:obsidian_crop"
   },
   "drops": [
