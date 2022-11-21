@@ -3,14 +3,13 @@
     {
       "type": "bookshelf:item_exists",
       "values": [
-        "simplefarming:cucumber_seeds",
-        "simplefarming:cucumber"
+        "simplefarming:marshmallow_root"
       ]
     }
   ],
   "type": "botanypots:crop",
   "seed": {
-    "item": "simplefarming:cucumber_seeds"
+    "item": "simplefarming:marshmallow_root"
   },
   "categories": [
     "dirt",
@@ -19,19 +18,13 @@
   "growthTicks": 1200,
   "display": {
     "type": "botanypots:aging",
-    "block": "simplefarming:cucumber_crop"
+    "block": "simplefarming:marshmallow"
   },
   "drops": [
     {
       "chance": 1.00,
       "output": {
-        "item": "simplefarming:cucumber"
-      }
-    },
-    {
-      "chance": 0.01,
-      "output": {
-        "item": "simplefarming:cucumber_seeds"
+        "item": "simplefarming:marshmallow_root"
       }
     }
   ]
