@@ -8,7 +8,7 @@
         ]
       }
     ],
-    "type": "botanypots:crop",
+    "type": "botanypotstiers:crop",
     "seed": {
       "item": "ms:crop/purple_tulip_seeds"
     },
@@ -18,7 +18,7 @@
     ],
     "growthTicks": 1200,
     "display": {
-      "type": "botanypots:aging",
+      "type": "botanypotstiers:aging",
       "block": "ms:plant/purple_tulip_crop"
     },
     "drops": [
