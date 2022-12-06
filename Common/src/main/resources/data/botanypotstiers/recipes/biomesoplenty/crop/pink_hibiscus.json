@@ -7,7 +7,7 @@
         ]
       }
     ],
-    "type": "botanypots:crop",
+    "type": "botanypotstiers:crop",
     "seed": {
       "item": "biomesoplenty:pink_hibiscus"
     },
@@ -16,7 +16,7 @@
     ],
     "growthTicks": 1200,
     "display": {
-      "type": "botanypots:aging",
+      "type": "botanypotstiers:aging",
       "block": "biomesoplenty:pink_hibiscus"
     },
     "drops": [

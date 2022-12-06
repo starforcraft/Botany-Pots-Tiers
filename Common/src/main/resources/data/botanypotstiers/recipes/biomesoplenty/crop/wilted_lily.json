@@ -7,7 +7,7 @@
         ]
       }
     ],
-    "type": "botanypots:crop",
+    "type": "botanypotstiers:crop",
     "seed": {
       "item": "biomesoplenty:wilted_lily"
     },
@@ -16,7 +16,7 @@
     ],
     "growthTicks": 1200,
     "display": {
-      "type": "botanypots:aging",
+      "type": "botanypotstiers:aging",
       "block": "biomesoplenty:wilted_lily"
     },
     "drops": [
