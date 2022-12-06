@@ -7,7 +7,7 @@
         ]
       }
     ],
-    "type": "botanypotstiers:crop",
+    "type": "botanypots:crop",
     "seed": {
       "item": "biomesoplenty:goldenrod"
     },
@@ -16,7 +16,7 @@
     ],
     "growthTicks": 1200,
     "display": {
-      "type": "botanypotstiers:aging",
+      "type": "botanypots:aging",
       "block": "biomesoplenty:goldenrod"
     },
     "drops": [

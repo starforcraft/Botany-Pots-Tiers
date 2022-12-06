@@ -5,7 +5,7 @@
         "values": "biomesoplenty:black_sand"
       }
     ],
-    "type": "botanypotstiers:soil",
+    "type": "botanypots:soil",
     "input": {
       "item": "biomesoplenty:black_sand"
     },

@@ -5,7 +5,7 @@
         "values": "biomesoplenty:porous_flesh"
       }
     ],
-    "type": "botanypotstiers:soil",
+    "type": "botanypots:soil",
     "input": {
       "item": "biomesoplenty:porous_flesh"
     },

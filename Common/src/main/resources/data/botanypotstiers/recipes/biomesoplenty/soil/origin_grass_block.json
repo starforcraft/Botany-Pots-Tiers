@@ -5,7 +5,7 @@
         "values": "biomesoplenty:origin_grass_block"
       }
     ],
-    "type": "botanypotstiers:soil",
+    "type": "botanypots:soil",
     "input": {
       "item": "biomesoplenty:origin_grass_block"
     },

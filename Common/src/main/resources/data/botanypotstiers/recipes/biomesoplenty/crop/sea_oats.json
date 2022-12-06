@@ -7,7 +7,7 @@
         ]
       }
     ],
-    "type": "botanypotstiers:crop",
+    "type": "botanypots:crop",
     "seed": {
       "item": "biomesoplenty:sea_oats"
     },
@@ -16,7 +16,7 @@
     ],
     "growthTicks": 1200,
     "display": {
-      "type": "botanypotstiers:aging",
+      "type": "botanypots:aging",
       "block": "biomesoplenty:sea_oats"
     },
     "drops": [
