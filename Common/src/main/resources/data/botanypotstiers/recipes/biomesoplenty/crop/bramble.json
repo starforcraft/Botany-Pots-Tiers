@@ -1,0 +1,30 @@
+{
+    "bookshelf:load_conditions": [
+      {
+        "type": "bookshelf:item_exists",
+        "values": [
+          "biomesoplenty:bramble"
+        ]
+      }
+    ],
+    "type": "botanypotstiers:crop",
+    "seed": {
+      "item": "biomesoplenty:bramble"
+    },
+    "categories": [
+      "netherrack"
+    ],
+    "growthTicks": 1200,
+    "display": {
+      "type": "botanypotstiers:aging",
+      "block": "biomesoplenty:bramble"
+    },
+    "drops": [
+      {
+        "chance": 1.00,
+        "output": {
+          "item": "biomesoplenty:bramble"
+        }
+      }
+    ]
+  }
