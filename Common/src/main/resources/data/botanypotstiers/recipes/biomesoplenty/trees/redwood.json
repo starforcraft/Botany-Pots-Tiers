@@ -7,7 +7,7 @@
         ]
       }
     ],
-    "type": "botanypots:crop",
+    "type": "botanypotstiers:crop",
     "seed": {
       "item": "biomesoplenty:redwood_sapling"
     },

@@ -7,7 +7,7 @@
         ]
       }
     ],
-    "type": "botanypots:crop",
+    "type": "botanypotstiers:crop",
     "seed": {
       "item": "ars_nouveau:blue_archwood_sapling"
     },

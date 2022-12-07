@@ -3,20 +3,20 @@
       {
         "type": "bookshelf:item_exists",
         "values": [
-          "simplefarming:plum_sapling"
+          "simplefarming:orange_sapling"
         ]
       }
     ],
-    "type": "botanypots:crop",
+    "type": "botanypotstiers:crop",
     "seed": {
-      "item": "simplefarming:plum_sapling"
+      "item": "simplefarming:orange_sapling"
     },
     "categories": [
       "dirt"
     ],
     "growthTicks": 2400,
     "display": {
-      "block": "simplefarming:plum_sapling"
+      "block": "simplefarming:orange_sapling"
     },
     "drops": [
       {
@@ -38,7 +38,7 @@
     {
       "chance": 0.01,
       "output": {
-        "item": "simplefarming:plum_sapling"
+        "item": "simplefarming:orange_sapling"
       },
       "minRolls": 1,
       "maxRolls": 2
@@ -46,7 +46,7 @@
     {
         "chance": 0.20,
         "output": {
-          "item": "simplefarming:plum"
+          "item": "simplefarming:orange"
         }
       }
     ]
