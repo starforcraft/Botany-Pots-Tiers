@@ -1,5 +1,5 @@
 {
-    "type": "botanypots:soil",
+    "type": "botanypotstiers:soil",
     "input": {
       "item": "tconstruct:earth_ender_slime_grass"
     },

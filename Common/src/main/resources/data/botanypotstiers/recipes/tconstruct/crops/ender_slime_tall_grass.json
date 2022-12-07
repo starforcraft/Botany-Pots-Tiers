@@ -1,5 +1,5 @@
 {
-    "type": "botanypots:crop",
+    "type": "botanypotstiers:crop",
     "seed": {
       "item": "tconstruct:ender_slime_tall_grass"
     },
@@ -9,8 +9,8 @@
     ],
     "growthTicks": 1200,
     "display": {
-      "block": "tconstruct:ender_slime_tall_grass",
-      "renderFluid": false
+      "type": "botanypotstiers:aging",
+      "block": "tconstruct:ender_slime_tall_grass"
     },
     "drops": [
       {
