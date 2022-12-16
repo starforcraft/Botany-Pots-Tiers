@@ -1,5 +1,13 @@
 {
-    "type": "botanypots:crop",
+    "bookshelf:load_conditions": [
+      {
+        "type": "bookshelf:item_exists",
+        "values": [
+          "finallyfarmabledyes:oxeye_daisy"
+        ]
+      }
+    ],
+    "type": "botanypotstiers:crop",
     "seed": {
         "item": "finallyfarmabledyes:oxeye_daisy"
     },

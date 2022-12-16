@@ -7,7 +7,7 @@
         ]
       }
     ],
-    "type": "botanypots:crop",
+    "type": "botanypotstiers:crop",
     "seed": {
       "item": "ms:food/polyp"
     },
@@ -17,7 +17,7 @@
     ],
     "growthTicks": 1200,
     "display": {
-      "type": "botanypots:aging",
+      "type": "botanypotstiers:aging",
       "block": "ms:crop/polyp"
     },
     "drops": [

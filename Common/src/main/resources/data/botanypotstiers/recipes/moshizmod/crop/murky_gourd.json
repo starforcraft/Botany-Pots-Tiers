@@ -4,11 +4,11 @@
         "type": "bookshelf:item_exists",
         "values": [
           "ms:food/murky_gourd_seeds",
-          "ms:plank/murky_gourd"
+          "ms:plant/murky_gourd"
         ]
       }
     ],
-    "type": "botanypots:crop",
+    "type": "botanypotstiers:crop",
     "seed": {
       "item": "ms:food/murky_gourd_seeds"
     },
@@ -18,7 +18,7 @@
     ],
     "growthTicks": 1200,
     "display": {
-      "type": "botanypots:aging",
+      "type": "botanypotstiers:aging",
       "block": "ms:crop/murky_gourd_stem"
     },
     "drops": [

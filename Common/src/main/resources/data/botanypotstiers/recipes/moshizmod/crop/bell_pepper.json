@@ -3,12 +3,11 @@
       {
         "type": "bookshelf:item_exists",
         "values": [
-          "ms:food/bell_pepper_seeds",
-          "ms:food/bell_pepper"
+          "ms:food/bell_pepper_seeds"
         ]
       }
     ],
-    "type": "botanypots:crop",
+    "type": "botanypotstiers:crop",
     "seed": {
       "item": "ms:food/bell_pepper_seeds"
     },
@@ -18,7 +17,7 @@
     ],
     "growthTicks": 1200,
     "display": {
-      "type": "botanypots:aging",
+      "type": "botanypotstiers:aging",
       "block": "ms:crop/bell_pepper"
     },
     "drops": [
