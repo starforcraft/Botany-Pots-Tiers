@@ -1,18 +1,15 @@
 {
     "type": "botanypotstiers:soil",
     "input": {
-      "item": "minecraft:deepslate_gold_ore"
+      "item": "minecraft:deepslate"
     },
     "display": {
-      "block": "minecraft:deepslate_gold_ore"
+      "block": "minecraft:deepslate"
     },
     "categories": [
-      "gold_ore",
       "mushroom",
       "stone",
-      "deepslate",
-      "deepslate_gold_ore",
-      "ore"
+      "deepslate"
     ],
     "growthModifier": 1
   }
