@@ -3,26 +3,27 @@
       {
         "type": "bookshelf:item_exists",
         "values": [
-          "ore_tree:gold_tree_sapling"
+          "ore_tree:iron_tree_sapling"
         ]
       }
     ],
     "type": "botanypotstiers:crop",
     "seed": {
-      "item": "ore_tree:gold_tree_sapling"
+      "item": "ore_tree:iron_tree_sapling"
     },
     "categories": [
-      "gold_ore"
+      "iron_ore",
+      "deepslate_iron_ore"
     ],
     "growthTicks": 2400,
     "display": {
-      "block": "ore_tree:gold_tree_sapling"
+      "block": "ore_tree:iron_tree_sapling"
     },
     "drops": [
       {
         "chance": 1.00,
         "output": {
-          "item": "ore_tree:gold_tree_log"
+          "item": "ore_tree:iron_tree_log"
         },
         "minRolls": 2,
         "maxRolls": 4
@@ -46,7 +47,7 @@
       {
         "chance": 0.01,
         "output": {
-          "item": "ore_tree:gold_tree_sapling"
+          "item": "ore_tree:iron_tree_sapling"
         }
       }
     ]
