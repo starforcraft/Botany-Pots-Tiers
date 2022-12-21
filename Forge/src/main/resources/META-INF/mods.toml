@@ -35,3 +35,10 @@ mandatory = true
 versionRange = "[16.1.5,)"
 ordering = "NONE"
 side = "BOTH"
+
+[[dependencies.${mod_id}]]
+modId = "botanypots"
+mandatory = true
+versionRange = "[9.0.19,)"
+ordering = "NONE"
+side = "BOTH"

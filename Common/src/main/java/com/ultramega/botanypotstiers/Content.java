@@ -2,11 +2,6 @@ package com.ultramega.botanypotstiers;
 
 import com.ultramega.botanypotstiers.block.TieredBlockBotanyPot;
 import com.ultramega.botanypotstiers.block.TieredBlockEntityBotanyPot;
-import com.ultramega.botanypotstiers.block.inv.TieredBotanyPotMenu;
-import com.ultramega.botanypotstiers.data.recipes.crop.BasicCropSerializer;
-import com.ultramega.botanypotstiers.data.recipes.fertilizer.BasicFertilizerSerializer;
-import com.ultramega.botanypotstiers.data.recipes.potinteraction.BasicPotInteractionSerializer;
-import com.ultramega.botanypotstiers.data.recipes.soil.BasicSoilSerializer;
 import net.darkhax.bookshelf.api.Services;
 import net.darkhax.bookshelf.api.registry.RegistryDataProvider;
 import net.minecraft.resources.ResourceLocation;
@@ -25,18 +20,6 @@ public class Content extends RegistryDataProvider {
         this.withCreativeTab(() -> Services.REGISTRIES.items().get(new ResourceLocation(Constants.MOD_ID, "elite_terracotta_botany_pot")));
         this.withAutoItemBlocks();
         this.bindBlockRenderLayers();
-
-        // Recipe Types
-        this.recipeTypes.add("soil");
-        this.recipeTypes.add("crop");
-        this.recipeTypes.add("pot_interaction");
-        this.recipeTypes.add("fertilizer");
-
-        // Recipe Serializers
-        this.recipeSerializers.add(() -> BasicSoilSerializer.SERIALIZER, "soil");
-        this.recipeSerializers.add(() -> BasicCropSerializer.SERIALIZER, "crop");
-        this.recipeSerializers.add(() -> BasicPotInteractionSerializer.SERIALIZER, "pot_interaction");
-        this.recipeSerializers.add(() -> BasicFertilizerSerializer.SERIALIZER, "fertilizer");
 
         for(PotTiers tier : PotTiers.values()) {
             // Basic Pot
@@ -61,7 +44,6 @@ public class Content extends RegistryDataProvider {
         }
 
         this.blockEntities.add(() -> Services.CONSTRUCTS.blockEntityType(TieredBlockEntityBotanyPot::new, this::getAllPots).get(), "botany_pot");
-        this.menus.add(() -> Services.CONSTRUCTS.menuType(TieredBotanyPotMenu::fromNetwork), "pot_menu");
     }
 
     private Set<Block> getAllPots() {

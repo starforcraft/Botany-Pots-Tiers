@@ -1,9 +1,9 @@
 package com.ultramega.botanypotstiers.block;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.ultramega.botanypotstiers.TieredBotanyPotHelper;
-import com.ultramega.botanypotstiers.data.displaystate.DisplayState;
-import com.ultramega.botanypotstiers.data.displaystate.render.DisplayStateRenderer;
+import net.darkhax.botanypots.BotanyPotHelper;
+import net.darkhax.botanypots.data.displaystate.DisplayState;
+import net.darkhax.botanypots.data.displaystate.render.DisplayStateRenderer;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
@@ -36,7 +36,7 @@ public class TieredBotanyPotRenderer implements BlockEntityRenderer<TieredBlockE
 
             pose.popPose();
 
-            if (pot.getCrop() != null && TieredBotanyPotHelper.canCropGrow(level, pos, pot, pot.getSoil(), pot.getCrop())) {
+            if (pot.getCrop() != null && BotanyPotHelper.canCropGrow(level, pos, pot, pot.getSoil(), pot.getCrop())) {
                 pose.pushPose();
 
                 pose.translate(0.5, 0.40625, 0.5);
