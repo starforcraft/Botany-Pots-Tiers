@@ -1,44 +1,34 @@
 package com.ultramega.botanypotstiers.block;
 
+import com.ultramega.botanypotstiers.Constants;
 import com.ultramega.botanypotstiers.PotTiers;
 import net.darkhax.bookshelf.api.Services;
-import net.darkhax.bookshelf.api.block.IBindRenderLayer;
-import net.darkhax.bookshelf.api.block.InventoryBlock;
+import net.darkhax.bookshelf.api.registry.RegistryObject;
 import net.darkhax.bookshelf.api.serialization.Serializers;
 import net.darkhax.botanypots.BotanyPotHelper;
 import net.darkhax.botanypots.block.BlockBotanyPot;
 import net.darkhax.botanypots.data.recipes.fertilizer.Fertilizer;
 import net.darkhax.botanypots.data.recipes.potinteraction.PotInteraction;
-import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.Registry;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.context.BlockPlaceContext;
-import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.RenderShape;
-import net.minecraft.world.level.block.SimpleWaterloggedBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.material.FluidState;
-import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.MaterialColor;
 import net.minecraft.world.phys.BlockHitResult;
-import net.minecraft.world.phys.shapes.CollisionContext;
-import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class TieredBlockBotanyPot extends BlockBotanyPot {
-    private static final VoxelShape SHAPE = Block.box(2, 0, 2, 14, 8, 14);
     private static final Properties DEFAULT_PROPERTIES = Block.Properties.of(Material.CLAY, MaterialColor.COLOR_ORANGE).strength(1.25F, 4.2F).noOcclusion().lightLevel(state -> state.getValue(BlockStateProperties.LEVEL));
 
     public final PotTiers tier;
@@ -66,7 +56,7 @@ public class TieredBlockBotanyPot extends BlockBotanyPot {
 
     @Override
     public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
-        return new TieredBlockEntityBotanyPot(pos, state);
+        return new TieredBlockEntityBotanyPot(tier, pos, state);
     }
 
     @Override
@@ -119,6 +109,6 @@ public class TieredBlockBotanyPot extends BlockBotanyPot {
 
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level worldLevel, BlockState state, BlockEntityType<T> blockEntityType) {
-        return createTickerHelper(blockEntityType, TieredBlockEntityBotanyPot.POT_TYPE.get(), TieredBlockEntityBotanyPot::tickPot);
+        return createTickerHelper(blockEntityType, (BlockEntityType) RegistryObject.deferred(Registry.BLOCK_ENTITY_TYPE, Constants.MOD_ID, tier.getName() + "_botany_pot").cast().get(), (level, pos, state1, pot) -> TieredBlockEntityBotanyPot.tickPot(level, pos, state1, (TieredBlockEntityBotanyPot) pot));
     }
 }

@@ -3,7 +3,6 @@ package com.ultramega.botanypotstiers.block;
 import com.ultramega.botanypotstiers.Constants;
 import com.ultramega.botanypotstiers.PotTiers;
 import net.darkhax.bookshelf.api.Services;
-import net.darkhax.bookshelf.api.function.CachedSupplier;
 import net.darkhax.bookshelf.api.inventory.ContainerInventoryAccess;
 import net.darkhax.bookshelf.api.inventory.IInventoryAccess;
 import net.darkhax.bookshelf.api.registry.RegistryObject;
@@ -19,6 +18,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.util.Mth;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 
@@ -26,26 +26,19 @@ import java.util.List;
 import java.util.Random;
 
 public class TieredBlockEntityBotanyPot extends BlockEntityBotanyPot {
-    public static final CachedSupplier<BlockEntityType<TieredBlockEntityBotanyPot>> POT_TYPE = RegistryObject.deferred(Registry.BLOCK_ENTITY_TYPE, Constants.MOD_ID, "botany_pot").cast();
-
     final Random rng = new Random();
     private long rngSeed;
 
-    public TieredBlockEntityBotanyPot(BlockPos pos, BlockState state) {
-        super(POT_TYPE.get(), pos, state);
+    private final PotTiers tier;
+
+    public TieredBlockEntityBotanyPot(PotTiers tier, BlockPos pos, BlockState state) {
+        super((BlockEntityType) RegistryObject.deferred(Registry.BLOCK_ENTITY_TYPE, Constants.MOD_ID, tier.getName() + "_botany_pot").cast().get(), pos, state);
+        this.tier = tier;
         this.refreshRandom();
     }
 
     public boolean getDoneGrowing() {
         return doneGrowing;
-    }
-
-    public PotTiers getTier() {
-        if (this.getLevel() != null && this.getLevel().getBlockState(this.getBlockPos()).getBlock() instanceof TieredBlockBotanyPot potBlock) {
-            return potBlock.tier;
-        } else {
-            return null;
-        }
     }
 
     @Override
@@ -73,7 +66,7 @@ public class TieredBlockEntityBotanyPot extends BlockEntityBotanyPot {
 
             for (ItemStack drop : drops) {
                 if (!drop.isEmpty()) {
-                    drop.setCount(drop.getCount() * getTier().getMultiplier());
+                    drop.setCount(drop.getCount() * tier.getMultiplier());
 
                     final int originalSize = drop.getCount();
 
@@ -146,8 +139,7 @@ public class TieredBlockEntityBotanyPot extends BlockEntityBotanyPot {
         // Growth Logic
         if (soil != null && crop != null && pot.areGrowthConditionsMet()) {
             if (!pot.doneGrowing) {
-                PotTiers tier = pot.getTier();
-                pot.growthTime += tier.getSpeed();
+                pot.growthTime += pot.tier.getSpeed();
                 soil.onGrowthTick(level, pos, pot, crop);
                 crop.onGrowthTick(level, pos, pot, soil);
 
@@ -197,6 +189,6 @@ public class TieredBlockEntityBotanyPot extends BlockEntityBotanyPot {
 
     @Override
     protected Component getDefaultName() {
-        return Component.translatable("block.botanypotstiers." + getTier().getName() + "_terracotta_botany_pot");
+        return Component.translatable("block.botanypotstiers." + tier.getName() + "_terracotta_botany_pot");
     }
 }
