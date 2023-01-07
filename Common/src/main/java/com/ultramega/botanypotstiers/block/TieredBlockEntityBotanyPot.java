@@ -6,6 +6,7 @@ import net.darkhax.bookshelf.api.Services;
 import net.darkhax.bookshelf.api.inventory.ContainerInventoryAccess;
 import net.darkhax.bookshelf.api.inventory.IInventoryAccess;
 import net.darkhax.bookshelf.api.registry.RegistryObject;
+import net.darkhax.bookshelf.api.serialization.Serializers;
 import net.darkhax.botanypots.BotanyPotHelper;
 import net.darkhax.botanypots.block.BlockEntityBotanyPot;
 import net.darkhax.botanypots.block.inv.BotanyPotContainer;
@@ -14,11 +15,11 @@ import net.darkhax.botanypots.data.recipes.soil.Soil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Registry;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.util.Mth;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 
@@ -34,11 +35,16 @@ public class TieredBlockEntityBotanyPot extends BlockEntityBotanyPot {
     public TieredBlockEntityBotanyPot(PotTiers tier, BlockPos pos, BlockState state) {
         super((BlockEntityType) RegistryObject.deferred(Registry.BLOCK_ENTITY_TYPE, Constants.MOD_ID, tier.getName() + "_botany_pot").cast().get(), pos, state);
         this.tier = tier;
-        this.refreshRandom();
+        this.refreshRandom2();
     }
 
     public boolean getDoneGrowing() {
         return doneGrowing;
+    }
+
+    public void refreshRandom2() {
+        this.rngSeed = Constants.RANDOM.nextLong();
+        this.rng.setSeed(rngSeed);
     }
 
     @Override
@@ -185,6 +191,37 @@ public class TieredBlockEntityBotanyPot extends BlockEntityBotanyPot {
                 }
             }
         }
+    }
+
+    public void resetGrowth() {
+        this.growthTime = -1;
+        this.comparatorLevel = 0;
+        this.prevComparatorLevel = 0;
+        this.doneGrowing = false;
+        this.refreshRandom2();
+        this.markDirty();
+    }
+
+    @Override
+    public void load(CompoundTag tag) {
+        super.load(tag);
+
+        this.rngSeed = Serializers.LONG.fromNBT(tag, "RandomSeed", Constants.RANDOM.nextLong());
+        this.rng.setSeed(this.rngSeed);
+    }
+
+    @Override
+    public void saveAdditional(CompoundTag tag) {
+        super.saveAdditional(tag);
+
+        Serializers.LONG.toNBT(tag, "RandomSeed", this.rngSeed);
+    }
+
+    @Override
+    public CompoundTag getUpdateTag() {
+        final CompoundTag updateTag = super.getUpdateTag();
+        this.saveAdditional(updateTag);
+        return updateTag;
     }
 
     @Override

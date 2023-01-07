@@ -76,10 +76,13 @@ dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
     implementation fg.deobf("net.darkhax.bookshelf:Bookshelf-Forge-${project.ext.minecraft_version}:${project.ext.bookshelf_version}")
     implementation fg.deobf("net.darkhax.botanypots:BotanyPots-Forge-${project.ext.minecraft_version}:${project.ext.botanypots_version}")
-    //implementation fg.deobf("net.darkhax.botanytrees:BotanyTrees-Forge-${project.ext.minecraft_version}:5.0.1")
+    implementation fg.deobf("net.darkhax.botanytrees:BotanyTrees-Forge-${project.ext.minecraft_version}:5.0.4")
     compileOnly fg.deobf("mezz.jei:jei-${minecraft_version}-forge-api:${jei_version}")
     runtimeOnly fg.deobf("mezz.jei:jei-${minecraft_version}-forge:${jei_version}")
     implementation fg.deobf("curse.maven:top-245211:${top_version}")
+
+    runtimeOnly fg.deobf("curse.maven:storagedrawers-223852:3884263")
+    runtimeOnly fg.deobf("curse.maven:tiab-445025:3879896")
 
     compileOnly project(":Common")
 
