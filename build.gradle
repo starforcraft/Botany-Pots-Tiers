@@ -8,14 +8,12 @@ buildscript {
 }
 
 apply from: 'gradle/property_loader.gradle'
-apply from: 'gradle/build_number.gradle'
 
 subprojects {
     apply plugin: 'maven-publish'
 
     apply from: '../gradle/property_loader.gradle'
     apply from: '../gradle/java.gradle'
-    apply from: '../gradle/build_number.gradle'
     apply from: '../gradle/minify_jsons.gradle'
 
     // Disables Gradle's custom module metadata from being published to maven. The 

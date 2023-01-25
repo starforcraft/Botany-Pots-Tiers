@@ -1,16 +1,19 @@
 package com.ultramega.botanypotstiers.block;
 
+import com.ultramega.botanypotstiers.Constants;
 import com.ultramega.botanypotstiers.PotTiers;
 import com.ultramega.botanypotstiers.TieredBotanyPotHelper;
 import net.darkhax.bookshelf.api.Services;
 import net.darkhax.bookshelf.api.block.IBindRenderLayer;
 import net.darkhax.bookshelf.api.block.InventoryBlock;
+import net.darkhax.bookshelf.api.registry.RegistryObject;
 import net.darkhax.bookshelf.api.serialization.Serializers;
 import com.ultramega.botanypotstiers.data.recipes.fertilizer.Fertilizer;
 import com.ultramega.botanypotstiers.data.recipes.potinteraction.PotInteraction;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.Registry;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -108,7 +111,7 @@ public class TieredBlockBotanyPot extends InventoryBlock implements SimpleWaterl
 
     @Override
     public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
-        return new TieredBlockEntityBotanyPot(pos, state);
+        return new TieredBlockEntityBotanyPot(tier, pos, state);
     }
 
     @Override
@@ -161,7 +164,7 @@ public class TieredBlockBotanyPot extends InventoryBlock implements SimpleWaterl
 
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level worldLevel, BlockState state, BlockEntityType<T> blockEntityType) {
-        return createTickerHelper(blockEntityType, TieredBlockEntityBotanyPot.POT_TYPE.get(), TieredBlockEntityBotanyPot::tickPot);
+        return createTickerHelper(blockEntityType, (BlockEntityType) RegistryObject.deferred(Registry.BLOCK_ENTITY_TYPE, Constants.MOD_ID, tier.getName() + "_botany_pot").cast().get(), TieredBlockEntityBotanyPot::tickPot);
     }
 
     @Override

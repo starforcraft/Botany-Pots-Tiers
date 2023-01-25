@@ -60,7 +60,9 @@ public class Content extends RegistryDataProvider {
             }
         }
 
-        this.blockEntities.add(() -> Services.CONSTRUCTS.blockEntityType(TieredBlockEntityBotanyPot::new, this::getAllPots).get(), "botany_pot");
+        for(PotTiers tier : PotTiers.values()) {
+            this.blockEntities.add(() -> Services.CONSTRUCTS.blockEntityType((pos, state) -> new TieredBlockEntityBotanyPot(tier, pos, state), this::getAllPots).get(), tier.getName() + "_botany_pot");
+        }
         this.menus.add(() -> Services.CONSTRUCTS.menuType(TieredBotanyPotMenu::fromNetwork), "pot_menu");
     }
 
