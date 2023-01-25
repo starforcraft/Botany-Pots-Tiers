@@ -4,8 +4,10 @@ import com.ultramega.botanypotstiers.block.TieredBlockBotanyPot;
 import com.ultramega.botanypotstiers.block.TieredBlockEntityBotanyPot;
 import net.darkhax.bookshelf.api.Services;
 import net.darkhax.bookshelf.api.registry.RegistryDataProvider;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.DyeColor;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.Material;
@@ -17,7 +19,7 @@ public class Content extends RegistryDataProvider {
     public Content() {
         super(Constants.MOD_ID);
 
-        this.withCreativeTab(() -> Services.REGISTRIES.items().get(new ResourceLocation(Constants.MOD_ID, "elite_terracotta_botany_pot")));
+        this.withItemTab(() -> new ItemStack(BuiltInRegistries.ITEM.get(new ResourceLocation(Constants.MOD_ID, "elite_terracotta_botany_pot"))));
         this.withAutoItemBlocks();
         this.bindBlockRenderLayers();
 

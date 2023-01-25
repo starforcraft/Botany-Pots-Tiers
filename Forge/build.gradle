@@ -1,19 +1,18 @@
 buildscript {
     repositories {
-        maven { url 'https://maven.minecraftforge.net' }
-        maven { url 'https://plugins.gradle.org/m2/' }
-        maven { url 'https://repo.spongepowered.org/repository/maven-public' }
+        maven { url = 'https://repo.spongepowered.org/repository/maven-public/' }
         mavenCentral()
     }
     dependencies {
-        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.+', changing: true
-        classpath group: 'org.spongepowered', name: 'mixingradle', version: '0.7-SNAPSHOT'
-        classpath group: 'net.darkhax.curseforgegradle', name: 'CurseForgeGradle', version: '1.0.11'
-        classpath group: 'net.darkhax.tweedle', name: 'Tweedle', version: '1.0.5'
+        classpath 'org.spongepowered:mixingradle:0.7-SNAPSHOT'
     }
 }
 
-apply plugin: 'net.minecraftforge.gradle'
+plugins {
+    id 'net.minecraftforge.gradle' version '5.1.+'
+    id 'net.darkhax.curseforgegradle' version '1.0.11'
+    id 'net.darkhax.tweedle' version '1.0.5'
+}
 
 archivesBaseName = "${mod_name}-Forge-${minecraft_version}"
 
@@ -76,13 +75,13 @@ dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
     implementation fg.deobf("net.darkhax.bookshelf:Bookshelf-Forge-${project.ext.minecraft_version}:${project.ext.bookshelf_version}")
     implementation fg.deobf("net.darkhax.botanypots:BotanyPots-Forge-${project.ext.minecraft_version}:${project.ext.botanypots_version}")
-    implementation fg.deobf("net.darkhax.botanytrees:BotanyTrees-Forge-${project.ext.minecraft_version}:5.0.4")
+    implementation fg.deobf("net.darkhax.botanytrees:BotanyTrees-Forge-${project.ext.minecraft_version}:${project.ext.botanytrees_version}")
     compileOnly fg.deobf("mezz.jei:jei-${minecraft_version}-forge-api:${jei_version}")
     runtimeOnly fg.deobf("mezz.jei:jei-${minecraft_version}-forge:${jei_version}")
     implementation fg.deobf("curse.maven:top-245211:${top_version}")
 
-    runtimeOnly fg.deobf("curse.maven:storagedrawers-223852:3884263")
-    runtimeOnly fg.deobf("curse.maven:tiab-445025:3879896")
+    //runtimeOnly fg.deobf("curse.maven:storagedrawers-223852:3884263")
+    //runtimeOnly fg.deobf("curse.maven:tiab-445025:3879896")
 
     compileOnly project(":Common")
 

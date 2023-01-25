@@ -3,6 +3,7 @@ package com.ultramega.botanypotstiers.block;
 import com.ultramega.botanypotstiers.Constants;
 import com.ultramega.botanypotstiers.PotTiers;
 import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -79,7 +80,7 @@ public class TieredBotanyPotVariantGenerator {
 
     public static void generatePot(Block block) {
         try {
-            final ResourceLocation blockId = Registry.BLOCK.getKey(block);
+            final ResourceLocation blockId = BuiltInRegistries.BLOCK.getKey(block);
 
             for(PotTiers tier : PotTiers.values()) {
                 Constants.LOG.info("botanypotstiers:" + tier.getName() + "_" + blockId.getPath() + "_botany_pot");
@@ -90,7 +91,7 @@ public class TieredBotanyPotVariantGenerator {
                 generateBlockModel(tier, blockId, "botany_pot", false);
                 generateItemModel(tier, blockId, "botany_pot");
                 generateLootTable(tier, blockId, "botany_pot");
-                if(blockId != Registry.BLOCK.getKey(Blocks.TERRACOTTA))
+                if(blockId != BuiltInRegistries.BLOCK.getKey(Blocks.TERRACOTTA))
                     generateBasicCrafting(tier, blockId);
                 generateBasicCrafting2(tier, blockId);
 
@@ -100,7 +101,7 @@ public class TieredBotanyPotVariantGenerator {
                 generateItemModel(tier, blockId, "hopper_botany_pot");
                 generateLootTable(tier, blockId, "hopper_botany_pot");
                 generateHopperCrafting(tier, blockId);
-                if(blockId != Registry.BLOCK.getKey(Blocks.TERRACOTTA))
+                if(blockId != BuiltInRegistries.BLOCK.getKey(Blocks.TERRACOTTA))
                     generateCompactHopperCrafting(tier, blockId);
                 generateCompactHopperCrafting2(tier, blockId);
                 generateCompactHopperCrafting3(tier, blockId);

@@ -14,7 +14,7 @@ import net.darkhax.botanypots.data.recipes.crop.Crop;
 import net.darkhax.botanypots.data.recipes.soil.Soil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.util.Mth;
@@ -33,7 +33,7 @@ public class TieredBlockEntityBotanyPot extends BlockEntityBotanyPot {
     private final PotTiers tier;
 
     public TieredBlockEntityBotanyPot(PotTiers tier, BlockPos pos, BlockState state) {
-        super((BlockEntityType) RegistryObject.deferred(Registry.BLOCK_ENTITY_TYPE, Constants.MOD_ID, tier.getName() + "_botany_pot").cast().get(), pos, state);
+        super((BlockEntityType) RegistryObject.deferred(BuiltInRegistries.BLOCK_ENTITY_TYPE, Constants.MOD_ID, tier.getName() + "_botany_pot").cast().get(), pos, state);
         this.tier = tier;
         this.refreshRandom2();
     }

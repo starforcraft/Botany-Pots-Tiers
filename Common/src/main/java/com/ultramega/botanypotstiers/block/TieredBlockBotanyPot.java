@@ -11,7 +11,7 @@ import net.darkhax.botanypots.data.recipes.fertilizer.Fertilizer;
 import net.darkhax.botanypots.data.recipes.potinteraction.PotInteraction;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -109,6 +109,6 @@ public class TieredBlockBotanyPot extends BlockBotanyPot {
 
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level worldLevel, BlockState state, BlockEntityType<T> blockEntityType) {
-        return createTickerHelper(blockEntityType, (BlockEntityType) RegistryObject.deferred(Registry.BLOCK_ENTITY_TYPE, Constants.MOD_ID, tier.getName() + "_botany_pot").cast().get(), (level, pos, state1, pot) -> TieredBlockEntityBotanyPot.tickPot(level, pos, state1, (TieredBlockEntityBotanyPot) pot));
+        return createTickerHelper(blockEntityType, (BlockEntityType) RegistryObject.deferred(BuiltInRegistries.BLOCK_ENTITY_TYPE, Constants.MOD_ID, tier.getName() + "_botany_pot").cast().get(), (level, pos, state1, pot) -> TieredBlockEntityBotanyPot.tickPot(level, pos, state1, (TieredBlockEntityBotanyPot) pot));
     }
 }
