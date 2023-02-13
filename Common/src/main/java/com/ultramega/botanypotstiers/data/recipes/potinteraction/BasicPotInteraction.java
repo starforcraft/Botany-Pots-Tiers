@@ -21,21 +21,30 @@ import javax.annotation.Nullable;
 import java.util.List;
 
 public class BasicPotInteraction extends PotInteraction {
+
     protected final Ingredient heldTest;
+
     protected final boolean damageHeld;
+
     @Nullable
     protected final Ingredient soilTest;
+
     @Nullable
     protected final Ingredient seedTest;
+
     @Nullable
     protected final ItemStack newSoilStack;
+
     @Nullable
     protected final ItemStack newSeedStack;
+
     @Nullable
     protected final Sound sound;
+
     protected final List<ItemStack> extraDrops;
 
     public BasicPotInteraction(ResourceLocation id, Ingredient heldTest, boolean damageHeld, @Nullable Ingredient soilTest, @Nullable Ingredient seedTest, @Nullable ItemStack newSoilStack, @Nullable ItemStack newSeedStack, @Nullable Sound sound, List<ItemStack> extraDrops) {
+
         super(id);
 
         this.heldTest = heldTest;
@@ -50,17 +59,24 @@ public class BasicPotInteraction extends PotInteraction {
 
     @Override
     public boolean canApply(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, ItemStack heldStack, TieredBlockEntityBotanyPot pot) {
+
         return this.heldTest.test(heldStack) && (this.soilTest == null || this.soilTest.test(pot.getInventory().getSoilStack())) && (this.seedTest == null || this.seedTest.test(pot.getInventory().getCropStack()));
     }
 
     @Override
     public void apply(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, ItemStack heldStack, TieredBlockEntityBotanyPot pot) {
+
         if (!world.isClientSide) {
+
             if (this.newSoilStack != null) {
+
                 // Drop soil crafting remainder if applicable.
                 if (Services.INVENTORY_HELPER.hasCraftingRemainder(pot.getInventory().getSoilStack())) {
+
                     final ItemStack dropStack = Services.INVENTORY_HELPER.getCraftingRemainder(pot.getInventory().getSoilStack());
+
                     if (dropStack != null) {
+
                         Block.popResource(world, pos, dropStack.copy());
                     }
                 }
@@ -70,11 +86,14 @@ public class BasicPotInteraction extends PotInteraction {
             }
 
             if (this.newSeedStack != null) {
+
                 // Drop seed crafting remainder if applicable.
                 if (Services.INVENTORY_HELPER.hasCraftingRemainder(pot.getInventory().getCropStack())) {
+
                     final ItemStack dropStack = Services.INVENTORY_HELPER.getCraftingRemainder(pot.getInventory().getCropStack());
 
                     if (dropStack != null) {
+
                         Block.popResource(world, pos, dropStack.copy());
                     }
                 }
@@ -85,11 +104,16 @@ public class BasicPotInteraction extends PotInteraction {
 
             // If the stack can be damaged try to damage it instead of destroying it directly.
             if (this.damageHeld && heldStack.getMaxDamage() > 0) {
+
                 Services.INVENTORY_HELPER.damageStack(heldStack, 1, player, hand == InteractionHand.MAIN_HAND ? EquipmentSlot.MAINHAND : EquipmentSlot.OFFHAND);
-            } else {
+            }
+
+            else {
+
                 final ItemStack remainder = Services.INVENTORY_HELPER.getCraftingRemainder(heldStack);
 
                 if (!remainder.isEmpty()) {
+
                     Block.popResource(world, pos, remainder.copy());
                 }
 
@@ -98,7 +122,9 @@ public class BasicPotInteraction extends PotInteraction {
 
             // Drop extra items when specified.
             if (this.extraDrops != null && !this.extraDrops.isEmpty()) {
+
                 for (ItemStack drop : this.extraDrops) {
+
                     Block.popResource(world, pos, drop.copy());
                 }
             }
@@ -106,12 +132,14 @@ public class BasicPotInteraction extends PotInteraction {
 
         // Play a sound if one is specified.
         if (this.sound != null) {
+
             this.sound.playSoundAt(world, player, pos);
         }
     }
 
     @Override
     public RecipeSerializer<?> getSerializer() {
+
         return TieredBotanyPotHelper.SIMPLE_POT_INTERACTION_SERIALIZER.get();
     }
 }

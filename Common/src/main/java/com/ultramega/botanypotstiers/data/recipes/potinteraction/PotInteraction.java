@@ -14,7 +14,9 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 
 public abstract class PotInteraction extends RecipeBaseData<Container> {
+
     public PotInteraction(ResourceLocation id) {
+
         super(id);
     }
 
@@ -24,6 +26,7 @@ public abstract class PotInteraction extends RecipeBaseData<Container> {
 
     @Override
     public RecipeType<?> getType() {
+
         return TieredBotanyPotHelper.POT_INTERACTION_TYPE.get();
     }
 }

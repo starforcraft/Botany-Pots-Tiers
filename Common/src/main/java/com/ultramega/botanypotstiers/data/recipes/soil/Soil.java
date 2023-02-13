@@ -16,6 +16,7 @@ import javax.annotation.Nullable;
 import java.util.Set;
 
 public abstract class Soil extends RecipeBaseData<Container> {
+
     public Soil(ResourceLocation id) {
         super(id);
     }

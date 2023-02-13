@@ -1,6 +1,5 @@
 package com.ultramega.botanypotstiers;
 
-import com.ultramega.botanypotstiers.block.TieredBotanyPotVariantGenerator;
 import com.ultramega.botanypotstiers.data.displaystate.DisplayState;
 import net.darkhax.bookshelf.api.Services;
 

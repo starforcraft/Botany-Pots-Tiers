@@ -1,21 +1,23 @@
 package com.ultramega.botanypotstiers.data.recipes.crop;
 
 import com.google.gson.JsonObject;
-import com.ultramega.botanypotstiers.data.displaystate.DisplayState;
+import net.darkhax.bookshelf.api.data.recipes.IRecipeSerializer;
 import net.darkhax.bookshelf.api.serialization.Serializers;
+import com.ultramega.botanypotstiers.data.displaystate.DisplayState;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.item.crafting.RecipeSerializer;
 
 import java.util.List;
 import java.util.Set;
 
-public final class BasicCropSerializer implements RecipeSerializer<BasicCrop> {
+public final class BasicCropSerializer extends IRecipeSerializer<BasicCrop> {
+
     public static BasicCropSerializer SERIALIZER = new BasicCropSerializer();
 
     @Override
     public BasicCrop fromJson(ResourceLocation id, JsonObject json) {
+
         final Ingredient seed = Serializers.INGREDIENT.fromJSON(json, "seed");
         final Set<String> validSoils = Serializers.STRING.fromJSONSet(json, "categories");
         final int growthTicks = Serializers.INT.fromJSON(json, "growthTicks");
@@ -33,6 +35,7 @@ public final class BasicCropSerializer implements RecipeSerializer<BasicCrop> {
 
     @Override
     public BasicCrop fromNetwork(ResourceLocation id, FriendlyByteBuf buffer) {
+
         final Ingredient seed = Serializers.INGREDIENT.fromByteBuf(buffer);
         final Set<String> validSoils = Serializers.STRING.readByteBufSet(buffer);
         final int growthTicks = Serializers.INT.fromByteBuf(buffer);
@@ -45,6 +48,7 @@ public final class BasicCropSerializer implements RecipeSerializer<BasicCrop> {
 
     @Override
     public void toNetwork(FriendlyByteBuf buffer, BasicCrop toWrite) {
+
         Serializers.INGREDIENT.toByteBuf(buffer, toWrite.seed);
         Serializers.STRING.writeByteBufSet(buffer, toWrite.soilCategories);
         Serializers.INT.toByteBuf(buffer, toWrite.growthTicks);

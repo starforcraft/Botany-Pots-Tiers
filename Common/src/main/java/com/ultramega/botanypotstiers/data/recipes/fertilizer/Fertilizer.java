@@ -14,7 +14,9 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 
 public abstract class Fertilizer extends RecipeBaseData<Container> {
+
     public Fertilizer(ResourceLocation id) {
+
         super(id);
     }
 
@@ -24,6 +26,7 @@ public abstract class Fertilizer extends RecipeBaseData<Container> {
 
     @Override
     public RecipeType<?> getType() {
+
         return TieredBotanyPotHelper.FERTILIZER_TYPE.get();
     }
 }

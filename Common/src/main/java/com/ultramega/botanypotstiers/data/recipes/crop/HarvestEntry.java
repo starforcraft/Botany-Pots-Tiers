@@ -3,6 +3,7 @@ package com.ultramega.botanypotstiers.data.recipes.crop;
 import net.minecraft.world.item.ItemStack;
 
 public class HarvestEntry {
+
     /**
      * The chance that the entry should happen.
      */
@@ -24,16 +25,19 @@ public class HarvestEntry {
     private final int maxRolls;
 
     public HarvestEntry(float chance, ItemStack item, int minRolls, int maxRolls) {
+
         this.chance = chance;
         this.item = item;
         this.minRolls = minRolls;
         this.maxRolls = maxRolls;
 
         if (minRolls < 0 || maxRolls < 0) {
+
             throw new IllegalArgumentException("Rolls must not be negative!");
         }
 
         if (minRolls > maxRolls) {
+
             throw new IllegalArgumentException("Min rolls must not be greater than max rolls!");
         }
     }
@@ -44,6 +48,7 @@ public class HarvestEntry {
      * @return The chance for the entry to happen.
      */
     public float getChance() {
+
         return this.chance;
     }
 
@@ -53,6 +58,7 @@ public class HarvestEntry {
      * @return The item to give.
      */
     public ItemStack getItem() {
+
         return this.item;
     }
 
@@ -62,6 +68,7 @@ public class HarvestEntry {
      * @return The minimum amount of items to give.
      */
     public int getMinRolls() {
+
         return this.minRolls;
     }
 
@@ -71,6 +78,7 @@ public class HarvestEntry {
      * @return The maximum amount of items to give.
      */
     public int getMaxRolls() {
+
         return this.maxRolls;
     }
 }

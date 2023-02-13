@@ -19,6 +19,7 @@ import java.util.Random;
 import java.util.Set;
 
 public class BasicCrop extends Crop {
+
     /**
      * The ingredient used for the crop's seed.
      */
@@ -51,6 +52,7 @@ public class BasicCrop extends Crop {
     protected int lightLevel;
 
     public BasicCrop(ResourceLocation id, Ingredient seed, Set<String> soilCategories, int growthTicks, List<HarvestEntry> results, List<DisplayState> displayStates, int lightLevel) {
+
         super(id);
         this.seed = seed;
         this.soilCategories = soilCategories;
@@ -62,24 +64,31 @@ public class BasicCrop extends Crop {
 
     @Override
     public boolean matchesLookup(Level level, BlockPos pos, TieredBlockEntityBotanyPot pot, ItemStack placedStack) {
+
         return this.seed.test(placedStack);
     }
 
     @Override
     public int getGrowthTicks(Level level, BlockPos pos, TieredBlockEntityBotanyPot pot, @Nullable Soil soil) {
+
         return this.growthTicks;
     }
 
     @Override
     public int getLightLevel(Level level, BlockPos pos, TieredBlockEntityBotanyPot pot) {
+
         return this.lightLevel;
     }
 
     @Override
     public boolean canGrowInSoil(Level level, BlockPos pos, TieredBlockEntityBotanyPot pot, Soil soil) {
+
         for (final String soilCategory : soil.getCategories(level, pos, pot)) {
+
             for (final String cropCategory : this.getCategories(level, pos, pot)) {
+
                 if (soilCategory.equalsIgnoreCase(cropCategory)) {
+
                     return true;
                 }
             }
@@ -90,24 +99,31 @@ public class BasicCrop extends Crop {
 
     @Override
     public Set<String> getCategories(Level level, BlockPos pos, TieredBlockEntityBotanyPot pot) {
+
         return this.soilCategories;
     }
 
     @Override
     public List<DisplayState> getDisplayState(Level level, BlockPos pos, TieredBlockEntityBotanyPot pot) {
+
         return this.displayStates;
     }
 
     @Override
     public List<ItemStack> generateDrops(Random rng, Level level, BlockPos pos, TieredBlockEntityBotanyPot pot) {
+
         final NonNullList<ItemStack> drops = NonNullList.create();
 
         for (final HarvestEntry cropEntry : this.results) {
+
             if (rng.nextFloat() <= cropEntry.getChance()) {
+
                 final int rolls = MathsHelper.nextIntInclusive(rng, cropEntry.getMinRolls(), cropEntry.getMaxRolls());
 
                 if (rolls > 0) {
+
                     for (int roll = 0; roll < rolls; roll++) {
+
                         drops.add(cropEntry.getItem().copy());
                     }
                 }
@@ -119,6 +135,7 @@ public class BasicCrop extends Crop {
 
     @Override
     public RecipeSerializer<?> getSerializer() {
+
         return TieredBotanyPotHelper.CROP_SERIALIZER.get();
     }
 }
