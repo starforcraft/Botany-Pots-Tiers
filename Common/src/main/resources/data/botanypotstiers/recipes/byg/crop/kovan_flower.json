@@ -1,0 +1,1 @@
+{"bookshelf:load_conditions":[{"type":"bookshelf:item_exists","values":["byg:kovan_flower"]}],"type":"botanypotstiers:crop","seed":{"item":"byg:kovan_flower"},"categories":["dirt"],"growthTicks":1200,"display":{"type":"botanypotstiers:aging","block":"byg:kovan_flower"},"drops":[{"chance":1.00,"output":{"item":"byg:kovan_flower"}}]}

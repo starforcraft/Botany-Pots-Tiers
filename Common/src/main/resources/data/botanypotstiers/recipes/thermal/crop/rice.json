@@ -1,0 +1,38 @@
+{
+  "bookshelf:load_conditions": [
+    {
+      "type": "bookshelf:item_exists",
+      "values": [
+        "thermal:rice_seeds",
+        "thermal:rice"
+      ]
+    }
+  ],
+  "type": "botanypotstiers:crop",
+  "seed": {
+    "item": "thermal:rice_seeds"
+  },
+  "categories": [
+    "dirt",
+    "farmland"
+  ],
+  "growthTicks": 1200,
+  "display": {
+    "type": "botanypotstiers:aging",
+    "block": "thermal:rice"
+  },
+  "drops": [
+    {
+      "chance": 1.00,
+      "output": {
+        "item": "thermal:rice"
+      }
+    },
+    {
+      "chance": 0.05,
+      "output": {
+        "item": "thermal:rice_seeds"
+      }
+    }
+  ]
+}

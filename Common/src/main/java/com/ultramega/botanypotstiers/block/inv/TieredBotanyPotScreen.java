@@ -2,8 +2,8 @@ package com.ultramega.botanypotstiers.block.inv;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.ultramega.botanypotstiers.TieredBotanyPotHelper;
 import com.ultramega.botanypotstiers.Constants;
+import com.ultramega.botanypotstiers.TieredBotanyPotHelper;
 import com.ultramega.botanypotstiers.block.TieredBlockEntityBotanyPot;
 import com.ultramega.botanypotstiers.data.recipes.crop.Crop;
 import com.ultramega.botanypotstiers.data.recipes.soil.Soil;
@@ -16,8 +16,6 @@ import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.network.chat.TextComponent;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -30,15 +28,15 @@ import java.util.List;
 
 public class TieredBotanyPotScreen extends AbstractContainerScreen<TieredBotanyPotMenu> {
     private static final NumberFormat MULTIPLIER_FORMAT = new DecimalFormat("##.##");
-    private static final Component NEW_LINE = new TextComponent("");
-    private static final Component TOOLTIP_INVALID_SOIL = new TranslatableComponent("tooltip.botanypots.invalid_soil").withStyle(ChatFormatting.RED);
-    private static final Component TOOLTIP_INVALID_CROP = new TranslatableComponent("tooltip.botanypots.invalid_seed").withStyle(ChatFormatting.RED);
-    private static final Component TOOLTIP_INCORRECT_SOIL = new TranslatableComponent("tooltip.botanypots.incorrect_soil").withStyle(ChatFormatting.RED);
-    private static final Component TOOLTIP_INCORRECT_SEED = new TranslatableComponent("tooltip.botanypots.incorrect_seed").withStyle(ChatFormatting.RED);
-    private static final Component TOOLTIP_MISSING_SOIL = new TranslatableComponent("tooltip.botanypots.missing_soil").withStyle(ChatFormatting.RED);
-    private static final Component TOOLTIP_MISSING_SEED = new TranslatableComponent("tooltip.botanypots.missing_seed").withStyle(ChatFormatting.RED);
-    private static final Component TOOLTIP_SOIL_ITEM = new TranslatableComponent("tooltip.botanypots.soil_item").withStyle(ChatFormatting.GREEN);
-    private static final Component TOOLTIP_SEED_ITEM = new TranslatableComponent("tooltip.botanypots.seed_item").withStyle(ChatFormatting.GREEN);
+    private static final Component NEW_LINE = Component.literal("");
+    private static final Component TOOLTIP_INVALID_SOIL = Component.translatable("tooltip.botanypots.invalid_soil").withStyle(ChatFormatting.RED);
+    private static final Component TOOLTIP_INVALID_CROP = Component.translatable("tooltip.botanypots.invalid_seed").withStyle(ChatFormatting.RED);
+    private static final Component TOOLTIP_INCORRECT_SOIL = Component.translatable("tooltip.botanypots.incorrect_soil").withStyle(ChatFormatting.RED);
+    private static final Component TOOLTIP_INCORRECT_SEED = Component.translatable("tooltip.botanypots.incorrect_seed").withStyle(ChatFormatting.RED);
+    private static final Component TOOLTIP_MISSING_SOIL = Component.translatable("tooltip.botanypots.missing_soil").withStyle(ChatFormatting.RED);
+    private static final Component TOOLTIP_MISSING_SEED = Component.translatable("tooltip.botanypots.missing_seed").withStyle(ChatFormatting.RED);
+    private static final Component TOOLTIP_SOIL_ITEM = Component.translatable("tooltip.botanypots.soil_item").withStyle(ChatFormatting.GREEN);
+    private static final Component TOOLTIP_SEED_ITEM = Component.translatable("tooltip.botanypots.seed_item").withStyle(ChatFormatting.GREEN);
 
     private static final ResourceLocation RECIPE_BUTTON_LOCATION = new ResourceLocation("textures/gui/recipe_button.png");
     private final ResourceLocation backgroundTexture;
@@ -101,8 +99,8 @@ public class TieredBotanyPotScreen extends AbstractContainerScreen<TieredBotanyP
                             tooltips.add(TOOLTIP_INCORRECT_SOIL);
                         } else {
                             final float growthModifier = soil.getGrowthModifier(level, pos, pot, pot.getCrop());
-                            final MutableComponent multiplier = new TextComponent(MULTIPLIER_FORMAT.format(growthModifier)).withStyle(growthModifier > 1 ? ChatFormatting.GREEN : growthModifier < 1 ? ChatFormatting.RED : ChatFormatting.GRAY);
-                            tooltips.add(new TranslatableComponent("tooltip.botanypots.soil_modifier", multiplier).withStyle(ChatFormatting.GRAY));
+                            final MutableComponent multiplier = Component.literal(MULTIPLIER_FORMAT.format(growthModifier)).withStyle(growthModifier > 1 ? ChatFormatting.GREEN : growthModifier < 1 ? ChatFormatting.RED : ChatFormatting.GRAY);
+                            tooltips.add(Component.translatable("tooltip.botanypots.soil_modifier", multiplier).withStyle(ChatFormatting.GRAY));
                         }
                     }
                 }
@@ -132,7 +130,7 @@ public class TieredBotanyPotScreen extends AbstractContainerScreen<TieredBotanyP
                     tooltips.add(TOOLTIP_SOIL_ITEM);
 
                     if (isAdvanced) {
-                        tooltips.add(new TranslatableComponent("tooltip.botanypots.soil_id", hoverSoil.getId().toString()).withStyle(ChatFormatting.GRAY));
+                        tooltips.add(Component.translatable("tooltip.botanypots.soil_id", hoverSoil.getId().toString()).withStyle(ChatFormatting.GRAY));
                     }
                 }
 
@@ -142,7 +140,7 @@ public class TieredBotanyPotScreen extends AbstractContainerScreen<TieredBotanyP
                     tooltips.add(TOOLTIP_SEED_ITEM);
 
                     if (isAdvanced) {
-                        tooltips.add(new TranslatableComponent("tooltip.botanypots.crop_id", hoveredCrop.getId().toString()).withStyle(ChatFormatting.GRAY));
+                        tooltips.add(Component.translatable("tooltip.botanypots.crop_id", hoveredCrop.getId().toString()).withStyle(ChatFormatting.GRAY));
                     }
                 }
             }

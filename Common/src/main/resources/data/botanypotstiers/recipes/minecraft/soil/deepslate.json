@@ -1,0 +1,15 @@
+{
+    "type": "botanypotstiers:soil",
+    "input": {
+      "item": "minecraft:deepslate"
+    },
+    "display": {
+      "block": "minecraft:deepslate"
+    },
+    "categories": [
+      "mushroom",
+      "stone",
+      "deepslate"
+    ],
+    "growthModifier": 1
+  }

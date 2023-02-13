@@ -1,9 +1,12 @@
 package com.ultramega.botanypotstiers.block;
 
+import com.ultramega.botanypotstiers.Constants;
 import com.ultramega.botanypotstiers.PotTiers;
 import com.ultramega.botanypotstiers.TieredBotanyPotHelper;
 import com.ultramega.botanypotstiers.block.inv.TieredBotanyPotContainer;
 import com.ultramega.botanypotstiers.block.inv.TieredBotanyPotMenu;
+import com.ultramega.botanypotstiers.data.recipes.crop.Crop;
+import com.ultramega.botanypotstiers.data.recipes.soil.Soil;
 import net.darkhax.bookshelf.api.Services;
 import net.darkhax.bookshelf.api.block.entity.WorldlyInventoryBlockEntity;
 import net.darkhax.bookshelf.api.function.CachedSupplier;
@@ -12,15 +15,11 @@ import net.darkhax.bookshelf.api.inventory.IInventoryAccess;
 import net.darkhax.bookshelf.api.registry.RegistryObject;
 import net.darkhax.bookshelf.api.serialization.Serializers;
 import net.darkhax.bookshelf.api.util.WorldHelper;
-import com.ultramega.botanypotstiers.Constants;
-import com.ultramega.botanypotstiers.data.recipes.crop.Crop;
-import com.ultramega.botanypotstiers.data.recipes.soil.Soil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Registry;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;

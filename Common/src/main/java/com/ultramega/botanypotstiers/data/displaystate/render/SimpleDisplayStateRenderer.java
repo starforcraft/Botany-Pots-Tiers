@@ -3,7 +3,7 @@ package com.ultramega.botanypotstiers.data.displaystate.render;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.ultramega.botanypotstiers.data.displaystate.SimpleDisplayState;
-import net.darkhax.bookshelf.api.client.FluidRenderer;
+import net.darkhax.bookshelf.api.client.RenderHelper;
 import net.darkhax.botanypots.data.displaystate.math.AxisAlignedRotation;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -17,7 +17,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.FluidState;
 
 public class SimpleDisplayStateRenderer extends DisplayStateRenderer<SimpleDisplayState> {
-
     public static final SimpleDisplayStateRenderer RENDERER = new SimpleDisplayStateRenderer();
 
     private SimpleDisplayStateRenderer() {
@@ -46,7 +45,7 @@ public class SimpleDisplayStateRenderer extends DisplayStateRenderer<SimpleDispl
             final FluidState fluidState = blockState.getFluidState();
 
             if (fluidState != null && !fluidState.isEmpty()) {
-                FluidRenderer.get().render(pose, fluidState, level, pos, bufferSource, light, OverlayTexture.NO_OVERLAY);
+                RenderHelper.get().renderFluidBox(pose, fluidState, level, pos, bufferSource, light, OverlayTexture.NO_OVERLAY);
             }
         }
 
