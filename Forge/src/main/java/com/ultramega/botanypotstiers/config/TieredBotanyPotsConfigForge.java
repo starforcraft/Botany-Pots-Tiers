@@ -1,6 +1,7 @@
 package com.ultramega.botanypotstiers.config;
 
 import com.ultramega.botanypotstiers.TieredBotanyPotsUtils;
+
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.common.ForgeConfigSpec.Builder;
 

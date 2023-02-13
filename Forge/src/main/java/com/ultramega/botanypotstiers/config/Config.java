@@ -1,11 +1,12 @@
 package com.ultramega.botanypotstiers.config;
 
+import java.io.File;
+
 import com.electronwill.nightconfig.core.file.CommentedFileConfig;
 import com.electronwill.nightconfig.core.io.WritingMode;
 import com.ultramega.botanypotstiers.Constants;
-import net.minecraftforge.common.ForgeConfigSpec;
 
-import java.io.File;
+import net.minecraftforge.common.ForgeConfigSpec;
 
 public class Config {
     public static ForgeConfigSpec common_config;

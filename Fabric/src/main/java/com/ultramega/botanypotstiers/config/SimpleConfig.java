@@ -21,11 +21,11 @@ package com.ultramega.botanypotstiers.config;
  * THE SOFTWARE.
  */
 
-import com.ultramega.botanypotstiers.Constants;
 import net.fabricmc.loader.api.FabricLoader;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.ultramega.botanypotstiers.Constants;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;

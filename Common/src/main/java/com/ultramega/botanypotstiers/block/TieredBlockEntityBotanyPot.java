@@ -35,8 +35,6 @@ import javax.annotation.Nullable;
 import java.util.Random;
 
 public class TieredBlockEntityBotanyPot extends WorldlyInventoryBlockEntity<TieredBotanyPotContainer> {
-    public static final CachedSupplier<BlockEntityType<TieredBlockEntityBotanyPot>> POT_TYPE = RegistryObject.deferred(Registry.BLOCK_ENTITY_TYPE, Constants.MOD_ID, "botany_pot").cast();
-
     protected int growthTime = -1;
     protected boolean doneGrowing = false;
     protected int prevComparatorLevel = 0;
@@ -47,17 +45,12 @@ public class TieredBlockEntityBotanyPot extends WorldlyInventoryBlockEntity<Tier
     final Random rng = new Random();
     private long rngSeed;
 
-    public TieredBlockEntityBotanyPot(BlockPos pos, BlockState state) {
-        super(POT_TYPE.get(), pos, state);
-        this.refreshRandom();
-    }
+    public final PotTiers tier;
 
-    public PotTiers getTier() {
-        if (this.getLevel() != null && this.getLevel().getBlockState(this.getBlockPos()).getBlock() instanceof TieredBlockBotanyPot potBlock) {
-            return potBlock.tier;
-        } else {
-            return null;
-        }
+    public TieredBlockEntityBotanyPot(PotTiers tier, BlockPos pos, BlockState state) {
+        super((BlockEntityType) RegistryObject.deferred(Registry.BLOCK_ENTITY_TYPE, Constants.MOD_ID, tier.getName() + "_botany_pot").cast().get(), pos, state);
+        this.tier = tier;
+        this.refreshRandom();
     }
 
     public boolean isHopper() {
@@ -130,7 +123,7 @@ public class TieredBlockEntityBotanyPot extends WorldlyInventoryBlockEntity<Tier
 
             for (ItemStack drop : TieredBotanyPotHelper.generateDrop(rng, this.level, this.getBlockPos(), this, this.getCrop())) {
                 if (!drop.isEmpty()) {
-                    drop.setCount(drop.getCount() * getTier().getMultiplier());
+                    drop.setCount(drop.getCount() * tier.getMultiplier());
 
                     final int originalSize = drop.getCount();
 
@@ -307,7 +300,7 @@ public class TieredBlockEntityBotanyPot extends WorldlyInventoryBlockEntity<Tier
 
     @Override
     protected Component getDefaultName() {
-        return Component.translatable("block.botanypotstiers." + getTier().getName() + "_terracotta_botany_pot");
+        return new TranslatableComponent("block.botanypotstiers." + tier.getName() + "_terracotta_botany_pot");
     }
 
     @Override
