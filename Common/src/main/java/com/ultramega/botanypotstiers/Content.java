@@ -10,7 +10,6 @@ import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.material.Material;
 
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -21,7 +20,6 @@ public class Content extends RegistryDataProvider {
 
         this.withItemTab(() -> new ItemStack(BuiltInRegistries.ITEM.get(new ResourceLocation(Constants.MOD_ID, "elite_terracotta_botany_pot"))));
         this.withAutoItemBlocks();
-        this.bindBlockRenderLayers();
 
         for(PotTiers tier : PotTiers.values()) {
             // Basic Pot
@@ -29,7 +27,7 @@ public class Content extends RegistryDataProvider {
             this.blocks.add(() -> new TieredBlockBotanyPot(tier, true), tier.getName() + "_terracotta_hopper_botany_pot");
 
             for (DyeColor color : DyeColor.values()) {
-                final BlockBehaviour.Properties properties = Block.Properties.of(Material.CLAY, color.getMaterialColor()).strength(1.25F, 4.2F).noOcclusion();
+                final BlockBehaviour.Properties properties = Block.Properties.of().mapColor(color).strength(1.25F, 4.2F).noOcclusion();
 
                 // Coloured Terracotta
                 this.blocks.add(() -> new TieredBlockBotanyPot(tier, properties, false), tier.getName() + "_" + color.getName() + "_terracotta_botany_pot");

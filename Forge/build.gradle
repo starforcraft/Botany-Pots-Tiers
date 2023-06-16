@@ -1,20 +1,13 @@
-buildscript {
-    repositories {
-        maven { url = 'https://repo.spongepowered.org/repository/maven-public/' }
-        mavenCentral()
-    }
-    dependencies {
-        classpath 'org.spongepowered:mixingradle:0.7-SNAPSHOT'
-    }
-}
-
 plugins {
-    id 'net.minecraftforge.gradle' version '5.1.+'
-    id 'net.darkhax.curseforgegradle' version '1.0.11'
-    id 'net.darkhax.tweedle' version '1.0.5'
+    id 'net.minecraftforge.gradle'
+    id 'net.darkhax.curseforgegradle'
+    id 'com.modrinth.minotaur'
+    id 'org.spongepowered.mixin'
 }
 
-archivesBaseName = "${mod_name}-Forge-${minecraft_version}"
+base {
+    archivesName = "${mod_name}-Forge-${minecraft_version}"
+}
 
 minecraft {
     mappings channel: 'official', version: minecraft_version
@@ -35,7 +28,7 @@ minecraft {
             mods {
                 modClientRun {
                     source sourceSets.main
-                    source project(":Common").sourceSets.main
+                    source project(':common').sourceSets.main
                 }
             }
         }
@@ -55,7 +48,7 @@ minecraft {
             mods {
                 modServerRun {
                     source sourceSets.main
-                    source project(":Common").sourceSets.main
+                    source project(':common').sourceSets.main
                 }
             }
         }
@@ -83,17 +76,25 @@ dependencies {
     //runtimeOnly fg.deobf("curse.maven:storagedrawers-223852:3884263")
     //runtimeOnly fg.deobf("curse.maven:tiab-445025:3879896")
 
-    compileOnly project(":Common")
+    compileOnly project(':common')
 
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 }
 
-tasks.withType(JavaCompile) {
-    source(project(":Common").sourceSets.main.allSource)
+tasks.withType(JavaCompile).configureEach {
+    source(project(':common').sourceSets.main.allSource)
+}
+
+tasks.withType(Javadoc).configureEach {
+    source(project(':common').sourceSets.main.allJava)
+}
+
+tasks.named("sourcesJar", Jar) {
+    from(project(':common').sourceSets.main.allSource)
 }
 
 processResources {
-    from project(":Common").sourceSets.main.resources
+    from project(':common').sourceSets.main.resources
 
     def buildProps = project.properties.clone()
 
@@ -128,8 +129,6 @@ jar {
 
 // -- Mixin Support
 if (project.ext.mixin_enabled) {
-    apply plugin: 'org.spongepowered.mixin'
-
     mixin {
         // Tells the mixin plugin where to put the generated refmap file.
         add sourceSets.main, "${mod_id}.refmap.json"
