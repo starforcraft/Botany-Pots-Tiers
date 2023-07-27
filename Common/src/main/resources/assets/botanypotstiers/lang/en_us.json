@@ -293,5 +293,8 @@
   "block.botanypotstiers.creative_red_glazed_terracotta_botany_pot": "Creative Red Glazed Botany Pot",
   "block.botanypotstiers.creative_red_glazed_terracotta_hopper_botany_pot": "Creative Red Glazed Hopper Botany Pot",
   "block.botanypotstiers.creative_black_glazed_terracotta_botany_pot": "Creative Black Glazed Botany Pot",
-  "block.botanypotstiers.creative_black_glazed_terracotta_hopper_botany_pot": "Creative Black Glazed Hopper Botany Pot"
+  "block.botanypotstiers.creative_black_glazed_terracotta_hopper_botany_pot": "Creative Black Glazed Hopper Botany Pot",
+  "tooltip.botanypotstiers.tiered_botany_pot.multiplier": "Multiplier: %s",
+  "tooltip.botanypotstiers.tiered_botany_pot.speed": "Speed: %s",
+  "tooltip.botanypotstiers.tiered_botany_pot.pressShiftForMore": "Press SHIFT for more information"
 }

@@ -9,14 +9,19 @@ import net.darkhax.botanypots.BotanyPotHelper;
 import net.darkhax.botanypots.block.BlockBotanyPot;
 import net.darkhax.botanypots.data.recipes.fertilizer.Fertilizer;
 import net.darkhax.botanypots.data.recipes.potinteraction.PotInteraction;
+import net.minecraft.ChatFormatting;
+import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -26,6 +31,9 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.phys.BlockHitResult;
+import org.jetbrains.annotations.NotNull;
+
+import java.util.List;
 
 public class TieredBlockBotanyPot extends BlockBotanyPot {
     private static final Properties DEFAULT_PROPERTIES = Block.Properties.of().mapColor(MapColor.TERRACOTTA_WHITE).strength(1.25F, 4.2F).noOcclusion().lightLevel(state -> state.getValue(BlockStateProperties.LEVEL));
@@ -105,6 +113,21 @@ public class TieredBlockBotanyPot extends BlockBotanyPot {
 
         return super.use(state, world, pos, player, hand, hitResult);
     }
+
+    @Override
+    public void appendHoverText(@NotNull ItemStack stack, @javax.annotation.Nullable BlockGetter getter, @NotNull List<Component> components, @NotNull TooltipFlag flag) {
+        super.appendHoverText(stack, getter, components, flag);
+        if(Screen.hasShiftDown()) {
+            components.add(Component.translatable("tooltip.botanypotstiers.tiered_botany_pot.multiplier", tier.getMultiplier())
+                    .withStyle(ChatFormatting.AQUA));
+            components.add(Component.translatable("tooltip.botanypotstiers.tiered_botany_pot.speed", tier.getSpeed())
+                    .withStyle(ChatFormatting.AQUA));
+        } else {
+            components.add(Component.translatable("tooltip.botanypotstiers.tiered_botany_pot.pressShiftForMore")
+                    .withStyle(ChatFormatting.YELLOW));
+        }
+    }
+
 
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level worldLevel, BlockState state, BlockEntityType<T> blockEntityType) {

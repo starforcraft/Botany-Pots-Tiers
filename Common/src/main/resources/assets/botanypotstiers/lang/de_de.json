@@ -293,5 +293,8 @@
   "block.botanypotstiers.creative_red_glazed_terracotta_botany_pot": "Kreativ Roter glasierter Botaniktopf",
   "block.botanypotstiers.creative_red_glazed_terracotta_hopper_botany_pot": "Kreativ Roter glasierter Trichterbotaniktopf",
   "block.botanypotstiers.creative_black_glazed_terracotta_botany_pot": "Kreativ Schwarzer glasierter Botaniktopf",
-  "block.botanypotstiers.creative_black_glazed_terracotta_hopper_botany_pot": "Kreativ Schwarzer glasierter Trichterbotaniktopf"
+  "block.botanypotstiers.creative_black_glazed_terracotta_hopper_botany_pot": "Kreativ Schwarzer glasierter Trichterbotaniktopf",
+  "tooltip.botanypotstiers.tiered_botany_pot.multiplier": "Multiplikator: %s",
+  "tooltip.botanypotstiers.tiered_botany_pot.speed": "Geschwindigkeit: %s",
+  "tooltip.botanypotstiers.tiered_botany_pot.pressShiftForMore": "Drücken Sie SHIFT für weitere Informationen"
 }

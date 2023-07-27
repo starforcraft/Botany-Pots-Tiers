@@ -1,7 +1,6 @@
 plugins {
     id 'net.minecraftforge.gradle'
     id 'net.darkhax.curseforgegradle'
-    id 'com.modrinth.minotaur'
     id 'org.spongepowered.mixin'
 }
 
@@ -69,12 +68,8 @@ dependencies {
     implementation fg.deobf("net.darkhax.bookshelf:Bookshelf-Forge-${project.ext.minecraft_version}:${project.ext.bookshelf_version}")
     implementation fg.deobf("net.darkhax.botanypots:BotanyPots-Forge-${project.ext.minecraft_version}:${project.ext.botanypots_version}")
     implementation fg.deobf("net.darkhax.botanytrees:BotanyTrees-Forge-${project.ext.minecraft_version}:${project.ext.botanytrees_version}")
-    compileOnly fg.deobf("mezz.jei:jei-${minecraft_version}-forge-api:${jei_version}")
-    runtimeOnly fg.deobf("mezz.jei:jei-${minecraft_version}-forge:${jei_version}")
-    implementation fg.deobf("curse.maven:top-245211:${top_version}")
-
-    //runtimeOnly fg.deobf("curse.maven:storagedrawers-223852:3884263")
-    //runtimeOnly fg.deobf("curse.maven:tiab-445025:3879896")
+    implementation fg.deobf("mezz.jei:jei-${minecraft_version}-forge:${jei_version}")
+    compileOnly fg.deobf("curse.maven:top-245211:${top_version}")
 
     compileOnly project(':common')
 

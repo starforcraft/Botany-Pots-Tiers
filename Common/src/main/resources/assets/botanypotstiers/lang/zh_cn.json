@@ -293,5 +293,8 @@
   "block.botanypotstiers.creative_red_glazed_terracotta_botany_pot":"创造红色带釉植物盆栽",
   "block.botanypotstiers.creative_red_glazed_terracotta_hopper_botany_pot":"创造红色带釉漏式植物盆栽",
   "block.botanypotstiers.creative_black_glazed_terracotta_botany_pot":"创造黑色带釉植物盆栽",
-  "block.botanypotstiers.creative_black_glazed_terracotta_hopper_botany_pot":"创造黑色带釉漏式植物盆栽"
+  "block.botanypotstiers.creative_black_glazed_terracotta_hopper_botany_pot":"创造黑色带釉漏式植物盆栽",
+  "tooltip.botanypotstiers.tiered_botany_pot.multiplier": "Multiplier: %s",
+  "tooltip.botanypotstiers.tiered_botany_pot.speed": "Speed: %s",
+  "tooltip.botanypotstiers.tiered_botany_pot.pressShiftForMore": "Press SHIFT for more information"
 }
