@@ -72,7 +72,7 @@ public class TieredBlockBotanyPot extends BlockBotanyPot {
             final ItemStack heldStack = player.getItemInHand(hand);
 
             // Apply fertilizers, only if a valid crop is growing.
-            if (potEntity.areGrowthConditionsMet() && potEntity.getGrowthTime() > 0 && !potEntity.getDoneGrowing()) {
+            if (potEntity.areGrowthConditionsMet() && potEntity.getGrowthTime() > 0 && !potEntity.isCropHarvestable()) {
                 final Fertilizer fertilizer = BotanyPotHelper.findFertilizer(state, world, pos, player, hand, heldStack, potEntity);
 
                 if (fertilizer != null) {
@@ -89,7 +89,7 @@ public class TieredBlockBotanyPot extends BlockBotanyPot {
             }
 
             // Attempt harvesting the pot.
-            else if (!player.isCrouching() && !potEntity.isHopper() && potEntity.getDoneGrowing() && potEntity.getCrop() != null) {
+            else if (!player.isCrouching() && !potEntity.isHopper() && potEntity.isCropHarvestable() && potEntity.getCrop() != null) {
                 if (!world.isClientSide) {
                     for (ItemStack drop : BotanyPotHelper.generateDrop(potEntity.rng, world, pos, potEntity, potEntity.getCrop())) {
                         drop.setCount(drop.getCount() * tier.getMultiplier());
