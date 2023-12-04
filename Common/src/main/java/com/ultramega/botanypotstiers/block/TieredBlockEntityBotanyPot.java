@@ -31,15 +31,15 @@ public class TieredBlockEntityBotanyPot extends BlockEntityBotanyPot {
     private long rngSeed;
 
     private final PotTiers tier;
+    private boolean isHopper = false;
 
     public TieredBlockEntityBotanyPot(PotTiers tier, BlockPos pos, BlockState state) {
         super((BlockEntityType) RegistryObject.deferred(BuiltInRegistries.BLOCK_ENTITY_TYPE, Constants.MOD_ID, tier.getName() + "_botany_pot").cast().get(), pos, state);
         this.tier = tier;
         this.refreshRandom2();
-    }
-
-    public boolean getDoneGrowing() {
-        return doneGrowing;
+        if (state.getBlock() instanceof TieredBlockBotanyPot pot) {
+            this.isHopper = pot.hasInventory();
+        }
     }
 
     public void refreshRandom2() {
@@ -49,11 +49,7 @@ public class TieredBlockEntityBotanyPot extends BlockEntityBotanyPot {
 
     @Override
     public boolean isHopper() {
-        if (this.getLevel() != null && this.getLevel().getBlockState(this.getBlockPos()).getBlock() instanceof TieredBlockBotanyPot potBlock) {
-            return potBlock.hasInventory();
-        }
-
-        return false;
+        return this.isHopper;
     }
 
     @Override
@@ -125,7 +121,7 @@ public class TieredBlockEntityBotanyPot extends BlockEntityBotanyPot {
                 pot.harvestDelay--;
             }
 
-            if (pot.isCropHarvestable() && crop != null && pot.harvestDelay < 1) {
+            if (crop != null && pot.harvestDelay < 1 && pot.isCropHarvestable()) {
                 if (pot.attemptAutoHarvest()) {
                     pot.resetGrowth();
                 }
