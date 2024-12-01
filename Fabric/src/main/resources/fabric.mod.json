@@ -24,6 +24,12 @@
     ],
     "client": [
       "com.ultramega.botanypotstiers.TieredBotanyPotsFabricClient"
+    ],
+    "jei_mod_plugin": [
+      "com.ultramega.botanypotstiers.compat.jei.JEIPlugin"
+    ],
+    "rei_client": [
+      "com.ultramega.botanypotstiers.compat.rei.REIPlugin"
     ]
   },
   "depends": {

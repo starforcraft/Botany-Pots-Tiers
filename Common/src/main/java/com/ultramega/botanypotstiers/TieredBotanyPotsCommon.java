@@ -3,11 +3,11 @@ package com.ultramega.botanypotstiers;
 import net.darkhax.bookshelf.api.Services;
 
 public class TieredBotanyPotsCommon {
-    public final Content content;
+    public static Content content;
 
     public TieredBotanyPotsCommon() {
         //TieredBotanyPotVariantGenerator.generate();
-        this.content = new Content();
+        content = new Content();
         Services.REGISTRIES.loadContent(content);
     }
 }

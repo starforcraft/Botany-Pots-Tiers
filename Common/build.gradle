@@ -18,6 +18,7 @@ dependencies {
     compileOnly group: 'net.darkhax.bookshelf', name: "Bookshelf-Common-${minecraft_version}", version: bookshelf_version
     compileOnly group: 'net.darkhax.botanypots', name: "BotanyPots-Common-${minecraft_version}", version: botanypots_version
     compileOnly group: 'mezz.jei', name: "jei-${minecraft_version}-common-api", version: jei_version
+    compileOnly group: 'me.shedaniel', name: "RoughlyEnoughItems-api-forge", version: rei_version
 }
 
 processResources {
