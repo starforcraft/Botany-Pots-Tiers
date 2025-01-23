@@ -1,5 +1,6 @@
 {
   "itemGroup.botanypotstiers.creative_tab":"更好的植物盆栽",
+
   "block.botanypotstiers.elite_terracotta_botany_pot":"精英植物盆栽",
   "block.botanypotstiers.elite_terracotta_hopper_botany_pot":"精英漏式植物盆栽",
   "block.botanypotstiers.elite_white_terracotta_botany_pot":"精英白色植物盆栽",
@@ -294,7 +295,8 @@
   "block.botanypotstiers.creative_red_glazed_terracotta_hopper_botany_pot":"创造红色带釉漏式植物盆栽",
   "block.botanypotstiers.creative_black_glazed_terracotta_botany_pot":"创造黑色带釉植物盆栽",
   "block.botanypotstiers.creative_black_glazed_terracotta_hopper_botany_pot":"创造黑色带釉漏式植物盆栽",
-  "tooltip.botanypotstiers.tiered_botany_pot.multiplier": "Multiplier: %s",
-  "tooltip.botanypotstiers.tiered_botany_pot.speed": "Speed: %s",
-  "tooltip.botanypotstiers.tiered_botany_pot.pressShiftForMore": "Press SHIFT for more information"
+
+  "tooltip.botanypotstiers.tiered_botany_pot.multiplier": "产量倍率：%s",
+  "tooltip.botanypotstiers.tiered_botany_pot.speed": "生长速度倍率：%s",
+  "tooltip.botanypotstiers.tiered_botany_pot.pressShiftForMore": "按住 SHIFT 查看概要"
 }
