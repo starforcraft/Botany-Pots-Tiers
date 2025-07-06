@@ -1,0 +1,9 @@
+{
+    "parent": "botanypotstiers:block/template/hopper_pot",
+    "render_type": "minecraft:cutout",
+    "textures": {
+        "material": "minecraft:block/black_glazed_terracotta",
+        "material_top": "botanypots:block/black_glazed_terracotta_pot_top",
+        "stripe": "botanypotstiers:block/mega"
+    }
+}

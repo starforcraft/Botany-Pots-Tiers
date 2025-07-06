@@ -11,39 +11,39 @@
     ""
   ],
   "contact": {
-    "homepage": "${mod_homepage}",
-    "sources": "${mod_source}",
-    "issues": "${mod_issues}"
+    "sources": "${mod_repo}",
+    "issues": "${mod_repo}/issues",
+    "homepage": "${curse_page}"
   },
-  "icon": "logo.png",
   "license": "${mod_license}",
-  "environment": "*",
+  "icon": "logo_${mod_id}.png",
+  "environment": "${mod_target_environment}",
   "entrypoints": {
     "main": [
-      "com.ultramega.botanypotstiers.TieredBotanyPotsFabric"
-    ],
-    "client": [
-      "com.ultramega.botanypotstiers.TieredBotanyPotsFabricClient"
+      "com.ultramega.botanypotstiers.fabric.impl.FabricMod"
     ],
     "jei_mod_plugin": [
-      "com.ultramega.botanypotstiers.compat.jei.JEIPlugin"
-    ],
-    "rei_client": [
-      "com.ultramega.botanypotstiers.compat.rei.REIPlugin"
+      "com.ultramega.botanypotstiers.common.addons.jei.BotanyPotsTiersJEIPlugin"
     ]
   },
+  "mixins": [
+    "${mod_id}.mixins.json",
+    "${mod_id}.fabric.mixins.json"
+  ],
   "depends": {
-    "fabricloader": ">=0.14.21",
-    "fabric": "*",
-    "minecraft": "1.20.1",
-    "java": ">=17",
-    "bookshelf": ">=20",
-    "botanypots": ">=12"
+    "fabricloader": ">=${fabric_loader_version}",
+    "fabric-api": "*",
+    "minecraft": "${minecraft_version}",
+    "java": ">=${java_version}",
+    "botanypots": ">=${botanypots_version}",
+    "bookshelf": ">=${bookshelf_version}",
+    "prickle": ">=${prickle_version}"
   },
   "custom": {
     "modmenu": {
       "links": {
-        "modmenu.curseforge": "${mod_homepage}"
+        "modmenu.curseforge": "${curse_page}",
+        "modmenu.modrinth": "${modrinth_page}"
       }
     }
   }

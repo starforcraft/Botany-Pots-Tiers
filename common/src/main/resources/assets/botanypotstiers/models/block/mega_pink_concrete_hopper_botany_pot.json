@@ -1,0 +1,9 @@
+{
+    "parent": "botanypotstiers:block/template/hopper_pot",
+    "render_type": "minecraft:cutout",
+    "textures": {
+        "material": "minecraft:block/pink_concrete",
+        "material_top": "botanypots:block/pink_concrete_pot_top",
+        "stripe": "botanypotstiers:block/mega"
+    }
+}

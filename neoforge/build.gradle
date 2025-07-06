@@ -1,0 +1,43 @@
+plugins {
+    id 'multiloader-loader'
+    id 'net.neoforged.moddev'
+    id 'net.darkhax.curseforgegradle'
+    id 'com.modrinth.minotaur'
+}
+
+neoForge {
+    version = neoforge_version
+    parchment {
+        minecraftVersion = parchment_minecraft
+        mappingsVersion = parchment_version
+    }
+    runs {
+        configureEach {
+            systemProperty('neoforge.enabledGameTestNamespaces', mod_id)
+            systemProperty("terminal.ansi", "true")
+            ideName = "NeoForge ${it.name.capitalize()} (${project.path})"
+        }
+        client {
+            client()
+        }
+        server {
+            server()
+        }
+    }
+    mods {
+        "${mod_id}" {
+            sourceSet sourceSets.main
+        }
+    }
+}
+
+dependencies {
+    implementation group: 'net.darkhax.botanypots', name: 'botanypots-neoforge-1.21.1', version: botanypots_version
+    implementation group: 'net.darkhax.bookshelf', name: 'bookshelf-neoforge-1.21.1', version: bookshelf_version
+    implementation group: 'net.darkhax.pricklemc', name: 'prickle-neoforge-1.21.1', version: prickle_version
+    if (project.hasProperty('jei_version')) {
+        compileOnly("mezz.jei:jei-${minecraft_version}-common-api:${jei_version}")
+        compileOnly("mezz.jei:jei-${minecraft_version}-neoforge-api:${jei_version}")
+        runtimeOnly("mezz.jei:jei-${minecraft_version}-neoforge:${jei_version}")
+    }
+}

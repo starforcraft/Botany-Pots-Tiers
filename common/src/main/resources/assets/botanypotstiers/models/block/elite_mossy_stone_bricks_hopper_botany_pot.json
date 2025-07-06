@@ -1,0 +1,9 @@
+{
+    "parent": "botanypotstiers:block/template/hopper_pot",
+    "render_type": "minecraft:cutout",
+    "textures": {
+        "material": "minecraft:block/mossy_stone_bricks",
+        "material_top": "botanypots:block/mossy_stone_bricks_pot_top",
+        "stripe": "botanypotstiers:block/elite"
+    }
+}

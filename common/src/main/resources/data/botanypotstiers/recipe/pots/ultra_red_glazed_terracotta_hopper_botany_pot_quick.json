@@ -1,0 +1,37 @@
+{
+    "bookshelf:load_conditions": [
+        {
+            "type": "botanypotstiers:config",
+            "property": "can_craft_ultra_hopper_pots"
+        }
+    ],
+    "type": "minecraft:crafting_shaped",
+    "category": "misc",
+    "group": "botanypotstiers:quick_ultra_hopper_pot",
+    "pattern": [
+        "HMA",
+        "MPM",
+        "BMB"
+    ],
+    "key": {
+        "M": {
+            "item": "minecraft:red_glazed_terracotta"
+        },
+        "B": {
+            "item": "minecraft:diamond_block"
+        },
+        "A": {
+            "item": "minecraft:nether_star"
+        },
+        "P": {
+            "tag": "botanypotstiers:elite_botany_pots"
+        },
+        "H": {
+            "item": "minecraft:hopper"
+        }
+    },
+    "result": {
+        "id": "botanypotstiers:ultra_red_glazed_terracotta_hopper_botany_pot",
+        "count": 1
+    }
+}

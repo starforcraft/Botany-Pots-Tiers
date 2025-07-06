@@ -1,0 +1,23 @@
+{
+    "bookshelf:load_conditions": [
+        {
+            "type": "botanypotstiers:config",
+            "property": "can_wax_elite_pots"
+        }
+    ],
+    "type": "minecraft:crafting_shapeless",
+    "category": "misc",
+    "group": "botanypotstiers:waxed_elite_pot",
+    "ingredients": [
+        {
+            "item": "minecraft:honeycomb"
+        },
+        {
+            "item": "botanypotstiers:elite_gray_concrete_botany_pot"
+        }
+    ],
+    "result": {
+        "id": "botanypotstiers:elite_gray_concrete_waxed_botany_pot",
+        "count": 1
+    }
+}

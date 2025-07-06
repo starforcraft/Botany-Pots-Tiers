@@ -1,0 +1,9 @@
+{
+    "parent": "botanypotstiers:block/template/hopper_pot",
+    "render_type": "minecraft:cutout",
+    "textures": {
+        "material": "minecraft:block/deepslate_bricks",
+        "material_top": "botanypots:block/deepslate_bricks_pot_top",
+        "stripe": "botanypotstiers:block/elite"
+    }
+}

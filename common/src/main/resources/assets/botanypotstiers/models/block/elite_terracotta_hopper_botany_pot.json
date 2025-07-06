@@ -1,8 +1,9 @@
 {
-    "parent": "botanypotstiers:block/hopper_botany_pot_base",
+    "parent": "botanypotstiers:block/template/hopper_pot",
+    "render_type": "minecraft:cutout",
     "textures": {
-        "terracotta": "minecraft:block/terracotta",
-        "stripe": "botanypotstiers:block/elite",
-        "particle": "minecraft:block/terracotta"
+        "material": "minecraft:block/terracotta",
+        "material_top": "botanypots:block/terracotta_pot_top",
+        "stripe": "botanypotstiers:block/elite"
     }
 }

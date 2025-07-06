@@ -1,7 +1,7 @@
 {
-    "variants": {
-        "": {
-            "model": "botanypotstiers:block/elite_black_concrete_hopper_botany_pot"
-        }
+  "variants": {
+    "": {
+      "model": "botanypotstiers:block/elite_black_concrete_hopper_botany_pot"
     }
+  }
 }

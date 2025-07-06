@@ -1,0 +1,9 @@
+{
+    "parent": "botanypotstiers:block/template/pot",
+    "render_type": "minecraft:cutout",
+    "textures": {
+        "material": "minecraft:block/stone_bricks",
+        "material_top": "botanypots:block/stone_bricks_pot_top",
+        "stripe": "botanypotstiers:block/ultra"
+    }
+}

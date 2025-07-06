@@ -1,0 +1,34 @@
+{
+    "bookshelf:load_conditions": [
+        {
+            "type": "botanypotstiers:config",
+            "property": "can_craft_ultra_basic_pots"
+        }
+    ],
+    "type": "minecraft:crafting_shaped",
+    "category": "misc",
+    "group": "botanypotstiers:ultra_basic_pot",
+    "pattern": [
+        "MAM",
+        "MPM",
+        "BMB"
+    ],
+    "key": {
+        "M": {
+            "item": "minecraft:black_glazed_terracotta"
+        },
+        "B": {
+            "item": "minecraft:diamond_block"
+        },
+        "A": {
+            "item": "minecraft:nether_star"
+        },
+        "P": {
+            "tag": "botanypotstiers:elite_botany_pots"
+        }
+    },
+    "result": {
+        "id": "botanypotstiers:ultra_black_glazed_terracotta_botany_pot",
+        "count": 1
+    }
+}

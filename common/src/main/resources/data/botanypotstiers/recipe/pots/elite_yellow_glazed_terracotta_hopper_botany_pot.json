@@ -1,0 +1,23 @@
+{
+    "bookshelf:load_conditions": [
+        {
+            "type": "botanypotstiers:config",
+            "property": "can_craft_elite_hopper_pots"
+        }
+    ],
+    "type": "minecraft:crafting_shapeless",
+    "category": "misc",
+    "group": "botanypotstiers:elite_hopper_pot",
+    "ingredients": [
+        {
+            "item": "minecraft:hopper"
+        },
+        {
+            "item": "botanypotstiers:elite_yellow_glazed_terracotta_botany_pot"
+        }
+    ],
+    "result": {
+        "id": "botanypotstiers:elite_yellow_glazed_terracotta_hopper_botany_pot",
+        "count": 1
+    }
+}
