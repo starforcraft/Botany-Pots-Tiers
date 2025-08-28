@@ -1,0 +1,31 @@
+{
+    "bookshelf:load_conditions": [
+        {
+            "type": "botanypotstiers:config",
+            "property": "can_craft_mega_basic_pots"
+        }
+    ],
+    "type": "minecraft:crafting_shaped",
+    "category": "misc",
+    "group": "botanypotstiers:mega_basic_pot",
+    "pattern": [
+        " A ",
+        " P ",
+        "B B"
+    ],
+    "key": {
+        "B": {
+            "item": "minecraft:netherite_block"
+        },
+        "A": {
+            "item": "minecraft:enchanted_golden_apple"
+        },
+        "P": {
+            "item": "botanypotstiers:ultra_yellow_concrete_hopper_botany_pot"
+        }
+    },
+    "result": {
+        "id": "botanypotstiers:mega_yellow_concrete_hopper_botany_pot",
+        "count": 1
+    }
+}

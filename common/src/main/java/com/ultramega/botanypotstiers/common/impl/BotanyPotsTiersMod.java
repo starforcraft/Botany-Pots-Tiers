@@ -18,7 +18,6 @@ public class BotanyPotsTiersMod {
         return ResourceLocation.tryBuild(MOD_ID, path);
     }
 
-    public BotanyPotsTiersMod() {
-
+    public static void init() {
     }
 }

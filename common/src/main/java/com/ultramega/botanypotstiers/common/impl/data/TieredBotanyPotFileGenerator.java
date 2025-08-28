@@ -7,10 +7,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 import net.darkhax.botanypots.common.impl.BotanyPotsMod;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
 
 public class TieredBotanyPotFileGenerator {
     private final File outDir;
@@ -23,9 +20,13 @@ public class TieredBotanyPotFileGenerator {
 
     public void potRecipes(ResourceLocation material, PotTier tier) {
         final File potsDir = setup(new File(outDir, "data/" + this.ownerId + "/recipe/pots"));
-        basicPotRecipe(potsDir, material, tier);
+        basicPotUpgradeRecipe(potsDir, material, tier);
+        basicPotUpgradeSameMaterialRecipe(potsDir, material, tier);
+        hopperPotUpgradeRecipe(potsDir, material, tier);
+        hopperPotUpgradeSameMaterialRecipe(potsDir, material, tier);
         hopperPotRecipe(potsDir, material, tier);
-        quickHopperPotRecipe(potsDir, material, tier);
+        quickHopperUpgradePotRecipe(potsDir, material, tier);
+        quickHopperUpgradePotSameMaterialRecipe(potsDir, material, tier);
         waxedPotRecipe(potsDir, material, tier);
     }
 
@@ -57,51 +58,77 @@ public class TieredBotanyPotFileGenerator {
         write(new File(stateDir, prefix + "_waxed_botany_pot.json"), BLOCK_STATE_TEMPLATE.replace("$owner", this.ownerId).replace("$model_name", prefix + "_botany_pot"));
     }
 
-    public void basicPotRecipe(File recipeDir, ResourceLocation material, PotTier tier) {
-        write(new File(recipeDir, tier.getName() + "_" + material.getPath() + "_botany_pot.json"), format(BASIC_POT_RECIPE_TEMPLATE, material, tier));
+    public void basicPotUpgradeRecipe(File recipeDir, ResourceLocation material, PotTier tier) {
+        write(new File(recipeDir, tier.getName() + "_" + material.getPath() + "_botany_pot.json"), format(BASIC_POT_RECIPE_TEMPLATE, material, tier, false));
+    }
+
+    public void basicPotUpgradeSameMaterialRecipe(File recipeDir, ResourceLocation material, PotTier tier) {
+        write(new File(recipeDir, tier.getName() + "_" + material.getPath() + "_botany_pot_same_material.json"), format(BASIC_POT_SAME_MATERIAL_RECIPE_TEMPLATE, material, tier, false));
+    }
+
+    public void hopperPotUpgradeRecipe(File recipeDir, ResourceLocation material, PotTier tier) {
+        if (tier == PotTier.ELITE) { //TODO: The Botany Pots mod has to be split it's tag into hopper and basic
+            return;
+        }
+
+        write(new File(recipeDir, tier.getName() + "_" + material.getPath() + "_hopper_botany_pot_upgrade.json"), format(BASIC_POT_RECIPE_TEMPLATE, material, tier, true));
+    }
+
+    public void hopperPotUpgradeSameMaterialRecipe(File recipeDir, ResourceLocation material, PotTier tier) {
+        if (tier == PotTier.ELITE) { //TODO: The Botany Pots mod has to be split it's tag into hopper and basic
+            return;
+        }
+
+        write(new File(recipeDir, tier.getName() + "_" + material.getPath() + "_hopper_botany_pot_upgrade_same_material.json"), format(BASIC_POT_SAME_MATERIAL_RECIPE_TEMPLATE, material, tier, true));
+    }
+
+    public void quickHopperUpgradePotRecipe(File recipeDir, ResourceLocation material, PotTier tier) {
+        write(new File(recipeDir, tier.getName() + "_" + material.getPath() + "_hopper_botany_pot_upgrade_quick.json"), format(QUICK_HOPPER_POT_RECIPE_TEMPLATE, material, tier, false));
+    }
+
+    public void quickHopperUpgradePotSameMaterialRecipe(File recipeDir, ResourceLocation material, PotTier tier) {
+        write(new File(recipeDir, tier.getName() + "_" + material.getPath() + "_hopper_botany_pot_upgrade_quick_same_material.json"), format(QUICK_HOPPER_POT_SAME_MATERIAL_RECIPE_TEMPLATE, material, tier, false));
     }
 
     public void hopperPotRecipe(File recipeDir, ResourceLocation material, PotTier tier) {
-        write(new File(recipeDir, tier.getName() + "_" + material.getPath() + "_hopper_botany_pot.json"), format(HOPPER_POT_RECIPE_TEMPLATE, material, tier));
-    }
-
-    public void quickHopperPotRecipe(File recipeDir, ResourceLocation material, PotTier tier) {
-        write(new File(recipeDir, tier.getName() + "_" + material.getPath() + "_hopper_botany_pot_quick.json"), format(QUICK_HOPPER_POT_RECIPE_TEMPLATE, material, tier));
+        write(new File(recipeDir, tier.getName() + "_" + material.getPath() + "_hopper_botany_pot.json"), format(HOPPER_POT_RECIPE_TEMPLATE, material, tier, false));
     }
 
     public void waxedPotRecipe(File recipeDir, ResourceLocation material, PotTier tier) {
-        write(new File(recipeDir, tier.getName() + "_" + material.getPath() + "_waxed_botany_pot.json"), format(WAX_POT_RECIPE_TEMPLATE, material, tier));
+        write(new File(recipeDir, tier.getName() + "_" + material.getPath() + "_waxed_botany_pot.json"), format(WAX_POT_RECIPE_TEMPLATE, material, tier, false));
     }
 
     public void lootTable(File lootDir, ResourceLocation blockId) {
         write(new File(lootDir, blockId.getPath() + ".json"), DROP_SELF_TABLE.replace("$block_id", blockId.toString()));
     }
 
-    private String format(String template, ResourceLocation material, PotTier tier) {
+    private String format(String template, ResourceLocation material, PotTier tier, boolean isHopper) {
+        final PotTier prevTier = PotTier.getPrevious(tier);
         return template
             .replace("$previous_owner", tier == PotTier.ELITE ? BotanyPotsMod.MOD_ID : this.ownerId)
-            .replace("$previous_tier_botany_pots_tag", (PotTier.getPrevious(tier) != null ? PotTier.getPrevious(tier).getName() + "_" : "") + "botany_pots")
+            .replace("$previous_tier_", (prevTier != null ? prevTier.getName() + "_" : ""))
             .replace("$owner", this.ownerId)
             .replace("$material_id", material.toString())
             .replace("$material_name", material.getPath())
-            .replace("$recipe1_id", BuiltInRegistries.ITEM.getKey(this.getRecipeItem1(tier)).toString())
-            .replace("$recipe2_id", BuiltInRegistries.ITEM.getKey(this.getRecipeItem2(tier)).toString())
+            .replace("$recipe1_id", this.getRecipeItem1(tier))
+            .replace("$recipe2_id", this.getRecipeItem2(tier))
+            .replace("$is_hopper_", isHopper ? "hopper_" : "")
             .replace("$tier", tier.getName());
     }
 
-    private Item getRecipeItem1(PotTier tier) {
+    private String getRecipeItem1(PotTier tier) {
         return switch (tier) {
-            case ELITE -> Items.IRON_BLOCK;
-            case ULTRA -> Items.DIAMOND_BLOCK;
-            case MEGA -> Items.NETHERITE_BLOCK;
+            case ELITE -> "minecraft:iron_block";
+            case ULTRA -> "minecraft:diamond_block";
+            case MEGA -> "minecraft:netherite_block";
         };
     }
 
-    private Item getRecipeItem2(PotTier tier) {
+    private String getRecipeItem2(PotTier tier) {
         return switch (tier) {
-            case ELITE -> Items.ENDER_PEARL;
-            case ULTRA -> Items.NETHER_STAR;
-            case MEGA -> Items.ENCHANTED_GOLDEN_APPLE;
+            case ELITE -> "minecraft:ender_pearl";
+            case ULTRA -> "minecraft:nether_star";
+            case MEGA -> "minecraft:enchanted_golden_apple";
         };
     }
 
@@ -192,11 +219,44 @@ public class TieredBotanyPotFileGenerator {
                         "item": "$recipe2_id"
                     },
                     "P": {
-                        "tag": "$previous_owner:$previous_tier_botany_pots_tag"
+                        "tag": "$previous_owner:$previous_tier_$is_hopper_botany_pots"
                     }
                 },
                 "result": {
-                    "id": "$owner:$tier_$material_name_botany_pot",
+                    "id": "$owner:$tier_$material_name_$is_hopper_botany_pot",
+                    "count": 1
+                }
+            }""";
+
+    private static final String BASIC_POT_SAME_MATERIAL_RECIPE_TEMPLATE = """
+            {
+                "bookshelf:load_conditions": [
+                    {
+                        "type": "botanypotstiers:config",
+                        "property": "can_craft_$tier_basic_pots"
+                    }
+                ],
+                "type": "minecraft:crafting_shaped",
+                "category": "misc",
+                "group": "botanypotstiers:$tier_basic_pot",
+                "pattern": [
+                    " A ",
+                    " P ",
+                    "B B"
+                ],
+                "key": {
+                    "B": {
+                        "item": "$recipe1_id"
+                    },
+                    "A": {
+                        "item": "$recipe2_id"
+                    },
+                    "P": {
+                        "item": "$previous_owner:$previous_tier_$material_name_$is_hopper_botany_pot"
+                    }
+                },
+                "result": {
+                    "id": "$owner:$tier_$material_name_$is_hopper_botany_pot",
                     "count": 1
                 }
             }""";
@@ -253,7 +313,43 @@ public class TieredBotanyPotFileGenerator {
                         "item": "$recipe2_id"
                     },
                     "P": {
-                        "tag": "$previous_owner:$previous_tier_botany_pots_tag"
+                        "tag": "$previous_owner:$previous_tier_botany_pots"
+                    },
+                    "H": {
+                        "item": "minecraft:hopper"
+                    }
+                },
+                "result": {
+                    "id": "$owner:$tier_$material_name_hopper_botany_pot",
+                    "count": 1
+                }
+            }""";
+
+    private static final String QUICK_HOPPER_POT_SAME_MATERIAL_RECIPE_TEMPLATE = """
+            {
+                "bookshelf:load_conditions": [
+                    {
+                        "type": "botanypotstiers:config",
+                        "property": "can_craft_$tier_hopper_pots"
+                    }
+                ],
+                "type": "minecraft:crafting_shaped",
+                "category": "misc",
+                "group": "botanypotstiers:quick_$tier_hopper_pot",
+                "pattern": [
+                    "H A",
+                    " P ",
+                    "B B"
+                ],
+                "key": {
+                    "B": {
+                        "item": "$recipe1_id"
+                    },
+                    "A": {
+                        "item": "$recipe2_id"
+                    },
+                    "P": {
+                        "item": "$previous_owner:$previous_tier_$material_name_botany_pot"
                     },
                     "H": {
                         "item": "minecraft:hopper"

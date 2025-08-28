@@ -106,7 +106,7 @@ public class TieredBotanyPotMenu extends AbstractContainerMenu {
 
     @NotNull
     @Override
-    public ItemStack quickMoveStack(@NotNull Player player, int slotId) {
+    public ItemStack quickMoveStack(@NotNull Player player, int slotId) { //TODO: update
         final TieredBlockEntityContext context = this.getContext();
         final Slot slot = this.slots.get(slotId);
 

@@ -1,7 +1,10 @@
 {
   "values": [
     "#botanypotstiers:elite_botany_pots",
+    "#botanypotstiers:elite_hopper_botany_pots",
     "#botanypotstiers:ultra_botany_pots",
-    "#botanypotstiers:mega_botany_pots"
+    "#botanypotstiers:ultra_hopper_botany_pots",
+    "#botanypotstiers:mega_botany_pots",
+    "#botanypotstiers:mega_hopper_botany_pots"
   ]
 }

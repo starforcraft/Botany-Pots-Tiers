@@ -1,0 +1,34 @@
+{
+    "bookshelf:load_conditions": [
+        {
+            "type": "botanypotstiers:config",
+            "property": "can_craft_ultra_hopper_pots"
+        }
+    ],
+    "type": "minecraft:crafting_shaped",
+    "category": "misc",
+    "group": "botanypotstiers:quick_ultra_hopper_pot",
+    "pattern": [
+        "H A",
+        " P ",
+        "B B"
+    ],
+    "key": {
+        "B": {
+            "item": "minecraft:diamond_block"
+        },
+        "A": {
+            "item": "minecraft:nether_star"
+        },
+        "P": {
+            "item": "botanypotstiers:elite_stone_bricks_botany_pot"
+        },
+        "H": {
+            "item": "minecraft:hopper"
+        }
+    },
+    "result": {
+        "id": "botanypotstiers:ultra_stone_bricks_hopper_botany_pot",
+        "count": 1
+    }
+}
