@@ -1,0 +1,29 @@
+{
+  "bookshelf:load_conditions": [
+    {
+      "type": "botanypotstiers:config",
+      "property": "can_craft_mega_basic_pots"
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " U ",
+    "BBA"
+  ],
+  "key": {
+    "U": {
+      "item": "botanypotstiers:ultra_upgrade"
+    },
+    "B": {
+      "item": "minecraft:netherite_block"
+    },
+    "A": {
+      "item": "minecraft:enchanted_golden_apple"
+    }
+  },
+  "result": {
+    "id": "botanypotstiers:mega_upgrade",
+    "count": 1
+  }
+}

@@ -1,6 +1,7 @@
 package com.ultramega.botanypotstiers.impl;
 
 import com.ultramega.botanypotstiers.common.impl.BotanyPotsTiersMod;
+import com.ultramega.botanypotstiers.common.impl.PotTier;
 import com.ultramega.botanypotstiers.common.impl.block.entity.TieredBotanyPotBlockEntity;
 
 import net.minecraft.core.Direction;
@@ -18,11 +19,13 @@ public class NeoForgeMod {
     }
 
     private static void registerCapabilities(RegisterCapabilitiesEvent event) {
-        event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, TieredBotanyPotBlockEntity.TYPE.get(), (be, side) -> {
-            if (side == Direction.DOWN) {
-                return new SidedInvWrapper(be, Direction.DOWN);
-            }
-            return null;
-        });
+        for (PotTier tier : PotTier.values()) {
+            event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, TieredBotanyPotBlockEntity.getType(tier).get(), (be, side) -> {
+                if (side == Direction.DOWN) {
+                    return new SidedInvWrapper(be, Direction.DOWN);
+                }
+                return null;
+            });
+        }
     }
 }

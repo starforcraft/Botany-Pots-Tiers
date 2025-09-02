@@ -1,0 +1,29 @@
+{
+  "bookshelf:load_conditions": [
+    {
+      "type": "botanypotstiers:config",
+      "property": "can_craft_ultra_basic_pots"
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " U ",
+    "BBA"
+  ],
+  "key": {
+    "U": {
+      "item": "botanypotstiers:elite_upgrade"
+    },
+    "B": {
+      "item": "minecraft:diamond_block"
+    },
+    "A": {
+      "item": "minecraft:nether_star"
+    }
+  },
+  "result": {
+    "id": "botanypotstiers:ultra_upgrade",
+    "count": 1
+  }
+}
