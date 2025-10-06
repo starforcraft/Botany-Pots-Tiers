@@ -1,3 +1,5 @@
+import net.darkhax.curseforgegradle.TaskPublishCurseForge
+
 plugins {
     id 'multiloader-loader'
     id 'fabric-loom'
@@ -54,6 +56,39 @@ loom {
             ideConfigGenerated(true)
             runDir('runs/server')
         }
+    }
+}
+
+// CurseForge
+tasks.register('publishCurseForge', TaskPublishCurseForge) {
+    apiToken = providers.environmentVariable('CURSEFORGE_TOKEN')
+
+    var mainFile = upload(curse_project, tasks.remapJar)
+    mainFile.changelogType = 'html'
+    mainFile.changelog = currentChangelog
+    mainFile.addModLoader('Fabric')
+    mainFile.releaseType = 'release'
+
+    mainFile.addRequirement('botany-pots')
+    mainFile.addRequirement('bookshelf')
+    mainFile.addRequirement('prickle')
+}
+
+// Modrinth
+modrinth {
+    token.set(providers.environmentVariable('MODRINTH_TOKEN'))
+    projectId.set(modrinth_project)
+    changelog = currentChangelog
+    versionName.set("${mod_name}-${minecraft_version}-$version")
+    versionType.set("release")
+    loaders = ["fabric"]
+    gameVersions = ["${minecraft_version}"]
+    uploadFile.set(tasks.remapJar)
+    dependencies {
+        required.project("fabric-api")
+        required.project("botany-pots")
+        required.project("bookshelf-lib")
+        required.project("prickle")
     }
 }
 

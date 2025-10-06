@@ -19,5 +19,6 @@ public class BotanyPotsTiersMod {
     }
 
     public static void init() {
+        CONFIG.get(); // Force init config file on main thread.
     }
 }
