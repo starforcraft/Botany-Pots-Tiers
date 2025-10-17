@@ -24,7 +24,7 @@ public record ConfigLoadCondition(String property) implements ILoadCondition {
             .apply(instance, ConfigLoadCondition::new));
 
     private static final Supplier<Map<String, Supplier<Boolean>>> PROPERTIES = CachedSupplier.cache(() -> {
-        final Config cfg = Config.INSTANCE.get();
+        final Config cfg = BotanyPotsTiersMod.CONFIG.get();
         final Map<String, Supplier<Boolean>> properties = new HashMap<>();
         properties.put("can_craft_elite_basic_pots", () -> cfg.recipes.craft_elite_basic_pots);
         properties.put("can_craft_elite_hopper_pots", () -> cfg.recipes.craft_elite_hopper_pots);

@@ -9,20 +9,21 @@ import com.ultramega.botanypotstiers.common.impl.item.UpgradeItem;
 import java.io.File;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.function.BiConsumer;
 import java.util.function.Supplier;
 
 import com.mojang.serialization.MapCodec;
 import net.darkhax.bookshelf.common.api.data.conditions.ILoadCondition;
 import net.darkhax.bookshelf.common.api.function.CachedSupplier;
-import net.darkhax.bookshelf.common.api.registry.IContentProvider;
-import net.darkhax.bookshelf.common.api.registry.register.MenuRegister;
-import net.darkhax.bookshelf.common.api.registry.register.Register;
-import net.darkhax.bookshelf.common.api.registry.register.RegisterBlockEntityRenderer;
-import net.darkhax.bookshelf.common.api.registry.register.RegisterItem;
-import net.darkhax.bookshelf.common.api.registry.register.RegisterItemTab;
-import net.darkhax.bookshelf.common.api.registry.register.RegisterMenuScreen;
+import net.darkhax.bookshelf.common.api.registry.ContentProvider;
+import net.darkhax.bookshelf.common.api.registry.adapters.GameRegistryAdapter;
+import net.darkhax.bookshelf.common.api.registry.adapters.GenericRegistryAdapter;
 import net.darkhax.bookshelf.common.api.service.Services;
+import net.darkhax.bookshelf.common.impl.registry.adapter.BlockEntityRendererAdapter;
+import net.darkhax.bookshelf.common.impl.registry.adapter.BlockRegistryAdapter;
+import net.darkhax.bookshelf.common.impl.registry.adapter.BlockRenderTypeAdapter;
+import net.darkhax.bookshelf.common.impl.registry.adapter.CreativeModeTabAdapter;
+import net.darkhax.bookshelf.common.impl.registry.adapter.MenuScreenAdapter;
+import net.darkhax.bookshelf.common.impl.registry.adapter.MenuTypeAdapter;
 import net.darkhax.botanypots.common.impl.block.BotanyPotRenderer;
 import net.darkhax.botanypots.common.impl.block.PotType;
 import net.minecraft.client.renderer.RenderType;
@@ -35,7 +36,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.material.MapColor;
 
-public class BotanyPotsTiersContent implements IContentProvider {
+public class BotanyPotsTiersContent implements ContentProvider {
     public static final Supplier<ItemStack> TAB_ICON = CachedSupplier.cache(() -> BuiltInRegistries.ITEM.get(BotanyPotsTiersMod.id("elite_terracotta_botany_pot")).getDefaultInstance());
     private static final String[] BRICK_TYPES = {"brick", "stone", "mossy_stone", "deepslate", "tuff", "mud", "prismarine", "nether", "red_nether", "polished_blackstone", "end_stone", "quartz"};
     private final Map<ResourceLocation, TieredBotanyPotBlock> allPotBlocks = new LinkedHashMap<>();
@@ -68,7 +69,7 @@ public class BotanyPotsTiersContent implements IContentProvider {
     }
 
     @Override
-    public void registerBlocks(Register<Block> registry) {
+    public void defineBlocks(BlockRegistryAdapter registry) {
         for (PotTier tier : PotTier.values()) {
             createPots(registry, "terracotta", tier);
             for (DyeColor color : DyeColor.values()) {
@@ -82,57 +83,55 @@ public class BotanyPotsTiersContent implements IContentProvider {
         }
     }
 
-    private void createPots(Register<Block> registry, String name, PotTier tier) {
+    private void createPots(BlockRegistryAdapter registry, String name, PotTier tier) {
         final ResourceLocation blockId = ResourceLocation.withDefaultNamespace(name);
         final MapColor color = BuiltInRegistries.BLOCK.containsKey(blockId) ? BuiltInRegistries.BLOCK.get(blockId).defaultMapColor() : MapColor.COLOR_ORANGE;
-        registerPot(registry, tier.getName() + "_" + name + "_botany_pot", new TieredBotanyPotBlock(color, PotType.BASIC, tier));
-        registerPot(registry, tier.getName() + "_" + name + "_hopper_botany_pot", new TieredBotanyPotBlock(color, PotType.HOPPER, tier));
-        registerPot(registry, tier.getName() + "_" + name + "_waxed_botany_pot", new TieredBotanyPotBlock(color, PotType.WAXED, tier));
+        definePot(registry, tier.getName() + "_" + name + "_botany_pot", new TieredBotanyPotBlock(color, PotType.BASIC, tier));
+        definePot(registry, tier.getName() + "_" + name + "_hopper_botany_pot", new TieredBotanyPotBlock(color, PotType.HOPPER, tier));
+        definePot(registry, tier.getName() + "_" + name + "_waxed_botany_pot", new TieredBotanyPotBlock(color, PotType.WAXED, tier));
     }
 
-    private void registerPot(Register<Block> registry, String id, TieredBotanyPotBlock block) {
-        final ResourceLocation blockId = ResourceLocation.fromNamespaceAndPath(this.contentNamespace(), id);
-        registry.add(blockId, block);
+    private void definePot(BlockRegistryAdapter registry, String id, TieredBotanyPotBlock block) {
+        final ResourceLocation blockId = ResourceLocation.fromNamespaceAndPath(this.namespace(), id);
+        registry.addPlaceable(id, () -> block);
         allPotBlocks.put(blockId, block);
     }
 
     @Override
-    public void registerItems(RegisterItem registry) {
-        for (Map.Entry<ResourceLocation, TieredBotanyPotBlock> block : allPotBlocks.entrySet()) {
-            registry.addBlock(block.getValue());
-        }
+    public void defineItems(final GameRegistryAdapter<Item> registry) {
         for (PotTier tier : PotTier.values()) {
-            final ResourceLocation itemId = BotanyPotsTiersMod.id(tier.getName() + "_upgrade");
+            final String id = tier.getName() + "_upgrade";
+            final ResourceLocation itemId = ResourceLocation.fromNamespaceAndPath(this.namespace(), id);
             final Item item = new UpgradeItem(new Item.Properties().stacksTo(1), tier);
-            registry.add(itemId, item);
+            registry.add(id, () -> item);
             allUpgradeItems.put(itemId, item);
         }
     }
 
     @Override
-    public void registerBlockEntities(Register<BlockEntityType.Builder<?>> registry) {
+    public void defineBlockEntities(GameRegistryAdapter<BlockEntityType<?>> registry) {
         for (PotTier tier : PotTier.values()) {
             registry.add(tier.getName() + "_botany_pot",
                 Services.GAMEPLAY.blockEntityBuilder((pos, state) -> new TieredBotanyPotBlockEntity(pos, state, tier),
                     this.allPotBlocks.values().stream()
                         .filter(block -> block.getTier() == tier)
-                        .toArray(Block[]::new)));
+                        .toArray(Block[]::new)).build(null));
         }
     }
 
     @Override
-    public void registerMenus(MenuRegister registry) {
+    public void defineMenuType(MenuTypeAdapter registry) {
         //registry.add("tiered_basic_pot_menu", TieredBotanyPotMenu::basicMenuClient);
         //registry.add("tiered_hopper_pot_menu", TieredBotanyPotMenu::hopperMenuClient);
     }
 
     @Override
-    public void registerLoadConditions(Register<MapCodec<? extends ILoadCondition>> registry) {
+    public void defineLoadConditions(GenericRegistryAdapter<MapCodec<? extends ILoadCondition>> registry) {
         registry.add(ConfigLoadCondition.TYPE_ID, ConfigLoadCondition.CODEC);
     }
 
     @Override
-    public void registerItemTabs(RegisterItemTab registry) {
+    public void defineCreativeTabs(CreativeModeTabAdapter registry) {
         registry.add("tab", TAB_ICON, (params, builder) -> {
             for (Item item : this.allUpgradeItems.values()) {
                 builder.accept(item);
@@ -144,27 +143,27 @@ public class BotanyPotsTiersContent implements IContentProvider {
     }
 
     @Override
-    public void bindBlockEntityRenderer(RegisterBlockEntityRenderer registry) {
+    public void defineBlockRenderers(BlockEntityRendererAdapter registry) {
         for (PotTier tier : PotTier.values()) {
             registry.bind(TieredBotanyPotBlockEntity.getType(tier).get(), BotanyPotRenderer::new);
         }
     }
 
     @Override
-    public void registerMenuScreens(RegisterMenuScreen registry) {
+    public void defineMenuScreens(MenuScreenAdapter registry) {
         //registry.bind(TieredBotanyPotMenu.BASIC_MENU.get(), TieredBotanyPotScreen::new);
         //registry.bind(TieredBotanyPotMenu.HOPPER_MENU.get(), TieredBotanyPotScreen::new);
     }
 
     @Override
-    public void bindRenderLayers(BiConsumer<Block, RenderType> registry) {
+    public void defineBlockRenderTypes(BlockRenderTypeAdapter registry) {
         for (Block block : this.allPotBlocks.values()) {
-            registry.accept(block, RenderType.cutout());
+            registry.add(block, RenderType.cutout());
         }
     }
 
     @Override
-    public String contentNamespace() {
+    public String namespace() {
         return BotanyPotsTiersMod.MOD_ID;
     }
 }
