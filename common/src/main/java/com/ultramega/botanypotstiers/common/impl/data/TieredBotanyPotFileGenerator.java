@@ -67,18 +67,10 @@ public class TieredBotanyPotFileGenerator {
     }
 
     public void hopperPotUpgradeRecipe(File recipeDir, ResourceLocation material, PotTier tier) {
-        if (tier == PotTier.ELITE) { //TODO: The Botany Pots mod has to be split it's tag into hopper and basic
-            return;
-        }
-
         write(new File(recipeDir, tier.getName() + "_" + material.getPath() + "_hopper_botany_pot_upgrade.json"), format(BASIC_POT_RECIPE_TEMPLATE, material, tier, true));
     }
 
     public void hopperPotUpgradeSameMaterialRecipe(File recipeDir, ResourceLocation material, PotTier tier) {
-        if (tier == PotTier.ELITE) { //TODO: The Botany Pots mod has to be split it's tag into hopper and basic
-            return;
-        }
-
         write(new File(recipeDir, tier.getName() + "_" + material.getPath() + "_hopper_botany_pot_upgrade_same_material.json"), format(BASIC_POT_SAME_MATERIAL_RECIPE_TEMPLATE, material, tier, true));
     }
 
@@ -105,8 +97,8 @@ public class TieredBotanyPotFileGenerator {
     private String format(String template, ResourceLocation material, PotTier tier, boolean isHopper) {
         final PotTier prevTier = PotTier.getPrevious(tier);
         return template
-            .replace("$previous_owner", tier == PotTier.ELITE ? BotanyPotsMod.MOD_ID : this.ownerId)
-            .replace("$previous_tier_", (prevTier != null ? prevTier.getName() + "_" : ""))
+            .replace("$previous_owner", this.ownerId)
+            .replace("$previous_tier_", (prevTier != null ? prevTier.getName() : "regular") + "_")
             .replace("$owner", this.ownerId)
             .replace("$material_id", material.toString())
             .replace("$material_name", material.getPath())

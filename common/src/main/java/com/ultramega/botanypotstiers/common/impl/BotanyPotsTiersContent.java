@@ -43,7 +43,7 @@ public class BotanyPotsTiersContent implements ContentProvider {
     private final Map<ResourceLocation, Item> allUpgradeItems = new LinkedHashMap<>();
 
     public BotanyPotsTiersContent() {
-        //generatePotFiles();
+        // generatePotFiles();
     }
 
     private void generatePotFiles() {
