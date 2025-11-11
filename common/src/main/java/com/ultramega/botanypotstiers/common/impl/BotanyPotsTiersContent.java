@@ -102,7 +102,7 @@ public class BotanyPotsTiersContent implements ContentProvider {
         for (PotTier tier : PotTier.values()) {
             final String id = tier.getName() + "_upgrade";
             final ResourceLocation itemId = ResourceLocation.fromNamespaceAndPath(this.namespace(), id);
-            final Item item = new UpgradeItem(new Item.Properties().stacksTo(1), tier);
+            final Item item = new UpgradeItem(new Item.Properties(), tier);
             registry.add(id, () -> item);
             allUpgradeItems.put(itemId, item);
         }

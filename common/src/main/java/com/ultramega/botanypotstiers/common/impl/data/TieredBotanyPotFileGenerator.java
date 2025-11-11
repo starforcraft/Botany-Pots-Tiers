@@ -63,7 +63,7 @@ public class TieredBotanyPotFileGenerator {
     }
 
     public void basicPotUpgradeSameMaterialRecipe(File recipeDir, ResourceLocation material, PotTier tier) {
-        write(new File(recipeDir, tier.getName() + "_" + material.getPath() + "_botany_pot_same_material.json"), format(BASIC_POT_SAME_MATERIAL_RECIPE_TEMPLATE, material, tier, false));
+        write(new File(recipeDir, tier.getName() + "_" + material.getPath() + "_botany_pot_same_material.json"), format(BASIC_POT_SAME_MATERIAL_RECIPE_TEMPLATE, material, tier, false, true));
     }
 
     public void hopperPotUpgradeRecipe(File recipeDir, ResourceLocation material, PotTier tier) {
@@ -71,7 +71,7 @@ public class TieredBotanyPotFileGenerator {
     }
 
     public void hopperPotUpgradeSameMaterialRecipe(File recipeDir, ResourceLocation material, PotTier tier) {
-        write(new File(recipeDir, tier.getName() + "_" + material.getPath() + "_hopper_botany_pot_upgrade_same_material.json"), format(BASIC_POT_SAME_MATERIAL_RECIPE_TEMPLATE, material, tier, true));
+        write(new File(recipeDir, tier.getName() + "_" + material.getPath() + "_hopper_botany_pot_upgrade_same_material.json"), format(BASIC_POT_SAME_MATERIAL_RECIPE_TEMPLATE, material, tier, true, true));
     }
 
     public void quickHopperUpgradePotRecipe(File recipeDir, ResourceLocation material, PotTier tier) {
@@ -79,7 +79,7 @@ public class TieredBotanyPotFileGenerator {
     }
 
     public void quickHopperUpgradePotSameMaterialRecipe(File recipeDir, ResourceLocation material, PotTier tier) {
-        write(new File(recipeDir, tier.getName() + "_" + material.getPath() + "_hopper_botany_pot_upgrade_quick_same_material.json"), format(QUICK_HOPPER_POT_SAME_MATERIAL_RECIPE_TEMPLATE, material, tier, false));
+        write(new File(recipeDir, tier.getName() + "_" + material.getPath() + "_hopper_botany_pot_upgrade_quick_same_material.json"), format(QUICK_HOPPER_POT_SAME_MATERIAL_RECIPE_TEMPLATE, material, tier, false, true));
     }
 
     public void hopperPotRecipe(File recipeDir, ResourceLocation material, PotTier tier) {
@@ -95,10 +95,18 @@ public class TieredBotanyPotFileGenerator {
     }
 
     private String format(String template, ResourceLocation material, PotTier tier, boolean isHopper) {
+        return this.format(template, material, tier, isHopper, false);
+    }
+
+    private String format(String template, ResourceLocation material, PotTier tier, boolean isHopper, boolean variant) {
         final PotTier prevTier = PotTier.getPrevious(tier);
+
+        String previousOwner = variant && tier == PotTier.ELITE ? BotanyPotsMod.MOD_ID : this.ownerId;
+        String previousTierPrefix = prevTier != null ? prevTier.getName() + "_" : (variant ? "" : "regular_");
+
         return template
-            .replace("$previous_owner", this.ownerId)
-            .replace("$previous_tier_", (prevTier != null ? prevTier.getName() : "regular") + "_")
+            .replace("$previous_owner", previousOwner)
+            .replace("$previous_tier_", previousTierPrefix)
             .replace("$owner", this.ownerId)
             .replace("$material_id", material.toString())
             .replace("$material_name", material.getPath())

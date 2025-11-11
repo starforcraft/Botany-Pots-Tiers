@@ -21,7 +21,7 @@
             "item": "minecraft:ender_pearl"
         },
         "P": {
-            "item": "botanypotstiers:regular_brown_terracotta_botany_pot"
+            "item": "botanypots:brown_terracotta_botany_pot"
         },
         "H": {
             "item": "minecraft:hopper"
