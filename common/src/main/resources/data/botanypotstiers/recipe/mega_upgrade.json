@@ -8,13 +8,9 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "pattern": [
-    " U ",
     "BBA"
   ],
   "key": {
-    "U": {
-      "item": "botanypotstiers:ultra_upgrade"
-    },
     "B": {
       "item": "minecraft:netherite_block"
     },
